@@ -77,3 +77,4 @@ set viminfo+=n$HOME/.dotfiles/vim/.viminfo
 set backupdir=$HOME/.dotfiles/vim/backups,.
 set undodir=$HOME/.dotfiles/vim/undo,.
 set directory=$HOME/.dotfiles/vim/swaps,.
+set rtp^=$HOME/.dotfiles/vim

@@ -1,0 +1,9 @@
+set paste
+set termguicolors
+set background=dark
+colorscheme NeoSolarized
+let mapleader="\\"
+set viminfo+=n$HOME/.config/nvim/.viminfo
+set backupdir=$HOME/.config/nvim/backups,.
+set undodir=$HOME/.config/nvim/undo,.
+set directory=$HOME/.config/nvim/swaps,."

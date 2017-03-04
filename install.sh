@@ -14,6 +14,7 @@ ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/zsh/.zshrc" ~
 ln -sfv "$DOTFILES_DIR/.dircolors" ~
 ln -sfv "$DOTFILES_DIR/zsh/.zprofile" ~
+ln -sfv "$DOTFILES_DIR/.Xresources" ~
 #Make .config directory then make symlinks
 [[ -d "$HOME/.config" ]] || mkdir "$HOME/.config"
 ln -sfv "$DOTFILES_DIR/i3" "$HOME/.config/i3"

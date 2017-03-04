@@ -4,6 +4,8 @@ set background=dark
 colorscheme NeoSolarized
 let mapleader="\\"
 set viminfo+=n$HOME/.config/nvim/.viminfo
-set backupdir=$HOME/.config/nvim/backups,.
-set undodir=$HOME/.config/nvim/undo,.
-set directory=$HOME/.config/nvim/swaps,."
+set backup
+set undofile
+set backupdir=$HOME/.local/share/nvim/backup
+set undodir=$HOME/.local/share/nvim/undo
+set directory=$HOME/.local/share/nvim/swap

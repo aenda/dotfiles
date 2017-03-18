@@ -19,31 +19,14 @@ DISABLE_AUTO_TITLE="true"
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-#COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-#source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+added_keys=`ssh-add -l`
+
+if [ ! $(echo $added_keys | grep -o -e my_key) ]; then
+    ssh-add "$HOME/.ssh/my_key"
+fi
+eval `keychain --eval id_rsa`
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -100,5 +83,7 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 DEFAULT_USER=gmend
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-autoload -Uz compinit
-compinit
+#autoload -Uz compinit
+#compinit
+
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1

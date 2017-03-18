@@ -23,10 +23,10 @@ ENABLE_CORRECTION="true"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 added_keys=`ssh-add -l`
 
-if [ ! $(echo $added_keys | grep -o -e my_key) ]; then
-    ssh-add "$HOME/.ssh/my_key"
+if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
+    ssh-add "$HOME/.ssh/id_rsa"
 fi
-eval `keychain --eval id_rsa`
+#eval `keychain --eval id_rsa`
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

@@ -77,7 +77,7 @@ fi
 # Set up colored ls
 ls --color -d . &>/dev/null && alias ls='ls --color=tty'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# Ls after cd
+#Ls after cd
 auto-ls () { ls; }
 chpwd_functions=( auto-ls $chpwd_functions )
 
@@ -94,6 +94,6 @@ SAVEHIST=1000
 setopt NO_HIST_BEEP #No annoying beeping
 setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_EXPIRE_DUPS_FIRST
 
-source ./completion.zsh
-source ./keybindings.zsh
-source ./termsupport.zsh
+source ~/.dotfiles/zsh/completion.zsh
+source ~/.dotfiles/zsh/keybindings.zsh
+source ~/.dotfiles/zsh/termsupport.zsh

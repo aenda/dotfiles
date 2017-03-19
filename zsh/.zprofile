@@ -6,3 +6,5 @@ fi
 if [[ -r ~/.zshrc ]]; then
 	. ~/.zshrc
 fi
+
+source /etc/profile.d/vte.sh

@@ -1,18 +1,27 @@
-# Solarized light color scheme
-
 [options]
 font = PowerlineSymbols:style=Medium
-font = Monospace 12
-font = DejaVu\ Sans\ Mono 12
+font = Inconsolata 13
+#font = Monospace 12
+#font = DejaVu\ Sans\ Mono 12
 mouse_autohide = true
 audible_bell = false
 visible_bell = true
+
+# Solarized light color scheme
 [colors]
-foreground = #839496
-foreground_bold = #eee8d5
+foreground = #657b83
+foreground_bold = #073642
+foreground_dim = #888888
+background = #fdf6e3
+cursor = #586e75
+
+# Solarized dark color scheme
+#[colors]
+#foreground = #839496
+#foreground_bold = #eee8d5
 #foreground_dim = #888888
-background = #002b36
-cursor = #93a1a1
+#background = #002b36
+#cursor = #93a1a1
 
 # if unset, will reverse foreground and background
 #highlight = #839496
@@ -36,4 +45,4 @@ color14 = #93a1a1
 color15 = #fdf6e3
 
 [hints]
-font = Monospace 12
+font = Inconsolata 13

@@ -1,6 +1,3 @@
-set termguicolors
-set background=dark
-colorscheme NeoSolarized
 let mapleader="\\"
 set viminfo+=n$HOME/.config/nvim/.viminfo
 set backup undofile

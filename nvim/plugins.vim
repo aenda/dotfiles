@@ -1,8 +1,12 @@
-let g:airline_theme='base16_solarized'
-
+"let g:airline_theme='base16_solarized'
+"Neosolarized Config
+set termguicolors
+"set background=dark
+colorscheme NeoSolarized
+"Vimtex Config
 let g:vimtex_latexmk_progname = 'nvr'
 let g:vimtex_view_method = 'zathura'
-
+"Deoplete config
 let g:deoplete#enable_at_startup = 1
 set completeopt=longest,menuone,preview
 let g:deoplete#sources = {}

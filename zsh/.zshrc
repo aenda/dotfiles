@@ -49,8 +49,9 @@ POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX='\uf0da'
 #POWERLEVEL9K_VCS_GIT_ICON='\ue60a'
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
-##POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status os_icon battery context dir vcs)
+#POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
+#removed os_icon
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status battery context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time background_jobs ram virtualenv rbenv rvm)
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
@@ -59,6 +60,7 @@ POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %d.%m.%y}"
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_COLOR_SCHEME='light'
 
 # Load antigen and plugins
 ADOTDIR="$HOME/.config/antigen"
@@ -71,9 +73,9 @@ antigen theme bhilburn/powerlevel9k powerlevel9k
 antigen apply
 
 if [[ -f ~/.dircolors ]] ;
-	then eval "$(dircolors -b ~/.dircolors)"
+    then eval "$(dircolors -b ~/.dircolors)"
 elif [[ -f /etc/DIR_COLORS ]] ;
-	then eval $(dircolors -b /etc/DIR_COLORS)
+    then eval $(dircolors -b /etc/DIR_COLORS)
 fi
 
 auto-ls () { ls; }
@@ -85,5 +87,3 @@ DEFAULT_USER=gmend
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 #autoload -Uz compinit
 #compinit
-
-export NVIM_TUI_ENABLE_CURSOR_SHAPE=1

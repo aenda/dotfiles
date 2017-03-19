@@ -1,23 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-  export ZSH=~/.oh-my-zsh
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
- DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
-
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -28,14 +13,9 @@ if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
 fi
 #eval `keychain --eval id_rsa`
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-alias vim="vim --servername vim"
+autoload -Uz compinit
+compinit
+
 # Load powerlevel9k
 #DISABLE_AUTO_TITLE="true"
 POWERLEVEL9K_BATTERY_CHARGING='yellow'
@@ -52,7 +32,7 @@ POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
 #POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
 #removed os_icon
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status battery context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time background_jobs ram virtualenv rbenv rvm)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time background_jobs ram)
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 ##POWERLEVEL9K_CUSTOM_TIME_FORMAT="%D{\uf017 %H:%M:%S}"
@@ -64,28 +44,58 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MODE='awesome-fontconfig'
 POWERLEVEL9K_COLOR_SCHEME='light'
 
-# Load antigen and plugins
-ADOTDIR="$HOME/.config/antigen"
-source /usr/share/zsh/scripts/antigen/antigen.zsh
-antigen use oh-my-zsh
-antigen bundle command-not-found
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen theme bhilburn/powerlevel9k powerlevel9k
-antigen apply
+# Load zplug and plugins
+if [[ ! -d "$HOME/.zplug" ]];then
+    git clone https://github.com/b4b4r07/zplug ~/.zplug
+fi
+ZPLUG_HOME="$HOME/.zplug"
+if [ -f $ZPLUG_HOME/init.zsh ]; then
+    source "$ZPLUG_HOME/init.zsh"
+fi
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "zplug/zplug", hook-build:'zplug --self-manage'
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+zplug load #--verbose
 
+# Aliases
+alias l='ls -lah'
+alias vim="vim --servername vim"
+
+# Evaluate dircolors
 if [[ -f ~/.dircolors ]] ;
     then eval "$(dircolors -b ~/.dircolors)"
 elif [[ -f /etc/DIR_COLORS ]] ;
     then eval $(dircolors -b /etc/DIR_COLORS)
 fi
-
+# Set up colored ls
+ls --color -d . &>/dev/null && alias ls='ls --color=tty'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# Ls after cd
 auto-ls () { ls; }
 chpwd_functions=( auto-ls $chpwd_functions )
+
+#Misc options
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg-12'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 DEFAULT_USER=gmend
+#Hist options
+if [ -z "$HISTFILE" ]; then
+    HISTFILE=$HOME/.zsh_history
+fi
+HISTSIZE=1000 #We have plenty of memory, save our history
+SAVEHIST=1000
+setopt NO_HIST_BEEP #No annoying beeping
+setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_EXPIRE_DUPS_FIRST
 
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-#autoload -Uz compinit
-#compinit
+# Fix C-[left] C-[right] behavior
+#bindkey ';5C' forward-word
+#bindkey ';5D' backward-word
+source ~/completion.zsh
+source ~/key-bindings.zsh

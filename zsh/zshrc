@@ -94,5 +94,6 @@ SAVEHIST=1000
 setopt NO_HIST_BEEP #No annoying beeping
 setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_EXPIRE_DUPS_FIRST
 
-source .completion.zsh
+source ./completion.zsh
 source ./keybindings.zsh
+source ./termsupport.zsh

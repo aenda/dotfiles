@@ -21,4 +21,4 @@ ln -sfv "$DOTFILES_DIR/X/.*" ~
 ln -sfv "$DOTFILES_DIR/i3" "$HOME/.config/i3"
 ln -sfv "$DOTFILES_DIR/i3status" "$HOME/.config/i3status"
 ln -sfv "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
-ln -sfv "$DOTFILES_DIR/termite" "$HOME/.config/termite"
+ln -sfv "$DOTFILES_DIR/termite/config-light" "$HOME/.config/termite/config"

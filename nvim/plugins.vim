@@ -1,7 +1,8 @@
 "let g:airline_theme='base16_solarized'
 "Neosolarized Config
 set termguicolors
-"set background=dark
+"Set background - in file so its writable
+source $HOME/.config/nvim/background.vim
 colorscheme NeoSolarized
 "Vimtex Config
 let g:vimtex_latexmk_progname = 'nvr'

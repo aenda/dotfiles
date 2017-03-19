@@ -94,8 +94,5 @@ SAVEHIST=1000
 setopt NO_HIST_BEEP #No annoying beeping
 setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_EXPIRE_DUPS_FIRST
 
-# Fix C-[left] C-[right] behavior
-#bindkey ';5C' forward-word
-#bindkey ';5D' backward-word
-source ~/completion.zsh
-source ~/key-bindings.zsh
+source .completion.zsh
+source ./keybindings.zsh

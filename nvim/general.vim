@@ -4,20 +4,24 @@ set backup undofile
 set backupdir=$HOME/.local/share/nvim/backup
 set undodir=$HOME/.local/share/nvim/undo
 set directory=$HOME/.local/share/nvim/swap
+
 "Cursor shape changes on insert
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
+set clipboard+=unnamed,unnamedplus "Use system clipboard for yank/put/delete
 "Handle tabs - one tab equates to 4 spaces, except in makefiles
+set tabstop=4 softtabstop=0 shiftwidth=4 expandtab smartindent
 
-set tabstop=8 softtabstop=0 shiftwidth=4 expandtab smarttab
+set list listchars=tab:»\ ,eol:¬,trail:·
 
+"Line numbers with thin gutter
+set number numberwidth=2
+"Highlight all columns past 80
+let &colorcolumn=join(range(81,999),",")
 augroup makefile
     autocmd!
     autocmd BufRead,BufNewFile *.mf setl noai noexpandtab
     autocmd filetype make setl noai noexpandtab
 augroup end
-
-set list listchars=tab:»\ ,eol:¬,trail:·
 
 "LaTeX
 augroup latex

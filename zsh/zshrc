@@ -67,7 +67,7 @@ zplug load #--verbose
 # Aliases
 alias l='ls -lah'
 alias vim="vim --servername vim"
-
+alias color="~/.dotfiles/changecolor.sh"
 # Evaluate dircolors
 if [[ -f ~/.dircolors ]] ;
     then eval "$(dircolors -b ~/.dircolors)"

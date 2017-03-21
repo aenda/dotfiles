@@ -7,6 +7,7 @@ set directory=$HOME/.local/share/nvim/swap
 
 "Cursor shape changes on insert
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set clipboard+=unnamed,unnamedplus "Use system clipboard for yank/put/delete
 "Handle tabs - one tab equates to 4 spaces, except in makefiles
 set tabstop=4 softtabstop=0 shiftwidth=4 expandtab smartindent

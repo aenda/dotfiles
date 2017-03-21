@@ -7,7 +7,8 @@ if empty(glob("$HOME/.dotfiles/nvim/autoload/plug.vim"))
 endif
 
 call plug#begin('$HOME/.dotfiles/nvim/plugged')
-Plug 'iCyMind/NeoSolarized'
+"Plug 'iCyMind/NeoSolarized'
+Plug 'morhetz/gruvbox'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

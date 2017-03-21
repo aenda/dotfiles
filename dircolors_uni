@@ -167,7 +167,7 @@ DIR 36
 # symbolic link
 LINK 35
 # 777 directory
-OTHER_WRITABLE 34;47
+OTHER_WRITABLE 37;44
 
 # pipe, socket, block device, character device (blue bg)
 FIFO 30;44

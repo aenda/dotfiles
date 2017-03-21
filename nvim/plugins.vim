@@ -3,7 +3,8 @@
 set termguicolors
 "Set background - in file so its writable
 source $HOME/.config/nvim/background.vim
-colorscheme NeoSolarized
+let g:gruvbox_italic=1
+colorscheme gruvbox
 "Vimtex Config
 let g:vimtex_latexmk_progname = 'nvr'
 let g:vimtex_view_method = 'zathura'

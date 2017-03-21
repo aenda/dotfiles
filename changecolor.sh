@@ -6,11 +6,11 @@ if [ $colormode = "light" ]
 then
     rm ~/.dotfiles/nvim/background.vim
     echo "\"set background=dark" >> ~/.dotfiles/nvim/background.vim
-    ln -sfv ~/.dotfiles/termite/config-light ~/.config/termite/config
+    ln -sfv ~/.dotfiles/termite/config-gruvbox-light ~/.config/termite/config
 elif [ $colormode = "dark" ]
 then
     echo "set background=dark" >> ~/.dotfiles/nvim/background.vim
-    ln -sfv ~/.dotfiles/termite/config-dark ~/.config/termite/config
+    ln -sfv ~/.dotfiles/termite/config-gruvbox-dark ~/.config/termite/config
 else
     echo "Call with arg light or dark"
 fi

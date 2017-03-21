@@ -24,3 +24,4 @@ call plug#end()
 source $HOME/.config/nvim/general.vim
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/statusline.vim
+source $HOME/.config/nvim/color.vim

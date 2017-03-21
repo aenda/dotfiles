@@ -168,4 +168,3 @@ bindsym XF86MonBrightnessUp exec /home/gmend/.config/i3/brightup.sh
 bindsym XF86MonBrightnessDown exec /home/gmend/.config/i3/brightdown.sh
 bindsym $mod+Shift+f exec "firefox"
 exec feh --bg-scale ~/.config/i3/lockscreen.png
-exec gnome-keyring-daemon -s

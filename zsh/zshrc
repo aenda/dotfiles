@@ -16,7 +16,7 @@ fi
 autoload -Uz compinit
 compinit
 
-source ~/.dotfiles/zsh/powerlevel9k.zsh
+#source ~/.dotfiles/zsh/powerlevel9k.zsh
 
 # Load zplug and plugins
 if [[ ! -d "$HOME/.zplug" ]];then
@@ -30,12 +30,18 @@ fi
 #Load plugins/themes/etc
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
+zplug "mafredri/zsh-async"
+#zplug "sindresorhus/pure", as:theme, use:pure.zsh
+zplug "intelfx/pure", as:theme, use:pure.zsh
+PURE_PROMPT_SYMBOL=❯
+#zplug "Remiii/remiii.zsh-theme", as:theme, use:remiii.zsh-theme
+#zplug "houjunchen/solarized-powerline", use:solarized-powerline.zsh-theme
 #zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 #zplug "inimicus/z4rr3t", use:z4rr3t.zsh
-zplug "glek/34ee8286eb9141056cd85a02bfd4fcd3", \
-    from:gist, \
-    as:theme, \
-    use:blinks_custom.zsh-theme
+#zplug "glek/34ee8286eb9141056cd85a02bfd4fcd3", \
+#    from:gist, \
+#    as:theme, \
+#    use:blinks_custom.zsh-theme
 zplug "zplug/zplug", hook-build:'zplug --self-manage'
 #If zplug check gives output, ie, there are uninstalled plugins, install them
 if ! zplug check --verbose; then
@@ -47,7 +53,8 @@ fi
 zplug load #--verbose
 
 # Aliases
-alias l='ls -lah'
+alias l='ls -q | column -c 80'
+alias la='ls -oAh'
 alias vim="vim --servername vim"
 alias color="~/.dotfiles/changecolor.sh"
 
@@ -59,7 +66,7 @@ elif [[ -f /etc/DIR_COLORS ]] ;
 fi
 
 # Set up colored ls
-ls --color -d . &>/dev/null && alias ls='ls --color=tty'
+ls --color -d . &>/dev/null && alias ls='ls --color'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 #Ls after cd
 auto-ls () { ls; }

@@ -14,6 +14,7 @@ ln -sfv "$DOTFILES_DIR/git/gitconfig" ~/.gitconfig
 ln -sfv "$DOTFILES_DIR/zsh/zshrc" ~/.zshrc
 ln -sfv "$DOTFILES_DIR/zsh/zprofile" ~/.zprofile
 ln -sfv "$DOTFILES_DIR/dircolors-uni" ~/.dircolors
+ln -sfv "$DOTFILES_DIR/tmux/tmux.conf" ~/.tmux.conf
 #X config
 ln -sfv "$DOTFILES_DIR/X/.*" ~
 #Make .config directory then make symlinks

@@ -1,3 +1,5 @@
+"Nerdtree shortcut
+map <leader>nt :NERDTreeToggle<CR>
 "let g:airline_theme='base16_solarized'
 "Neosolarized Config
 set termguicolors

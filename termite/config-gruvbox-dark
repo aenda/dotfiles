@@ -1,5 +1,5 @@
 [options]
-font = Inconsolata 14
+font = Inconsolata\ for\ Powerline\ Nerd\ Font\ Complete\ Mono 14
 mouse_autohide = true
 
 [colors]

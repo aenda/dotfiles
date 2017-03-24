@@ -5,6 +5,8 @@ set backupdir=$HOME/.local/share/nvim/backup
 set undodir=$HOME/.local/share/nvim/undo
 set directory=$HOME/.local/share/nvim/swap
 
+"Navigate line breaks with arrow keys
+"set whichwrap+=<,>,[,]
 "Cursor shape changes on insert
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set clipboard+=unnamed,unnamedplus "Use system clipboard for yank/put/delete

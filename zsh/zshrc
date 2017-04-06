@@ -58,6 +58,20 @@ alias la='ls -oAh'
 alias vim="vim --servername vim"
 alias color="~/.dotfiles/changecolor.sh"
 
+#Functions
+function match_filename() {
+  find "$1" -iname "*$2*" -print
+}
+function match_contents() {
+  grep -Ri "$1" -e "$2"
+}
+function matchrun_filename() {
+  find "$1" -iname "*$2*" -print0 | xargs -0 ls -l
+}
+function matchrun_contents() {
+  grep -Ri "$1" -e "$2" -lZ | xargs -0 "${@:3}"
+}
+
 # Evaluate dircolors
 if [[ -f ~/.dircolors ]] ;
     then eval "$(dircolors -b ~/.dircolors)"

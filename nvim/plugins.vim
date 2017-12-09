@@ -35,3 +35,6 @@ let g:deoplete#omni#input_patterns.tex = '\\(?:'
       \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
       \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
       \ .')'
+
+
+let g:polyglot_disabled = ['latex']

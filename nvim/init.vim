@@ -14,6 +14,7 @@ call plug#begin('$HOME/.dotfiles/nvim/plugged')
 Plug 'morhetz/gruvbox'
 "Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -26,7 +27,7 @@ Plug 'ryanoasis/vim-devicons'
 
 "Plug 'zchee/deoplete-jedi'
 "Plug 'poppyschmo/deoplete-latex'
-"SPecific functionality
+"Specific functionality
 Plug 'jalvesaq/nvim-r'
 Plug 'lervag/vimtex'
 call plug#end()

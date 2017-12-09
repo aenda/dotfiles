@@ -103,3 +103,5 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_EXPIRE_DUPS_FIRST
 source ~/.dotfiles/zsh/completion.zsh
 source ~/.dotfiles/zsh/keybindings.zsh
 source ~/.dotfiles/zsh/termsupport.zsh
+PATH+=":/home/gmend/.gem/ruby/2.4.0/bin/"
+export PATH

@@ -34,6 +34,7 @@ zplug "mafredri/zsh-async"
 #zplug "sindresorhus/pure", as:theme, use:pure.zsh
 zplug "intelfx/pure", as:theme, use:pure.zsh
 PURE_PROMPT_SYMBOL=❯
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=black
 #zplug "Remiii/remiii.zsh-theme", as:theme, use:remiii.zsh-theme
 #zplug "houjunchen/solarized-powerline", use:solarized-powerline.zsh-theme
 #zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
@@ -103,5 +104,30 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_EXPIRE_DUPS_FIRST
 source ~/.dotfiles/zsh/completion.zsh
 source ~/.dotfiles/zsh/keybindings.zsh
 source ~/.dotfiles/zsh/termsupport.zsh
-PATH+=":/home/gmend/.gem/ruby/2.4.0/bin/"
+PATH+=":/home/gmend/.gem/ruby/2.5.0/bin/"
 export PATH
+
+#function zle-line-init zle-keymap-select {
+#    VIM_PROMPT="%{$fg_bold[red]%} [% NORMAL]% %{$reset_color%}"
+#    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1" # $(git_custom_status) $EPS1"
+#    zle reset-prompt
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+export KEYTIMEOUT=5
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
+
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
+
+bindkey "${terminfo[khome]}" beginning-of-line
+bindkey "${terminfo[kend]}" end-of-line

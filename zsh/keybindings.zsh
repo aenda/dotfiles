@@ -16,6 +16,7 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 fi
 
 bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
+bindkey '^@' set-mark-command #ctrl-space
 
 # start typing + [Up-Arrow] - fuzzy find history forward
 if [[ "${terminfo[kcuu1]}" != "" ]]; then

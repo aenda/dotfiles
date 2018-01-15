@@ -12,6 +12,16 @@ call plug#begin('$HOME/.dotfiles/nvim/plugged')
 "Plug 'vim-airline/vim-airline-themes'
 "Colors
 Plug 'morhetz/gruvbox'
+
+"Microsoft Language Server Protocol
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
+
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+
 "Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sheerun/vim-polyglot'
@@ -25,7 +35,7 @@ Plug 'mhinz/vim-startify'
 "Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 
-"Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-jedi'
 "Plug 'poppyschmo/deoplete-latex'
 "Specific functionality
 Plug 'jalvesaq/nvim-r'
@@ -36,3 +46,4 @@ source $HOME/.config/nvim/general.vim
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/statusline.vim
 source $HOME/.config/nvim/color.vim
+source $HOME/.config/nvim/netrw.vim

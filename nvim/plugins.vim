@@ -38,3 +38,16 @@ let g:deoplete#omni#input_patterns.tex = '\\(?:'
 
 
 let g:polyglot_disabled = ['latex']
+
+set hidden
+
+"v for some debug logging
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls', '-v'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ }
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>

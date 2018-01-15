@@ -9,9 +9,9 @@ set directory=$HOME/.local/share/nvim/swap
 "set whichwrap+=<,>,[,]
 "Cursor shape changes on insert
 
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-\,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-\,sm:block-blinkwait175-blinkoff150-blinkon175
+"set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+"\,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+"\,sm:block-blinkwait175-blinkoff150-blinkon175
 set clipboard+=unnamed "Use middle-click clipboard
 "Handle tabs - one tab equates to 4 spaces, except in makefiles
 set tabstop=4 softtabstop=0 shiftwidth=4 expandtab smartindent
@@ -20,6 +20,7 @@ set list listchars=tab:»\ ,eol:¬,trail:·
 
 "Line numbers with thin gutter
 set relativenumber numberwidth=2
+let netrw_menu = 0
 "Highlight all columns past 80
 let &colorcolumn=join(range(81,999),",")
 augroup makefile

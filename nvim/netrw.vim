@@ -4,7 +4,7 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 "width is 25% of windows
-let g:netrw_winsize = 25
+let g:netrw_winsize = 12
 "disable top banner
 let g:netrw_banner = 0
 "inherit wildignore - which files are hidden in netrw

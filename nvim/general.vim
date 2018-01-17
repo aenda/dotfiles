@@ -20,7 +20,6 @@ set list listchars=tab:»\ ,eol:¬,trail:·
 
 "Line numbers with thin gutter
 set relativenumber numberwidth=2
-let netrw_menu = 0
 "Highlight all columns past 80
 let &colorcolumn=join(range(81,999),",")
 augroup makefile

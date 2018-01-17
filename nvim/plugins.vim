@@ -4,9 +4,9 @@ map <leader>nt :NERDTreeToggle<CR>
 "Neosolarized Config
 set termguicolors
 "Set background - in file so its writable
-source $HOME/.config/nvim/background.vim
-let g:gruvbox_italic=1
-colorscheme gruvbox
+"source $HOME/.config/nvim/background.vim
+let g:nord_italic=1
+colorscheme nord
 "Vimtex Config
 let g:vimtex_latexmk_progname = 'nvr'
 let g:vimtex_view_method = 'zathura'

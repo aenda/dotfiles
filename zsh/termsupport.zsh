@@ -59,3 +59,4 @@ function omz_termsupport_preexec {
 
 precmd_functions+=(omz_termsupport_precmd)
 preexec_functions+=(omz_termsupport_preexec)
+

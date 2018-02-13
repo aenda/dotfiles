@@ -15,8 +15,8 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   zle -N zle-line-finish
 fi
 
-bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
-bindkey '^@' set-mark-command #ctrl-space
+#bindkey '\ew' kill-region     # [Esc-w] - Kill from the cursor to the mark
+#bindkey '^@' set-mark-command #ctrl-space
 
 # start typing + [Up-Arrow] - fuzzy find history forward
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
@@ -32,22 +32,23 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
 fi
 
 if [[ "${terminfo[khome]}" != "" ]]; then
-  bindkey "${terminfo[khome]}" beginning-of-line      # [Home] - Go to beginning of line
+  bindkey "${terminfo[khome]}" beginning-of-line #[Home]-to beginning of line
 fi
 if [[ "${terminfo[kend]}" != "" ]]; then
-  bindkey "${terminfo[kend]}"  end-of-line            # [End] - Go to end of line
+  bindkey "${terminfo[kend]}"  end-of-line       # [End]-to end of line
 fi
 
-bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
-bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
+bindkey '^[[1;5C' forward-word    #[Ctrl-RightArrow] - move forward one word
+bindkey '^[[1;5D' backward-word   #[Ctrl-LeftArrow] - move backward one word
 
+#[Shift-Tab] - move through the completion menu backwards
 if [[ "${terminfo[kcbt]}" != "" ]]; then
-  bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
+  bindkey "${terminfo[kcbt]}" reverse-menu-complete 
 fi
 
-bindkey '^?' backward-delete-char                     # [Backspace] - delete backward
+bindkey '^?' backward-delete-char             # [Backspace] - delete backward
 if [[ "${terminfo[kdch1]}" != "" ]]; then
-  bindkey "${terminfo[kdch1]}" delete-char            # [Delete] - delete forward
+  bindkey "${terminfo[kdch1]}" delete-char    # [Delete] - delete forward
 else
   bindkey "^[[3~" delete-char
   bindkey "^[3;5~" delete-char

@@ -1,10 +1,4 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Uncomment the following line to enable command auto-correction.
-#ENABLE_CORRECTION="true"
-
-# ssh
+# ssh / gpg keyring
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 added_keys=`ssh-add -l`
 
@@ -16,48 +10,13 @@ fi
 autoload -Uz compinit
 compinit
 
-#source ~/.dotfiles/zsh/powerlevel9k.zsh
-
-# Load zplug and plugins
-if [[ ! -d "$HOME/.zplug" ]];then
-    git clone https://github.com/b4b4r07/zplug ~/.zplug
-fi
-ZPLUG_HOME="$HOME/.zplug"
-#If zplug is properly installed, load it
-if [ -f $ZPLUG_HOME/init.zsh ]; then
-    source "$ZPLUG_HOME/init.zsh"
-fi
-#Load plugins/themes/etc
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "mafredri/zsh-async"
-#zplug "sindresorhus/pure", as:theme, use:pure.zsh
-zplug "intelfx/pure", as:theme, use:pure.zsh
-PURE_PROMPT_SYMBOL=❯
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=black
-#zplug "Remiii/remiii.zsh-theme", as:theme, use:remiii.zsh-theme
-#zplug "houjunchen/solarized-powerline", use:solarized-powerline.zsh-theme
-#zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-#zplug "inimicus/z4rr3t", use:z4rr3t.zsh
-#zplug "glek/34ee8286eb9141056cd85a02bfd4fcd3", \
-#    from:gist, \
-#    as:theme, \
-#    use:blinks_custom.zsh-theme
-zplug "zplug/zplug", hook-build:'zplug --self-manage'
-#If zplug check gives output, ie, there are uninstalled plugins, install them
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-zplug load #--verbose
-
 # Aliases
 alias l='ls -q | column -c 80'
-alias la='ls -oAh'
-alias vim="vim --servername vim"
-alias color="~/.dotfiles/changecolor.sh"
+#alias la='ls -oAh'
+alias la='ls -lah'
+alias vim="nvim"
+alias color="~/.dotfiles/changecolorargs.sh"
+alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sophomore/"
 
 #Functions
 function match_filename() {
@@ -83,14 +42,16 @@ fi
 # Set up colored ls
 ls --color -d . &>/dev/null && alias ls='ls --color'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-#Ls after cd
+
+#ls after cd
 auto-ls () { ls; }
 chpwd_functions=( auto-ls $chpwd_functions )
 
 #Misc options
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg-12'
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+export KEYTIMEOUT=5
 DEFAULT_USER=gmend
+# Uncomment the following line to enable command auto-correction.
+#ENABLE_CORRECTION="true"
 
 #Hist options
 if [ -z "$HISTFILE" ]; then
@@ -114,20 +75,52 @@ export PATH
 #}
 #zle -N zle-line-init
 #zle -N zle-keymap-select
-export KEYTIMEOUT=5
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
 # pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip
+#function _pip_completion {
+#  local words cword
+#  read -Ac words
+#  read -cn cword
+#  reply=( $( COMP_WORDS="$words[*]" \
+#             COMP_CWORD=$(( cword-1 )) \
+#             PIP_AUTO_COMPLETE=1 $words[1] ) )
+#}
+#compctl -K _pip_completion pip
 # pip zsh completion end
 
-bindkey "${terminfo[khome]}" beginning-of-line
-bindkey "${terminfo[kend]}" end-of-line
+#Theme options
+PURE_PROMPT_SYMBOL=❯
+# Load zplug and plugins
+if [[ ! -d "$HOME/.zplug" ]];then
+    git clone https://github.com/zplug/zplug ~/.zplug
+fi
+ZPLUG_HOME="$HOME/.zplug"
+#If zplug is properly installed, load it
+if [ -f $ZPLUG_HOME/init.zsh ]; then
+    source "$ZPLUG_HOME/init.zsh"
+fi
+#Load plugins/themes/etc
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "mafredri/zsh-async"
+#export RPS1="%{$reset_color%}"
+#zplug "plugins/vi-mode", from:oh-my-zsh
+#zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+#zplug "sindresorhus/pure", use:pure.zsh, as:theme
+zplug "intelfx/pure", as:theme, use:pure.zsh
+
+#let zplug manage itself like other packages
+#zplug "zplug/zplug", hook-build:'zplug --self-manage'
+
+#If zplug check gives output, ie, there are uninstalled plugins, install them
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+zplug load #--verbose
+
+#Plugin Options
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20

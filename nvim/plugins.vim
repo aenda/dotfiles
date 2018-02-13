@@ -1,15 +1,16 @@
-"Nerdtree shortcut
-map <leader>nt :NERDTreeToggle<CR>
-"let g:airline_theme='base16_solarized'
 "Neosolarized Config
 set termguicolors
 "Set background - in file so its writable
 "source $HOME/.config/nvim/background.vim
 let g:nord_italic=1
+let g:nord_comment_brightness=18
 colorscheme nord
+"
 "Vimtex Config
-let g:vimtex_latexmk_progname = 'nvr'
+"let g:vimtex_latexmk_progname = 'nvr'
+"let g:vimtex_compiler_progname = 'nvr' #this breaks things??
 let g:vimtex_view_method = 'zathura'
+
 "Deoplete config
 let g:deoplete#enable_at_startup = 1
 set completeopt=longest,menuone,preview
@@ -37,6 +38,7 @@ let g:deoplete#omni#input_patterns.tex = '\\(?:'
       \ .')'
 
 
+"we are using vimtex, not latex-box
 let g:polyglot_disabled = ['latex']
 
 set hidden

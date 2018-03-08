@@ -31,6 +31,16 @@ function matchrun_filename() {
 function matchrun_contents() {
   grep -Ri "$1" -e "$2" -lZ | xargs -0 "${@:3}"
 }
+#adds colors in ~/.Xresources to virtual terminal
+vtColor() {
+    if [ "$TERM" = "linux" ]; then
+        _SEDCMD='s/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p'
+        for i in $(sed -n "$_SEDCMD" $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
+            echo -en "$i"
+        done
+        clear
+    fi
+}
 
 # Evaluate dircolors
 if [[ -f ~/.dircolors ]] ;
@@ -45,7 +55,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 #ls after cd
 auto-ls () { ls; }
-chpwd_functions=( auto-ls $chpwd_functions )
+#chpwd_functions=( auto-ls $chpwd_functions )
+chpwd_functions=( auto-ls )
 
 #Misc options
 export KEYTIMEOUT=5
@@ -89,7 +100,8 @@ export PATH
 # pip zsh completion end
 
 #Theme options
-PURE_PROMPT_SYMBOL=❯
+#PURE_PROMPT_SYMBOL=❯
+SPACESHIP_VI_MODE_SHOW=false
 # Load zplug and plugins
 if [[ ! -d "$HOME/.zplug" ]];then
     git clone https://github.com/zplug/zplug ~/.zplug
@@ -105,9 +117,9 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "mafredri/zsh-async"
 #export RPS1="%{$reset_color%}"
 #zplug "plugins/vi-mode", from:oh-my-zsh
-#zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 #zplug "sindresorhus/pure", use:pure.zsh, as:theme
-zplug "intelfx/pure", as:theme, use:pure.zsh
+#zplug "intelfx/pure", as:theme, use:pure.zsh
 
 #let zplug manage itself like other packages
 #zplug "zplug/zplug", hook-build:'zplug --self-manage'
@@ -124,3 +136,11 @@ zplug load #--verbose
 #Plugin Options
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
+#if [ "$TERM" = "linux" ]; then
+#    _SEDCMD='s/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p'
+#    for i in $(sed -n "$_SEDCMD" $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
+#        echo -en "$i"
+#    done
+#    clear
+#fi

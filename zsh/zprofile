@@ -1,12 +1,13 @@
-if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; 
-then
-  eval $(ssh-agent)
-  sway
-  #startx
-fi
+source /etc/profile.d/vte.sh
 
 if [[ -r ~/.zshrc ]]; then
-	. ~/.zshrc
+    . ~/.zshrc
 fi
 
-source /etc/profile.d/vte.sh
+if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; 
+then
+    eval $(ssh-agent)
+    #startx
+    #startplasmacompositor
+    sway
+fi

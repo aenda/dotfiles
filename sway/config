@@ -23,11 +23,15 @@ font pango:DejaVu Sans Mono 10
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
+#Don't show window title bar, just a 1 pixel separator
+new_window pixel 1
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec kitty
+#termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -155,7 +159,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     colors {
-            background #4B4E4F
+            background #2F393C
             statusline #00A5FF
             separator #666666
 
@@ -164,14 +168,16 @@ bar {
             inactive_workspace #000000 #D7BDD9 #000000
             urgent_workspace   #2f343a #900000 #ffffff
         }
+        separator_symbol ":|:"
+        #in ~/.dotfiles/i3status/config
         status_command i3status
-#	i3bar_command i3bgbar
+        #i3bar_command i3bgbar
 
-#	status_command python /home/gmend/.vim/plugged/powerline/powerline/bindings/i3/powerline-i3.py
-#	font pango:PowerlineSymbols 12
+#status_command python /home/gmend/.vim/plugged/powerline/powerline/bindings/i3/powerline-i3.py
+#font pango:PowerlineSymbols 12
 }
 
-#bindsym $mod+Control+l exec i3lock -i /home/gmend/.config/i3/lockscreen.png
+bindsym $mod+Control+l exec swaylock -i /home/gmend/.config/i3/lockscreen.png
 
 bindsym $mod+minus scratchpad show
 bindsym $mod+Shift+minus move scratchpad
@@ -182,10 +188,11 @@ bindsym XF86AudioMute exec /usr/bin/amixer -D pulse set Master Playback Switch t
 bindsym XF86MonBrightnessUp exec /home/gmend/.config/i3/brightup.sh
 bindsym XF86MonBrightnessDown exec /home/gmend/.config/i3/brightdown.sh
 bindsym $mod+Shift+f exec "firefox"
-#exec feh --bg-scale ~/.config/i3/lockscreen.png
-#exec --no-startup-id redshift
 
+#exec feh --bg-scale ~/.config/i3/lockscreen.png
 output "*" background /home/gmend/.config/i3/lockscreen.png fill
+
+#exec --no-startup-id redshift
 
 input "touchpad" {
     tap enabled
@@ -196,3 +203,4 @@ input 2:7:SynPS/2_Synaptics_TouchPad {
     tap enabled
     natural_scroll enabled
 }
+

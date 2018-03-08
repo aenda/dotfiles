@@ -4,7 +4,11 @@ set termguicolors
 "source $HOME/.config/nvim/background.vim
 let g:nord_italic=1
 let g:nord_comment_brightness=18
-colorscheme nord
+"colorscheme nord
+colorscheme gruvbox
+set background=dark
+let g:lightline = { 'colorscheme': 'solarized', }
+set noshowmode
 "
 "Vimtex Config
 "let g:vimtex_latexmk_progname = 'nvr'

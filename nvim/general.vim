@@ -35,3 +35,6 @@ augroup latex
 "    autocmd FileType tex :nnoremap <leader>ll :lcd %:h<CR>:w<CR>:!latexmk -pdf -pv "%:p"<CR>
 "    autocmd FileType tex :nnoremap <leader>lv :!zathura %:r.pdf &<CR><CR>
 augroup end
+
+"KiTTY does not support background color erase
+let &t_ut=''

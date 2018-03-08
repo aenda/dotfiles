@@ -11,8 +11,9 @@ call plug#begin('$HOME/.dotfiles/nvim/plugged')
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 "Colors
-"Plug 'morhetz/gruvbox'
-Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
+Plug 'itchyny/lightline.vim'
+"Plug 'arcticicestudio/nord-vim'
 
 "Microsoft Language Server Protocol
 Plug 'autozimu/LanguageClient-neovim', {
@@ -46,6 +47,6 @@ call plug#end()
 
 source $HOME/.config/nvim/general.vim
 source $HOME/.config/nvim/plugins.vim
-source $HOME/.config/nvim/statusline.vim
-source $HOME/.config/nvim/color.vim
+"source $HOME/.config/nvim/statusline.vim
+"source $HOME/.config/nvim/color.vim
 source $HOME/.config/nvim/netrw.vim

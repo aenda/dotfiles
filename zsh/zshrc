@@ -31,6 +31,9 @@ function matchrun_filename() {
 function matchrun_contents() {
   grep -Ri "$1" -e "$2" -lZ | xargs -0 "${@:3}"
 }
+function search() {
+    grep --line-buffered --color=never -r "$1" * | fzf
+}
 #adds colors in ~/.Xresources to virtual terminal
 vtColor() {
     if [ "$TERM" = "linux" ]; then

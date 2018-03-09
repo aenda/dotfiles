@@ -12,8 +12,13 @@ set noshowmode
 "
 "Vimtex Config
 "let g:vimtex_latexmk_progname = 'nvr'
-"let g:vimtex_compiler_progname = 'nvr' #this breaks things??
-let g:vimtex_view_method = 'zathura'
+"let g:vimtex_view_method = 'zathura' #window id/back search broken
+let g:vimtex_view_method = 'general'
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
+let g:vimtex_fold_enabled = 0
+"and under okular set editor command: "nvr --remote-silent %f -c %l"
 
 "Deoplete config
 let g:deoplete#enable_at_startup = 1
@@ -41,14 +46,11 @@ let g:deoplete#omni#input_patterns.tex = '\\(?:'
       \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
       \ .')'
 
-
-"we are using vimtex, not latex-box
-let g:polyglot_disabled = ['latex']
-
 set hidden
 
 "v for some debug logging
 let g:LanguageClient_serverCommands = {
+    \ 'r': ['R', '--quiet', '--slave', '-e', 'languageserver::run()'],
     \ 'python': ['pyls', '-v'],
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'javascript': ['javascript-typescript-stdio'],

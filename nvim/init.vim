@@ -7,13 +7,12 @@ if empty(glob("$HOME/.dotfiles/nvim/autoload/plug.vim"))
 endif
 
 call plug#begin('$HOME/.dotfiles/nvim/plugged')
-"Plug 'iCyMind/NeoSolarized'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 "Colors
 Plug 'morhetz/gruvbox'
-Plug 'itchyny/lightline.vim'
+"Plug 'iCyMind/NeoSolarized'
 "Plug 'arcticicestudio/nord-vim'
+"Statusline
+Plug 'itchyny/lightline.vim'
 
 "Microsoft Language Server Protocol
 Plug 'autozimu/LanguageClient-neovim', {
@@ -27,7 +26,8 @@ Plug 'junegunn/fzf.vim'
 
 "Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'sheerun/vim-polyglot'
+"Plug 'w0rp/ale'
+"Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -38,7 +38,7 @@ Plug 'mhinz/vim-startify'
 "Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 
-Plug 'zchee/deoplete-jedi'
+"Plug 'zchee/deoplete-jedi'
 "Plug 'poppyschmo/deoplete-latex'
 "Specific functionality
 Plug 'jalvesaq/nvim-r'

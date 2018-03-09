@@ -15,6 +15,7 @@ alias l='ls -q | column -c 80'
 #alias la='ls -oAh'
 alias la='ls -lah'
 alias vim="nvim"
+alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias color="~/.dotfiles/changecolorargs.sh"
 alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sophomore/"
 
@@ -104,6 +105,9 @@ export PATH
 
 #Theme options
 #PURE_PROMPT_SYMBOL=❯
+#SPACESHIP_TIME_SHOW=true
+SPACESHIP_EXEC_TIME_ELAPSED=3
+SPACESHIP_BATTERY_THRESHOLD=15
 SPACESHIP_VI_MODE_SHOW=false
 # Load zplug and plugins
 if [[ ! -d "$HOME/.zplug" ]];then

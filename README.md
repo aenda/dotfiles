@@ -53,6 +53,7 @@ OnCalendar=* *-*-* 21:00:00
 Use netctl-auto for automatic known access point connections
 systemd for suspend on power/lid/etc
 pulseaudio (with shortcuts in sway) for volume
+ssh-agent for gpg keyring w/thunderbird+enigmail and github(/aws??) ssh key
 
 *************************SERVER****************************
 

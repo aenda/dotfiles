@@ -14,12 +14,14 @@ ln -sfv "$DOTFILES_DIR/git/gitconfig" ~/.gitconfig
 ln -sfv "$DOTFILES_DIR/zsh/zshrc" ~/.zshrc
 ln -sfv "$DOTFILES_DIR/zsh/zprofile" ~/.zprofile
 ln -sfv "$DOTFILES_DIR/dircolors-uni" ~/.dircolors
-ln -sfv "$DOTFILES_DIR/tmux/tmux.conf" ~/.tmux.conf
+#ln -sfv "$DOTFILES_DIR/tmux/tmux.conf" ~/.tmux.conf
+
 #X config
-ln -sfv "$DOTFILES_DIR/X/.*" ~
+ln -sfv "$DOTFILES_DIR/X/.*" $HOME/
+
 #Make .config directory then make symlinks
 [[ -d "$HOME/.config" ]] || mkdir "$HOME/.config"
 ln -sfv "$DOTFILES_DIR/i3" "$HOME/.config/i3"
 ln -sfv "$DOTFILES_DIR/i3status" "$HOME/.config/i3status"
 ln -sfv "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
-ln -sfv "$DOTFILES_DIR/termite/config-light" "$HOME/.config/termite/config"
+ln -sfv "$DOTFILES_DIR/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"

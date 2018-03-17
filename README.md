@@ -18,7 +18,7 @@ nvim-qt or other gui - cursor on insert
 
 *************************ZSH*******************************
 
-zsh - zplug (switch to zim??)
+zsh - zplug (switch to zim/antibody?)
 bindkey | grep "^[" -F fix escape commands learn other zsh shortcuts
 zsh autosuggestions 
 https://github.com/zsh-users/zsh-autosuggestions/blob/master/src/config.zsh
@@ -26,13 +26,12 @@ http://zsh.sourceforge.net/Guide/zshguide04.html
 
 *************************UTILITIES*************************
 
-okular with setup as described in vimtex
+qpdfview with setup as described in vimtex
 ls dircolors - set by function in zshrc
 browser: firefox. pass: keepassxc. 
 
 *************************SYSTEM****************************
 
-colorscheme set in terminal config and by vim plugin/option
 /etc/systemd/system/colorswitch.service relying on colorswitch.sh in dotfiles
 argument for solarized light/dark, or time based
 

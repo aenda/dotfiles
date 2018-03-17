@@ -8,6 +8,9 @@ set directory=$HOME/.local/share/nvim/swap
 "Navigate line breaks with arrow keys
 "set whichwrap+=<,>,[,]
 "Cursor shape changes on insert
+"set fonts
+set encoding=utf8
+set guifont=Inconsolata\ Nerd\ Font\ Complete\ Mono\ 11
 
 "set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 "\,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor

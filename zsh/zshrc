@@ -9,6 +9,9 @@ fi
 
 autoload -Uz compinit
 compinit
+zstyle ':completion:*:*:nvim:*' file-patterns '^*.(aux|log|pdf|fls|gz|fdb_latexmk|xdv):source-files' '*:all-files'
+#zstyle ':completion:*:*:qpdfview:*' file-patterns '^*.(aux|log|tex|fls|gz|fdb_latexmk):source-files' '*:all-files'
+zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf'
 
 # Aliases
 alias l='ls -q | column -c 80'

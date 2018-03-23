@@ -41,3 +41,16 @@ augroup end
 
 "KiTTY does not support background color erase
 let &t_ut=''
+
+"PYTHON PROVIDER CONFIGURATION ~
+"Program to use for evaluating Python code. Setting this makes startup faster.
+"Also useful for working with virtualenvs. >
+    let g:python_host_prog  = '/usr/bin/python3.6'
+"let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3.6'
+"To disable Python 2 support
+let g:loaded_python_provider = 1
+"To disable Ruby support
+let g:loaded_ruby_provider = 1
+"To disable Node support
+let g:loaded_node_provider = 1

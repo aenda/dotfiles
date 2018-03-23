@@ -9,7 +9,7 @@ fi
 
 autoload -Uz compinit
 compinit
-zstyle ':completion:*:*:nvim:*' file-patterns '^*.(aux|log|pdf|fls|gz|fdb_latexmk|xdv):source-files' '*:all-files'
+zstyle ':completion:*:*:nvim:*' file-patterns '^*.(aux|log|pdf|png|fls|gz|fdb_latexmk|xdv):source-files' '*:all-files'
 #zstyle ':completion:*:*:qpdfview:*' file-patterns '^*.(aux|log|tex|fls|gz|fdb_latexmk):source-files' '*:all-files'
 zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf'
 
@@ -83,8 +83,6 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_EXPIRE_DUPS_FIRST
 source ~/.dotfiles/zsh/completion.zsh
 source ~/.dotfiles/zsh/keybindings.zsh
 source ~/.dotfiles/zsh/termsupport.zsh
-PATH+=":/home/gmend/.gem/ruby/2.5.0/bin/"
-export PATH
 
 #function zle-line-init zle-keymap-select {
 #    VIM_PROMPT="%{$fg_bold[red]%} [% NORMAL]% %{$reset_color%}"

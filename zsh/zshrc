@@ -12,6 +12,8 @@ compinit
 zstyle ':completion:*:*:nvim:*' file-patterns '^*.(aux|log|pdf|png|fls|gz|fdb_latexmk|xdv):source-files' '*:all-files'
 #zstyle ':completion:*:*:qpdfview:*' file-patterns '^*.(aux|log|tex|fls|gz|fdb_latexmk):source-files' '*:all-files'
 zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf'
+#zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf|(./*(/))' '*.(pdf|dvi)|./*(/)' '*:all-files'
+#directories
 
 # Aliases
 alias l='ls -q | column -c 80'

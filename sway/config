@@ -177,7 +177,7 @@ bar {
 #font pango:PowerlineSymbols 12
 }
 
-bindsym $mod+Control+l exec swaylock -i /home/gmend/.config/i3/lockscreen.png
+bindsym $mod+Control+l exec swaylock -i /home/gmend/.config/sway/lockscreen.png
 
 bindsym $mod+minus scratchpad show
 bindsym $mod+Shift+minus move scratchpad
@@ -185,12 +185,12 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 '+5%'
 bindsym XF86AudioMute exec /usr/bin/amixer -D pulse set Master Playback Switch toggle
-bindsym XF86MonBrightnessUp exec /home/gmend/.config/i3/brightup.sh
-bindsym XF86MonBrightnessDown exec /home/gmend/.config/i3/brightdown.sh
+bindsym XF86MonBrightnessUp exec /home/gmend/.config/scripts/brightup.sh
+bindsym XF86MonBrightnessDown exec /home/gmend/.config/scripts/brightdown.sh
 bindsym $mod+Shift+f exec "firefox"
 
-#exec feh --bg-scale ~/.config/i3/lockscreen.png
-output "*" background /home/gmend/.config/i3/lockscreen.png fill
+#exec feh --bg-scale ~/.config/sway/lockscreen.png
+output "*" background /home/gmend/.config/sway/lockscreen.png fill
 
 #exec --no-startup-id redshift
 

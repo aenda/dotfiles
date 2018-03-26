@@ -177,7 +177,7 @@ bar {
 #font pango:PowerlineSymbols 12
 }
 
-bindsym $mod+Control+l exec swaylock -i /home/gmend/.config/sway/lockscreen.png
+bindsym $mod+Control+l exec swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png
 
 bindsym $mod+minus scratchpad show
 bindsym $mod+Shift+minus move scratchpad
@@ -190,7 +190,7 @@ bindsym XF86MonBrightnessDown exec /home/gmend/.config/scripts/brightdown.sh
 bindsym $mod+Shift+f exec "firefox"
 
 #exec feh --bg-scale ~/.config/sway/lockscreen.png
-output "*" background /home/gmend/.config/sway/lockscreen.png fill
+output "*" background /home/gmend/.dotfiles/sway/lockscreen.png fill
 
 #exec --no-startup-id redshift
 

@@ -1,4 +1,4 @@
-source /etc/profile.d/vte.sh
+#source /etc/profile.d/vte.sh
 
 #PATH+=":/home/gmend/.gem/ruby/2.5.0/bin"
 #PATH+=":/home/gmend/.local/bin"

@@ -71,9 +71,10 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 " autostart lang serv
 let g:LanguageClient_autoStart = 1
 " Use location list instead of quickfix
-let g:LanguageClient_diagnosticsList = 'Location'
+"let g:LanguageClient_diagnosticsList = 'Location'
 "v for some debug logging
 let g:LanguageClient_serverCommands = {}
+let g:LanguageClient_diagnosticsEnable = 0
 "let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run()']
 "let g:LanguageClient_serverCommands = {
 "    \ 'python': ['pyls', '-v'],
@@ -123,9 +124,9 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 "let g:ale_linters = {
 "\   'R': ['lintr'],
 "\}
-let g:ale_fixers = {
-\   'python': ['yapf'],
-\}
+"let g:ale_fixers = {
+"\   'python': ['yapf'],
+"\}
 " enable running the linters when files are saved, on by default
 "let g:ale_lint_on_save = 1
 " lint as you type - on by default

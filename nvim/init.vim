@@ -26,7 +26,7 @@ Plug 'junegunn/fzf.vim'
 
 "Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 "Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
@@ -34,11 +34,10 @@ Plug 'honza/vim-snippets'
 "Miscellaneous
 Plug 'tpope/vim-surround'
 Plug 'mhinz/vim-startify'
-"Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 
-"Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
 "Plug 'poppyschmo/deoplete-latex'
 "Specific functionality
 Plug 'jalvesaq/nvim-r'

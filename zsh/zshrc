@@ -17,6 +17,8 @@ zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf'
 
 # Aliases
 alias l='ls -q | column -c 80'
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
 #alias la='ls -oAh'
 alias la='ls -lah'
 alias vim="nvim"

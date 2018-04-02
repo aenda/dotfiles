@@ -54,6 +54,8 @@ systemd for suspend on power/lid/etc
 pulseaudio (with shortcuts in sway) for volume
 ssh-agent for gpg keyring w/thunderbird+enigmail and github(/aws??) ssh key
 
+/etc/environment read by PAM to set env variables
+
 *************************SERVER****************************
 
 add amavisd/clamav to mail server? set up dane?

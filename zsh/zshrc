@@ -72,6 +72,8 @@ chpwd_functions=( auto-ls )
 #Misc options
 export KEYTIMEOUT=5
 DEFAULT_USER=gmend
+#make ls use YYYY-MM-DD
+export TIME_STYLE=long-iso
 # Uncomment the following line to enable command auto-correction.
 #ENABLE_CORRECTION="true"
 

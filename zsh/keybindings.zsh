@@ -23,8 +23,8 @@ zmodload zsh/terminfo
 typeset -gA key_info
 key_info=(
     'Control'      '\C-'
-    'ControlLeft'  '\e[1;5D \e[5D \e\e[D \eOd \eOD'
-    'ControlRight' '\e[1;5C \e[5C \e\e[C \eOc \eOC'
+    'ControlLeft'  '\e[1;5D' # \e[5D \e\e[D \eOd \eOD'
+    'ControlRight' '\e[1;5C' # \e[5C \e\e[C \eOc \eOC'
     'Escape'       '\e'
     'Meta'         '\M-'
     'Backspace'    "^?"
@@ -80,6 +80,8 @@ fi
 #if [[ "${terminfo[kend]}" != "" ]]; then
 #  bindkey "${terminfo[kend]}"  end-of-line       # [End]-to end of line
 #fi
+bindkey "${key_info[Left]}" backward-char
+bindkey "${key_info[Right]}" forward-char
 
 local key
 for key in "${(s: :)key_info[ControlLeft]}"; do

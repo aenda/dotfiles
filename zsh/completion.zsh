@@ -44,3 +44,6 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 
 # ... unless we really want to.
 zstyle '*' single-ignored show
+
+# add custom completions in this directory
+fpath+=('$ZPLUG_HOME/misc/completions')

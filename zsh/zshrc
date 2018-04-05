@@ -42,12 +42,6 @@ vtColor() {
     fi
 }
 
-#ls after cd
-auto-ls () { ls; }
-#chpwd_functions=( auto-ls $chpwd_functions )
-chpwd_functions=( auto-ls )
-###############
-
 # Evaluate dircolors
 if [[ -f ~/.dircolors ]] ;
     then eval "$(dircolors -b ~/.dircolors)"
@@ -59,6 +53,12 @@ fi
 ls --color -d . &>/dev/null && alias ls='ls --color'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+#ls after cd
+auto-ls () { ls; }
+#chpwd_functions=( auto-ls $chpwd_functions )
+chpwd_functions=( auto-ls )
+
+###############
 #function zle-line-init zle-keymap-select {
 #    VIM_PROMPT="%{$fg_bold[red]%} [% NORMAL]% %{$reset_color%}"
 #    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1" # $(git_custom_status) $EPS1"
@@ -108,7 +108,6 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
-zplug "srijanshetty/zsh-pip-completion"
 zplug "aenda/zsh-diff-so-fancy", as:command, use:bin/git-dsf
 #export RPS1="%{$reset_color%}"
 #zplug "plugins/vi-mode", from:oh-my-zsh

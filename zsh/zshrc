@@ -7,13 +7,12 @@ if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
 fi
 #eval `keychain --eval id_rsa`
 
-autoload -Uz compinit
-compinit
-zstyle ':completion:*:*:nvim:*' file-patterns '^*.(aux|log|pdf|png|fls|gz|fdb_latexmk|xdv):source-files' '*:all-files'
-#zstyle ':completion:*:*:qpdfview:*' file-patterns '^*.(aux|log|tex|fls|gz|fdb_latexmk):source-files' '*:all-files'
-#zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf'
-#zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf|(./*(/))' '*.(pdf|dvi)|./*(/)' '*:all-files'
-#directories
+#source zsh files
+source $HOME/.dotfiles/zsh/completion.zsh
+source $HOME/.dotfiles/zsh/keybindings.zsh
+source $HOME/.dotfiles/zsh/termsupport.zsh
+source $HOME/.dotfiles/zsh/environment.zsh
+source /usr/share/doc/pkgfile/command-not-found.zsh
 
 ### Functions ###
 function match_filename() {
@@ -67,31 +66,6 @@ chpwd_functions=( auto-ls )
 #zle -N zle-line-init
 #zle -N zle-keymap-select
 
-# pip zsh completion start
-#function _pip_completion {
-#  local words cword
-#  read -Ac words
-#  read -cn cword
-#  reply=( $( COMP_WORDS="$words[*]" \
-#             COMP_CWORD=$(( cword-1 )) \
-#             PIP_AUTO_COMPLETE=1 $words[1] ) )
-#}
-#compctl -K _pip_completion pip
-# pip zsh completion end
-
-#Theme options
-#PURE_PROMPT_SYMBOL=❯
-#SPACESHIP_TIME_SHOW=true
-SPACESHIP_EXEC_TIME_ELAPSED=3
-SPACESHIP_BATTERY_THRESHOLD=15
-SPACESHIP_VI_MODE_SHOW=false
-
-#some oh my zsh files
-source $HOME/.dotfiles/zsh/completion.zsh
-source $HOME/.dotfiles/zsh/keybindings.zsh
-source $HOME/.dotfiles/zsh/termsupport.zsh
-source $HOME/.dotfiles/zsh/environment.zsh
-source /usr/share/doc/pkgfile/command-not-found.zsh
 ### Load zplug and plugins ###
 if [[ ! -d "$HOME/.zplug" ]];then
     git clone https://github.com/zplug/zplug ~/.zplug
@@ -114,8 +88,8 @@ zplug "aenda/zsh-diff-so-fancy", as:command, use:bin/git-dsf
 #zplug "sindresorhus/pure", use:pure.zsh, as:theme
 #zplug "intelfx/pure", as:theme, use:pure.zsh
 
-#let zplug manage itself like other packages
-#zplug "zplug/zplug", hook-build:'zplug --self-manage'
+let zplug manage itself like other packages
+zplug "zplug/zplug", hook-build:'zplug --self-manage'
 
 #If zplug check gives output, ie, there are uninstalled plugins, install them
 if ! zplug check --verbose; then
@@ -129,3 +103,9 @@ zplug load #--verbose
 #Plugin Options
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+#Theme options
+#PURE_PROMPT_SYMBOL=❯
+#SPACESHIP_TIME_SHOW=true
+SPACESHIP_EXEC_TIME_ELAPSED=3
+SPACESHIP_BATTERY_THRESHOLD=15
+SPACESHIP_VI_MODE_SHOW=false

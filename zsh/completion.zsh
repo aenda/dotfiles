@@ -1,3 +1,21 @@
+autoload -Uz compinit
+compinit
+zstyle ':completion:*:*:nvim:*' file-patterns '^*.(aux|log|pdf|png|fls|gz|fdb_latexmk|xdv):source-files' '*:all-files'
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
+#zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf'
+#zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf|(./*(/))' '*.(pdf|dvi)|./*(/)' '*:all-files'
+#directories?
+
 zmodload -i zsh/complist
 
 WORDCHARS=''

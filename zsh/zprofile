@@ -4,9 +4,9 @@
 #PATH+=":/home/gmend/.local/bin"
 #export PATH
 
-if [[ -r ~/.zshrc ]]; then
-    . ~/.zshrc
-fi
+#if [[ -r ~/.zshrc ]]; then
+#    . ~/.zshrc
+#fi
 
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; 
 then

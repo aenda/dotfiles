@@ -86,9 +86,6 @@ SAVEHIST=1000
 setopt NO_HIST_BEEP #No annoying beeping
 setopt INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_EXPIRE_DUPS_FIRST
 
-source ~/.dotfiles/zsh/completion.zsh
-source ~/.dotfiles/zsh/keybindings.zsh
-source ~/.dotfiles/zsh/termsupport.zsh
 
 #function zle-line-init zle-keymap-select {
 #    VIM_PROMPT="%{$fg_bold[red]%} [% NORMAL]% %{$reset_color%}"
@@ -116,7 +113,13 @@ source ~/.dotfiles/zsh/termsupport.zsh
 SPACESHIP_EXEC_TIME_ELAPSED=3
 SPACESHIP_BATTERY_THRESHOLD=15
 SPACESHIP_VI_MODE_SHOW=false
-# Load zplug and plugins
+
+#some oh my zsh files
+source ~/.dotfiles/zsh/completion.zsh
+source ~/.dotfiles/zsh/keybindings.zsh
+source ~/.dotfiles/zsh/termsupport.zsh
+source /usr/share/doc/pkgfile/command-not-found.zsh
+### Load zplug and plugins ###
 if [[ ! -d "$HOME/.zplug" ]];then
     git clone https://github.com/zplug/zplug ~/.zplug
 fi
@@ -126,12 +129,16 @@ if [ -f $ZPLUG_HOME/init.zsh ]; then
     source "$ZPLUG_HOME/init.zsh"
 fi
 #Load plugins/themes/etc
+zplug "mafredri/zsh-async"
+zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "mafredri/zsh-async"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-completions"
+zplug "srijanshetty/zsh-pip-completion"
+zplug "aenda/zsh-diff-so-fancy", as:command, use:bin/git-dsf
 #export RPS1="%{$reset_color%}"
 #zplug "plugins/vi-mode", from:oh-my-zsh
-zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 #zplug "sindresorhus/pure", use:pure.zsh, as:theme
 #zplug "intelfx/pure", as:theme, use:pure.zsh
 
@@ -146,6 +153,7 @@ if ! zplug check --verbose; then
     fi
 fi
 zplug load #--verbose
+#############################
 
 #Plugin Options
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'

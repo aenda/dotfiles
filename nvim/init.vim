@@ -20,10 +20,6 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': './install.sh'
     \ }
 
-" (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-
 "Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'w0rp/ale'
@@ -31,17 +27,21 @@ Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-"Miscellaneous
-Plug 'tpope/vim-surround'
-Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
 
+"Specific functionality
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
-"Plug 'poppyschmo/deoplete-latex'
-"Specific functionality
 Plug 'jalvesaq/nvim-r'
 Plug 'lervag/vimtex'
+"Plug 'poppyschmo/deoplete-latex'
+"
+"Miscellaneous
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf'
+" Multi-entry selection UI.
+Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-startify'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 source $HOME/.config/nvim/general.vim

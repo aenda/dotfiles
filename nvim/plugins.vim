@@ -43,7 +43,11 @@ let g:vimtex_compiler_latexmk = {
 "add after hook - latexmk -c will clean files?
 
 "Deoplete config
+" automatically start
 let g:deoplete#enable_at_startup = 1
+" could we gain startup time by lazy loading?
+" let g:deoplete#enable_at_startup = 0
+" call deoplete#enable()
 set completeopt=longest,menuone,preview
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = ['file', 'ultisnips']

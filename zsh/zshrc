@@ -1,11 +1,12 @@
+# Just using libsecret for git and enigmail/gpg-agent - this is unnecessary
 # ssh / gpg keyring
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-added_keys=`ssh-add -l`
-
-if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
-    ssh-add "$HOME/.ssh/id_rsa"
-fi
+#export SSH_KEY_PATH="~/.ssh/rsa_id"
+#added_keys=`ssh-add -l`
+#if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
+#    ssh-add "$HOME/.ssh/id_rsa"
+#fi
 #eval `keychain --eval id_rsa`
+#eval `keychain -q`
 
 #source zsh files
 source $HOME/.dotfiles/zsh/completion.zsh

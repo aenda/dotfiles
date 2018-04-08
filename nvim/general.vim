@@ -45,7 +45,7 @@ let &t_ut=''
 "PYTHON PROVIDER CONFIGURATION ~
 "Program to use for evaluating Python code. Setting this makes startup faster.
 "Also useful for working with virtualenvs. >
-    let g:python_host_prog  = '/usr/bin/python3.6'
+let g:python_host_prog  = '/usr/bin/python3.6'
 "let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3.6'
 "To disable Python 2 support

@@ -78,8 +78,8 @@ let g:LanguageClient_autoStart = 1
 "let g:LanguageClient_diagnosticsList = 'Location'
 "v for some debug logging
 let g:LanguageClient_serverCommands = {}
-let g:LanguageClient_diagnosticsEnable = 0
-"let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run()']
+"let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run()']
 "let g:LanguageClient_serverCommands = {
 "    \ 'python': ['pyls', '-v'],
 "    \ }

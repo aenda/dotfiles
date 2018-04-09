@@ -1,5 +1,9 @@
 autoload -Uz compinit
-compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 zstyle ':completion:*:*:nvim:*' file-patterns '^*.(aux|log|pdf|png|fls|gz|fdb_latexmk|xdv):source-files' '*:all-files'
 # pip zsh completion start
 function _pip_completion {

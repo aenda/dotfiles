@@ -1,3 +1,4 @@
+#zmodload zsh/zprof
 # Just using libsecret for git and enigmail/gpg-agent - this is unnecessary
 # ssh / gpg keyring
 #export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -45,8 +46,8 @@ vtColor() {
 # Evaluate dircolors
 if [[ -f ~/.dircolors ]] ;
     then eval "$(dircolors -b ~/.dircolors)"
-elif [[ -f /etc/DIR_COLORS ]] ;
-    then eval $(dircolors -b /etc/DIR_COLORS)
+#elif [[ -f /etc/DIR_COLORS ]] ;
+#    then eval $(dircolors -b /etc/DIR_COLORS)
 fi
 
 # Set up colored ls
@@ -68,9 +69,9 @@ chpwd_functions=( auto-ls )
 #zle -N zle-keymap-select
 
 ### Load zplug and plugins ###
-if [[ ! -d "$HOME/.zplug" ]];then
-    git clone https://github.com/zplug/zplug ~/.zplug
-fi
+#if [[ ! -d "$HOME/.zplug" ]];then
+#    git clone https://github.com/zplug/zplug ~/.zplug
+#fi
 ZPLUG_HOME="$HOME/.zplug"
 #If zplug is properly installed, load it
 if [ -f $ZPLUG_HOME/init.zsh ]; then
@@ -89,16 +90,17 @@ zplug "aenda/zsh-diff-so-fancy", as:command, use:bin/git-dsf
 #zplug "sindresorhus/pure", use:pure.zsh, as:theme
 #zplug "intelfx/pure", as:theme, use:pure.zsh
 
-let zplug manage itself like other packages
+#let zplug manage itself like other packages
 zplug "zplug/zplug", hook-build:'zplug --self-manage'
 
-#If zplug check gives output, ie, there are uninstalled plugins, install them
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+# If zplug check gives output, ie, there are uninstalled plugins, install them
+# we can just install manually and save startup time
+#if ! zplug check --verbose; then
+#    printf "Install? [y/N]: "
+#    if read -q; then
+#        echo; zplug install
+#    fi
+#fi
 zplug load #--verbose
 #############################
 #Plugin Options
@@ -110,3 +112,4 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 SPACESHIP_EXEC_TIME_ELAPSED=3
 SPACESHIP_BATTERY_THRESHOLD=15
 SPACESHIP_VI_MODE_SHOW=false
+#zprof

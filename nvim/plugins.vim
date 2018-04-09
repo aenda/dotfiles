@@ -79,7 +79,7 @@ let g:LanguageClient_autoStart = 1
 "v for some debug logging
 let g:LanguageClient_serverCommands = {}
 "let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run()']
+"let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run()']
 "let g:LanguageClient_serverCommands = {
 "    \ 'python': ['pyls', '-v'],
 "    \ }
@@ -93,22 +93,22 @@ augroup LanguageClientConfig
     autocmd!
 
     " <leader>ld to go to definition
-    autocmd FileType python,json,css,less,html,R nnoremap <buffer> <leader>ld
+    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>ld
       \ :call LanguageClient_textDocument_definition()<cr>
     " <leader>lf to autoformat document
-    autocmd FileType python,json,css,less,html,R nnoremap <buffer> <leader>lf
+    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lf
       \ :call LanguageClient_textDocument_formatting()<cr>
     " <leader>lh for type info under cursor
-    autocmd FileType python,json,css,less,html,R nnoremap <buffer> <leader>lh
+    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lh
       \ :call LanguageClient_textDocument_hover()<cr>
     " <leader>lr to rename variable under cursor
-    autocmd FileType python,json,css,less,html,R nnoremap <buffer> <leader>lr
+    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lr
       \ :call LanguageClient_textDocument_rename()<cr>
     " <leader>lc to switch omnifunc to LanguageClient
-    autocmd FileType python,json,css,less,html,R nnoremap <buffer> <leader>lc
+    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lc
       \ :setlocal omnifunc=LanguageClient#complete<cr>
     " <leader>ls to fuzzy find the symbols in the current document
-    autocmd FileType python,json,css,less,html,R nnoremap <buffer> <leader>ls
+    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>ls
       \ :call LanguageClient_textDocument_documentSymbol()<cr>
 
     " Use LanguageServer for omnifunc completion

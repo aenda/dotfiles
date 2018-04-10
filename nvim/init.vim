@@ -21,7 +21,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 
 "Autocompletion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-completion-manager'
 Plug 'w0rp/ale'
 "Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
@@ -29,10 +30,12 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 "Specific functionality
-Plug 'zchee/deoplete-jedi'
+"Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'jalvesaq/nvim-r'
 Plug 'lervag/vimtex'
+Plug 'gaalcaras/ncm-R'
+Plug 'Shougo/neco-syntax'
 "Plug 'poppyschmo/deoplete-latex'
 "
 "Miscellaneous

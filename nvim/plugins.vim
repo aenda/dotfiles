@@ -11,6 +11,8 @@ colorscheme gruvbox
 set background=dark
 let g:lightline = { 'colorscheme': 'solarized', }
 set noshowmode
+let g:rout_follow_colorscheme = 1
+let g:Rout_more_colors = 1
 "
 "Vimtex Config
 "let g:vimtex_latexmk_progname = 'nvr'
@@ -44,30 +46,30 @@ let g:vimtex_compiler_latexmk = {
 
 "Deoplete config
 " automatically start
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 " could we gain startup time by lazy loading?
 " let g:deoplete#enable_at_startup = 0
 " call deoplete#enable()
-set completeopt=longest,menuone,preview
-let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['file', 'ultisnips']
+"set completeopt=longest,menuone,preview
+"let g:deoplete#sources = {}
+"let g:deoplete#sources._ = ['file', 'ultisnips']
 
 "Deoplete and vimtex config
-if !exists('g:deoplete#omni#input_patterns')
-    let g:deoplete#omni#input_patterns = {}
-endif
-let g:deoplete#omni#input_patterns.tex = '\\(?:'
-      \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
-      \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
-      \ . '|hyperref\s*\[[^]]*'
-      \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-      \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
-      \ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-      \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
-      \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
-      \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
-      \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
-      \ .')'
+"if !exists('g:deoplete#omni#input_patterns')
+"    let g:deoplete#omni#input_patterns = {}
+"endif
+"let g:deoplete#omni#input_patterns.tex = '\\(?:'
+"      \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
+"      \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
+"      \ . '|hyperref\s*\[[^]]*'
+"      \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+"      \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
+"      \ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+"      \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
+"      \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
+"      \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
+"      \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
+"      \ .')'
 
 let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
 let g:UltiSnipsExpandTrigger="<C-j>"
@@ -121,16 +123,32 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 
 " nvim-completion-manager {{{
 " Use fuzzy matching
-"let g:cm_matcher = {'case': 'smartcase', 'module': 'cm_matchers.fuzzy_matcher'}
+let g:cm_matcher = {'case': 'smartcase', 'module': 'cm_matchers.fuzzy_matcher'}
+
+  augroup my_cm_setup
+    autocmd!
+    autocmd User CmSetup call cm#register_source({
+          \ 'name' : 'vimtex',
+          \ 'priority': 8,
+          \ 'scoping': 1,
+          \ 'scopes': ['tex'],
+          \ 'abbreviation': 'tex',
+          \ 'cm_refresh_patterns': g:vimtex#re#ncm,
+          \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
+          \ })
+  augroup END
+
+" enter (CR) hides menu and goes to new line
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 "ALE config
 "All linters on by default, otherwise enable specific ones
 "let g:ale_linters = {
 "\   'R': ['lintr'],
 "\}
-"let g:ale_fixers = {
-"\   'python': ['yapf'],
-"\}
+let g:ale_fixers = {
+\   'python': ['yapf'],
+\}
 " enable running the linters when files are saved, on by default
 "let g:ale_lint_on_save = 1
 " lint as you type - on by default

@@ -1,3 +1,5 @@
+keychain --quiet --timeout 60
+source $HOME/.keychain/spectre-sh
 #zmodload zsh/zprof
 # Just using libsecret for git and enigmail/gpg-agent - this is unnecessary
 # ssh / gpg keyring

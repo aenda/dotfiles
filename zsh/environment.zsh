@@ -8,6 +8,8 @@ alias vim="nvim"
 alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias color="~/.dotfiles/changecolorargs.sh"
 alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sophomore/"
+alias reboot="systemctl reboot"
+alias shutdown="systemctl poweroff"
 
 ### Misc options ###
 export KEYTIMEOUT=5

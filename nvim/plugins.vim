@@ -78,18 +78,14 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 let g:LanguageClient_autoStart = 1
 " Use location list instead of quickfix
 "let g:LanguageClient_diagnosticsList = 'Location'
-"v for some debug logging
-let g:LanguageClient_serverCommands = {}
 "let g:LanguageClient_diagnosticsEnable = 0
-"let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run()']
-"let g:LanguageClient_serverCommands = {
-"    \ 'python': ['pyls', '-v'],
-"    \ }
-"    \ 'r': ['R', '--quiet', '--slave', '-e', 'languageserver::run()'],
-"    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+let g:LanguageClient_serverCommands = {}
+"v for some debug logging
 if executable('pyls')
     let g:LanguageClient_serverCommands.python = ['pyls', '-v']
 endif
+"    \ 'r': ['R', '--quiet', '--slave', '-e', 'languageserver::run()'],
+"    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
 
 augroup LanguageClientConfig
     autocmd!
@@ -143,9 +139,9 @@ inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 "ALE config
 "All linters on by default, otherwise enable specific ones
-"let g:ale_linters = {
+let g:ale_linters = {'python': ['autopep8', 'mccabe', 'mypy', 'pycodestyle',
+\                               'pydocstyle', 'pyflakes', 'pylint', 'pyls'], }
 "\   'R': ['lintr'],
-"\}
 let g:ale_fixers = {
 \   'python': ['yapf'],
 \}

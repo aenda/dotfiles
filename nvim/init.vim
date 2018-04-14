@@ -35,6 +35,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'jalvesaq/nvim-r'
 Plug 'lervag/vimtex'
 Plug 'gaalcaras/ncm-R'
+Plug 'rust-lang/rust.vim'
 Plug 'Shougo/neco-syntax'
 "Plug 'poppyschmo/deoplete-latex'
 "

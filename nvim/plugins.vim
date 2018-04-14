@@ -113,13 +113,13 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 
 " nvim-completion-manager {{{
 " Use fuzzy matching
-let g:cm_matcher = {'case': 'smartcase', 'module': 'cm_matchers.fuzzy_matcher'}
+" let g:cm_matcher = {'case': 'smartcase', 'module': 'cm_matchers.fuzzy_matcher'}
 
   augroup my_cm_setup
     autocmd!
     autocmd User CmSetup call cm#register_source({
           \ 'name' : 'vimtex',
-          \ 'priority': 8,
+          \ 'priority': 6,
           \ 'scoping': 1,
           \ 'scopes': ['tex'],
           \ 'abbreviation': 'tex',

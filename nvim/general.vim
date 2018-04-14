@@ -10,15 +10,16 @@ set directory=$HOME/.local/share/nvim/swap
 "Cursor shape changes on insert
 "set fonts
 set encoding=utf8
-set guifont=Inconsolata\ Nerd\ Font\ Complete\ Mono\ 11
-
+"set guifont=Inconsolata\ Nerd\ Font\ Complete\ Mono\ 11
 "set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 "\,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 "\,sm:block-blinkwait175-blinkoff150-blinkon175
+"
 set clipboard+=unnamed "Use middle-click clipboard
 "Handle tabs - one tab equates to 4 spaces, except in makefiles
 set tabstop=4 softtabstop=0 shiftwidth=4 expandtab smartindent
 
+"denote whitespace with special characters
 set list listchars=tab:»\ ,eol:¬,trail:·
 
 "Line numbers with thin gutter
@@ -32,15 +33,12 @@ augroup makefile
 augroup end
 
 "LaTeX
-augroup latex
-    autocmd!
-    let g:tex_flavor = "latex"
-"    autocmd FileType tex :nnoremap <leader>ll :lcd %:h<CR>:w<CR>:!latexmk -pdf -pv "%:p"<CR>
-"    autocmd FileType tex :nnoremap <leader>lv :!zathura %:r.pdf &<CR><CR>
-augroup end
-
-"KiTTY does not support background color erase
-let &t_ut=''
+"augroup latex
+"    autocmd!
+"    let g:tex_flavor = "latex"
+""    autocmd FileType tex :nnoremap <leader>ll :lcd %:h<CR>:w<CR>:!latexmk -pdf -pv "%:p"<CR>
+""    autocmd FileType tex :nnoremap <leader>lv :!zathura %:r.pdf &<CR><CR>
+"augroup end
 
 "PYTHON PROVIDER CONFIGURATION ~
 "Program to use for evaluating Python code. Setting this makes startup faster.

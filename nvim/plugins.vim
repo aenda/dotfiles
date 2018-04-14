@@ -4,28 +4,23 @@
 set termguicolors
 "Set background - in file so its writable
 "source $HOME/.config/nvim/background.vim
-let g:nord_italic=1
-let g:nord_comment_brightness=18
+"let g:nord_italic=1
+"let g:nord_comment_brightness=18
 "colorscheme nord
 colorscheme gruvbox
 set background=dark
 let g:lightline = { 'colorscheme': 'solarized', }
-set noshowmode
-let g:rout_follow_colorscheme = 1
+set noshowmode "lightline shows insert/normal mode
+let g:rout_follow_colorscheme = 1 "nvim-r uses colorscheme
 let g:Rout_more_colors = 1
 "
 "Vimtex Config
-"let g:vimtex_latexmk_progname = 'nvr'
 let g:vimtex_compiler_progname = 'nvr'
-"let g:vimtex_view_method = 'zathura' #window id/back search broken
 let g:vimtex_view_method = 'general'
 let g:vimtex_view_general_viewer = 'qpdfview'
 let g:vimtex_view_general_options
   \ = '--unique @pdf\#src:@tex:@line:@col'
 let g:vimtex_view_general_options_latexmk = '--unique'
-"let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-"let g:vimtex_view_general_options_latexmk = '--unique'
-"let g:vimtex_fold_enabled = 0
 "and under okular set editor command: "nvr --remote-silent %f -c %l"
 let g:vimtex_compiler_latexmk = {
     \ 'backend' : 'nvim',
@@ -43,6 +38,9 @@ let g:vimtex_compiler_latexmk = {
     \ ],
     \}
 "add after hook - latexmk -c will clean files?
+"let g:vimtex_view_method = 'zathura' #window id/back search broken
+"let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+"let g:vimtex_view_general_options_latexmk = '--unique'
 "
 """"""ALE config""""""
 "All linters on by default, otherwise enable specific ones

@@ -114,19 +114,23 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 " nvim-completion-manager {{{
 " Use fuzzy matching
 let g:cm_matcher = {'case': 'smartcase', 'module': 'cm_matchers.fuzzy_matcher'}
+" disable keyword matching
+let g:cm_sources_override = { 'cm-bufkeyword': { 'enable' : 0 } }
+" this way happens before ncm is loaded and doesn't work
+"autocmd BufRead * call cm#disable_source('cm-bufkeyword')
 
-  augroup my_cm_setup
-    autocmd!
-    autocmd User CmSetup call cm#register_source({
-          \ 'name' : 'vimtex',
-          \ 'priority': 8,
-          \ 'scoping': 1,
-          \ 'scopes': ['tex'],
-          \ 'abbreviation': 'tex',
-          \ 'cm_refresh_patterns': g:vimtex#re#ncm,
-          \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
-          \ })
-  augroup END
+augroup my_cm_setup
+  autocmd!
+  autocmd User CmSetup call cm#register_source({
+        \ 'name' : 'vimtex',
+        \ 'priority': 8,
+        \ 'scoping': 1,
+        \ 'scopes': ['tex'],
+        \ 'abbreviation': 'tex',
+        \ 'cm_refresh_patterns': g:vimtex#re#ncm,
+        \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
+        \ })
+augroup END
 
 " enter (CR) hides menu and goes to new line
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")

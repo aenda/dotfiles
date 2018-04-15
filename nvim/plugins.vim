@@ -45,8 +45,20 @@ let g:vimtex_compiler_latexmk = {
 """"""ALE config""""""
 "All linters on by default, otherwise enable specific ones
 "pyls: lint: mccabe, pycodestyle, pydocstyle, pyflakes, rope | autopep8, yapf
-let g:ale_linters = { 'python': ['isort', 'mypy', 'pycodestyle',
-\                               'pyflakes', 'pylint', 'pyls', ], }
+let g:ale_linters = { 'python': ['pycodestyle',
+                               \ 'pyflakes', 'pylint', 'pyls'] }
+function! ALEEnableMypy() abort 
+    "let b:previous_ale_fixers = {}
+    "let b:previous_ale_fixers.python = g:ale_linters['python']
+    try
+        let b:ale_linters = g:ale_linters
+        let b:ale_linters['python'] += ['mypy']
+        "let b:ale_fixers.python: b:previous_ale['python'] + ['isort']
+    "    ALEFix
+    "finally
+    "    unlet b:ale_linters
+    endtry
+endfunction
 let g:ale_fixers = {
 \   'python': ['autopep8', 'yapf', 'isort'],
 \   'rust': ['rustfmt']

@@ -185,8 +185,9 @@ bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 '+5%'
 #bindsym XF86AudioMute exec /usr/bin/amixer -D pulse set Master Playback Switch toggle
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 toggle
-bindsym XF86MonBrightnessUp exec /home/gmend/.dotfiles/scripts/brightup.sh
-bindsym XF86MonBrightnessDown exec /home/gmend/.dotfiles/scripts/brightdown.sh
+# unnecessary - we are now using acpid to manage brightness
+#bindsym XF86MonBrightnessUp exec /home/gmend/.dotfiles/scripts/brightup.sh
+#bindsym XF86MonBrightnessDown exec /home/gmend/.dotfiles/scripts/brightdown.sh
 bindsym $mod+Shift+f exec "firefox"
 
 #exec feh --bg-scale ~/.config/sway/lockscreen.png

@@ -2,10 +2,10 @@
 source $HOME/.keychain/spectre-sh
 
 #source zsh files
-source $HOME/.dotfiles/zsh/completion.zsh
-source $HOME/.dotfiles/zsh/keybindings.zsh
 source $HOME/.dotfiles/zsh/termsupport.zsh
 source $HOME/.dotfiles/zsh/environment.zsh
+source $HOME/.dotfiles/zsh/completion.zsh
+source $HOME/.dotfiles/zsh/keybindings.zsh
 #source /usr/share/doc/pkgfile/command-not-found.zsh
 # we can just use pikaur -Fs(x) and -Fl
 

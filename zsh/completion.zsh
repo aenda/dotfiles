@@ -1,22 +1,24 @@
 autoload -Uz compinit
 #if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-if [[ -n ${HOME}/.zcompdump(#qn.mh+24) ]]; then
-    compinit
-    compdump;
-else
-    compinit -C;
+#if [[ -n ${ZDOTDIR}/.zcompdump(#qn.mh+24) ]]; then 
+if [[ -n "${ZDOTDIR}/.zcompdump"(#qN.mh+24) ]]; then # we haven't updated in >1day
+    compinit -d "${ZDOTDIR}/.zcompdump" # explicitly update date on zcompdump
+    #compdump; # but we want to update the date on zcompdump
+else # we updated today, so we don't need to dump
+    compinit -C -D; #is C or D the skip dump flag?
 fi;
+#compinit -C -D
 zstyle ':completion:*:*:nvim:*' file-patterns '^*.(aux|log|pdf|png|fls|gz|fdb_latexmk|xdv):source-files' '*:all-files'
 # pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip
+#function _pip_completion {
+#  local words cword
+#  read -Ac words
+#  read -cn cword
+#  reply=( $( COMP_WORDS="$words[*]" \
+#             COMP_CWORD=$(( cword-1 )) \
+#             PIP_AUTO_COMPLETE=1 $words[1] ) )
+#}
+#compctl -K _pip_completion pip
 # pip zsh completion end
 #zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf'
 #zstyle ':completion:*:*:qpdfview:*' file-patterns '*.pdf|(./*(/))' '*.(pdf|dvi)|./*(/)' '*:all-files'
@@ -51,9 +53,9 @@ unset CASE_SENSITIVE HYPHEN_INSENSITIVE
 # disable named-directories autocompletion
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 
-# Use caching so that commands like apt and dpkg complete are useable
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
+# Use caching so that commands like systemctl complete are useable
+# zstyle ':completion::complete:*' use-cache 1
+# zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
 # Don't complete uninteresting users
 zstyle ':completion:*:*:*:users' ignored-patterns \

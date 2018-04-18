@@ -1,0 +1,142 @@
+#zmodload zsh/datetime
+#setopt PROMPT_SUBST
+#PS4='+$EPOCHREALTIME %N:%i> '
+#
+#logfile=$(mktemp zsh_profile.XXXXXXXX)
+#echo "Logging to $logfile"
+#exec 3>&2 2>$logfile
+
+#setopt XTRACE
+source $HOME/.keychain/spectre-sh
+#zmodload zsh/zprof
+# Just using libsecret for git and enigmail/gpg-agent - this is unnecessary
+# ssh / gpg keyring
+#export SSH_KEY_PATH="~/.ssh/rsa_id"
+#added_keys=`ssh-add -l`
+#if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
+#    ssh-add "$HOME/.ssh/id_rsa"
+#fi
+#eval `keychain --eval id_rsa`
+#eval `keychain -q`
+
+#source zsh files
+source $HOME/.dotfiles/zsh/completion.zsh
+source $HOME/.dotfiles/zsh/keybindings.zsh
+source $HOME/.dotfiles/zsh/termsupport.zsh
+source $HOME/.dotfiles/zsh/environment.zsh
+#source /usr/share/doc/pkgfile/command-not-found.zsh
+# we can just use pikaur -Fs(x) and -Fl
+
+### Functions ###
+function match_filename() {
+  find "$1" -iname "*$2*" -print
+}
+function match_contents() {
+  grep -Ri "$1" -e "$2"
+}
+function matchrun_filename() {
+  find "$1" -iname "*$2*" -print0 | xargs -0 ls -l
+}
+function matchrun_contents() {
+  grep -Ri "$1" -e "$2" -lZ | xargs -0 "${@:3}"
+}
+function search() {
+    grep --line-buffered --color=never -r "$1" * | fzf
+}
+#adds colors in ~/.Xresources to virtual terminal
+#vtColor() {
+#    if [ "$TERM" = "linux" ]; then
+#        _SEDCMD='s/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p'
+#        for i in $(sed -n "$_SEDCMD" $HOME/.dotfiles/X/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
+#            echo -en "$i"
+#        done
+#        clear
+#    fi
+#}
+
+# Evaluate dircolors
+if [[ -f ~/.dircolors ]] ;
+    then eval "$(dircolors -b ~/.dircolors)"
+#elif [[ -f /etc/DIR_COLORS ]] ;
+#    then eval $(dircolors -b /etc/DIR_COLORS)
+fi
+
+# Set up colored ls
+ls --color -d . &>/dev/null && alias ls='ls --color'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+#ls after cd
+auto-ls () { ls; }
+#chpwd_functions=( auto-ls $chpwd_functions )
+chpwd_functions=( auto-ls )
+
+###############
+#function zle-line-init zle-keymap-select {
+#    VIM_PROMPT="%{$fg_bold[red]%} [% NORMAL]% %{$reset_color%}"
+#    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1" # $(git_custom_status) $EPS1"
+#    zle reset-prompt
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+
+### Load zplug and plugins ###
+#if [[ ! -d "$HOME/.zplug" ]];then
+#    git clone https://github.com/zplug/zplug ~/.zplug
+#fi
+#ZPLUG_HOME="$HOME/.zplug"
+##If zplug is properly installed, load it
+#source ~/.zplug/init.zsh
+##if [ -f $ZPLUG_HOME/init.zsh ]; then
+##    source "$ZPLUG_HOME/init.zsh"
+##fi
+##Load plugins/themes/etc
+##zplug "mafredri/zsh-async"
+#zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+#zplug "zsh-users/zsh-autosuggestions"
+#zplug "zsh-users/zsh-completions"
+#zplug "zsh-users/zsh-syntax-highlighting"
+#zplug "zsh-users/zsh-history-substring-search"
+#zplug "aenda/zsh-diff-so-fancy", as:command, use:bin/git-dsf
+#export RPS1="%{$reset_color%}"
+#zplug "plugins/vi-mode", from:oh-my-zsh
+#zplug "sindresorhus/pure", use:pure.zsh, as:theme
+#zplug "intelfx/pure", as:theme, use:pure.zsh
+
+#let zplug manage itself like other packages
+#zplug "zplug/zplug", hook-build:'zplug --self-manage'
+
+# If zplug check gives output, ie, there are uninstalled plugins, install them
+# we can just install manually and save startup time
+#if ! zplug check --verbose; then
+#    printf "Install? [y/N]: "
+#    if read -q; then
+#        echo; zplug install
+#    fi
+#fi
+#zplug load #--verbose
+#############################
+#exec $HOME/scripts/asynckeychain.zsh
+#zprof
+#unsetopt XTRACE
+#exec 2>&3 3>&-
+if [[ -d $XDG_CONFIG_HOME/zsh/repos/ ]]
+then
+    source $XDG_CONFIG_HOME/zsh/repos/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source $XDG_CONFIG_HOME/zsh/repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source $XDG_CONFIG_HOME/zsh/repos/zsh-history-substring-search/zsh-history-substring-search.zsh
+    fpath+=($XDG_CONFIG_HOME/zsh/fpath) #source spaceship prompt init
+    fpath+=($XDG_CONFIG_HOME/zsh/repos/zsh-completions/src)
+    export fpath
+fi
+autoload -U promptinit; promptinit
+prompt spaceship
+
+#Plugin Options
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+#Theme options
+#PURE_PROMPT_SYMBOL=❯
+#SPACESHIP_TIME_SHOW=true
+SPACESHIP_EXEC_TIME_ELAPSED=3
+SPACESHIP_BATTERY_THRESHOLD=15
+SPACESHIP_VI_MODE_SHOW=false

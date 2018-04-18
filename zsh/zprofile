@@ -1,9 +1,6 @@
-#source /etc/profile.d/vte.sh
-
 #PATH+=":/home/gmend/.gem/ruby/2.5.0/bin"
 #PATH+=":/home/gmend/.local/bin"
 #export PATH
-
 #if [[ -r ~/.zshrc ]]; then
 #    . ~/.zshrc
 #fi
@@ -12,6 +9,6 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ];
 then
     #eval $(ssh-agent)
     #startx
-    #startplasmacompositor
+    keychain --quiet --timeout 60
     sway
 fi

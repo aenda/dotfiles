@@ -4,8 +4,9 @@ alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 #alias la='ls -oAh'
 alias la='ls -lah'
+alias nv="nvim"
 alias vim="nvim"
-alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
+alias nvimtex="NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim"
 alias color="~/.dotfiles/changecolorargs.sh"
 alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sophomore/"
 alias reboot="systemctl reboot"
@@ -22,10 +23,10 @@ export TIME_STYLE=long-iso
 
 ### Hist options ###
 if [ -z "$HISTFILE" ]; then
-    HISTFILE=$HOME/.zsh_history
+    HISTFILE=$XDG_CONFIG_HOME/zsh/zsh_history
 fi
-HISTSIZE=1000 #We have plenty of memory, save our history
-SAVEHIST=1000
+HISTSIZE=10000 #We have plenty of memory, save our history
+SAVEHIST=10000
 # No annoying beeping
 setopt NO_HIST_BEEP 
 setopt INC_APPEND_HISTORY EXTENDED_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_EXPIRE_DUPS_FIRST

@@ -1,15 +1,5 @@
-keychain --quiet --timeout 60
+# we ran keychain in zprofile
 source $HOME/.keychain/spectre-sh
-#zmodload zsh/zprof
-# Just using libsecret for git and enigmail/gpg-agent - this is unnecessary
-# ssh / gpg keyring
-#export SSH_KEY_PATH="~/.ssh/rsa_id"
-#added_keys=`ssh-add -l`
-#if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
-#    ssh-add "$HOME/.ssh/id_rsa"
-#fi
-#eval `keychain --eval id_rsa`
-#eval `keychain -q`
 
 #source zsh files
 source $HOME/.dotfiles/zsh/completion.zsh
@@ -35,16 +25,6 @@ function matchrun_contents() {
 function search() {
     grep --line-buffered --color=never -r "$1" * | fzf
 }
-#adds colors in ~/.Xresources to virtual terminal
-vtColor() {
-    if [ "$TERM" = "linux" ]; then
-        _SEDCMD='s/.*\*color\([0-9]\{1,\}\).*#\([0-9a-fA-F]\{6\}\).*/\1 \2/p'
-        for i in $(sed -n "$_SEDCMD" $HOME/.Xresources | awk '$1 < 16 {printf "\\e]P%X%s", $1, $2}'); do
-            echo -en "$i"
-        done
-        clear
-    fi
-}
 
 # Evaluate dircolors
 if [[ -f ~/.dircolors ]] ;
@@ -62,50 +42,19 @@ auto-ls () { ls; }
 #chpwd_functions=( auto-ls $chpwd_functions )
 chpwd_functions=( auto-ls )
 
-###############
-#function zle-line-init zle-keymap-select {
-#    VIM_PROMPT="%{$fg_bold[red]%} [% NORMAL]% %{$reset_color%}"
-#    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1" # $(git_custom_status) $EPS1"
-#    zle reset-prompt
-#}
-#zle -N zle-line-init
-#zle -N zle-keymap-select
-
-### Load zplug and plugins ###
-#if [[ ! -d "$HOME/.zplug" ]];then
-#    git clone https://github.com/zplug/zplug ~/.zplug
-#fi
-ZPLUG_HOME="$HOME/.zplug"
-#If zplug is properly installed, load it
-if [ -f $ZPLUG_HOME/init.zsh ]; then
-    source "$ZPLUG_HOME/init.zsh"
+# load some plugins
+if [[ -d $XDG_CONFIG_HOME/zsh/repos/ ]]
+then
+    source $XDG_CONFIG_HOME/zsh/repos/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source $XDG_CONFIG_HOME/zsh/repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source $XDG_CONFIG_HOME/zsh/repos/zsh-history-substring-search/zsh-history-substring-search.zsh
+    fpath+=($XDG_CONFIG_HOME/zsh/fpath) #source spaceship prompt init
+    fpath+=($XDG_CONFIG_HOME/zsh/repos/zsh-completions/src)
+    export fpath
 fi
-#Load plugins/themes/etc
-zplug "mafredri/zsh-async"
-zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-completions"
-zplug "aenda/zsh-diff-so-fancy", as:command, use:bin/git-dsf
-#export RPS1="%{$reset_color%}"
-#zplug "plugins/vi-mode", from:oh-my-zsh
-#zplug "sindresorhus/pure", use:pure.zsh, as:theme
-#zplug "intelfx/pure", as:theme, use:pure.zsh
+autoload -U promptinit; promptinit
+prompt spaceship
 
-#let zplug manage itself like other packages
-zplug "zplug/zplug", hook-build:'zplug --self-manage'
-
-# If zplug check gives output, ie, there are uninstalled plugins, install them
-# we can just install manually and save startup time
-#if ! zplug check --verbose; then
-#    printf "Install? [y/N]: "
-#    if read -q; then
-#        echo; zplug install
-#    fi
-#fi
-zplug load #--verbose
-#############################
 #Plugin Options
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
@@ -115,4 +64,3 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 SPACESHIP_EXEC_TIME_ELAPSED=3
 SPACESHIP_BATTERY_THRESHOLD=15
 SPACESHIP_VI_MODE_SHOW=false
-#zprof

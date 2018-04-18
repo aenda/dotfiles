@@ -1,1 +1,6 @@
-.gitconfig
+[user]
+    name = Genevieve Mendoza
+    email = aenda@users.noreply.github.com
+[credential]
+#git will query ssh-agent for key when pushing to github
+    helper = /usr/share/git/credential/libsecret/git-credential-libsecret

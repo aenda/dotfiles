@@ -10,17 +10,20 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 [ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
 
 #Home dir symlinks
-ln -sfv "$DOTFILES_DIR/git/gitconfig" ~/.gitconfig
-ln -sfv "$DOTFILES_DIR/zsh/zshrc" ~/.zshrc
-ln -sfv "$DOTFILES_DIR/zsh/zprofile" ~/.zprofile
-ln -sfv "$DOTFILES_DIR/dircolors-uni" ~/.dircolors
+ln -sfv "$DOTFILES_DIR/git/gitconfig" $XDG_CONFIG_HOME/git/config
+ln -sfv "$DOTFILES_DIR/dircolors-uni" $HOME/.dircolors
 #ln -sfv "$DOTFILES_DIR/tmux/tmux.conf" ~/.tmux.conf
 
 #X config
-ln -sfv "$DOTFILES_DIR/X/.*" $HOME/
+#ln -sfv "$DOTFILES_DIR/X/.*" $HOME/
 
 #Make .config directory then make symlinks
+# do xdg-config-home checks instead?
 [[ -d "$HOME/.config" ]] || mkdir "$HOME/.config"
+ln -sfv "$DOTFILES_DIR/zsh/zshrc" $ZDOTDIR/.zshrc
+ln -sfv "$DOTFILES_DIR/zsh/zprofile" $ZDOTDIR/.zprofile
+exec $DOTFILES_DIR/scripts/zshplugins.zsh
+# do i need to link zsh sources? FIXME
 ln -sfv "$DOTFILES_DIR/i3" "$HOME/.config/i3"
 ln -sfv "$DOTFILES_DIR/i3status" "$HOME/.config/i3status"
 ln -sfv "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"

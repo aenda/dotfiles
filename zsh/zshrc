@@ -28,7 +28,7 @@ function search() {
 
 # Evaluate dircolors
 if [[ -f ~/.dircolors ]] ;
-    then eval "$(dircolors -b ~/.dircolors)"
+    then eval "$(dircolors -b ~/.dotfiles/dircolors_uni)"
 #elif [[ -f /etc/DIR_COLORS ]] ;
 #    then eval $(dircolors -b /etc/DIR_COLORS)
 fi

@@ -9,6 +9,6 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ];
 then
     #eval $(ssh-agent)
     #startx
-    keychain --quiet --timeout 60
+    keychain --quiet --dir "$XDG_CONFIG_HOME/keychain" --timeout 60
     sway
 fi

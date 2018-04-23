@@ -1,5 +1,5 @@
 # we ran keychain in zprofile
-source $HOME/.keychain/spectre-sh
+source $XDG_CONFIG_HOME/keychain/spectre-sh
 
 #source zsh files
 source $HOME/.dotfiles/zsh/termsupport.zsh
@@ -45,11 +45,11 @@ chpwd_functions=( auto-ls )
 # load some plugins
 if [[ -d $XDG_CONFIG_HOME/zsh/repos/ ]]
 then
+    fpath+=($XDG_CONFIG_HOME/zsh/fpath) #source spaceship prompt init
+    fpath+=($XDG_CONFIG_HOME/zsh/repos/zsh-completions/src)
     source $XDG_CONFIG_HOME/zsh/repos/zsh-autosuggestions/zsh-autosuggestions.zsh
     source $XDG_CONFIG_HOME/zsh/repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $XDG_CONFIG_HOME/zsh/repos/zsh-history-substring-search/zsh-history-substring-search.zsh
-    fpath+=($XDG_CONFIG_HOME/zsh/fpath) #source spaceship prompt init
-    fpath+=($XDG_CONFIG_HOME/zsh/repos/zsh-completions/src)
     export fpath
 fi
 autoload -U promptinit; promptinit

@@ -196,7 +196,7 @@ bindsym $mod+Shift+t exec thunderbird-beta -profile /home/gmend/.config/mozilla/
 output "*" background /home/gmend/.dotfiles/sway/lockscreen.png fill
 
 #exec --no-startup-id redshift
-exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+#exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 
 input "touchpad" {
     tap enabled

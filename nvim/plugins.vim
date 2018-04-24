@@ -1,7 +1,7 @@
 " vim:fdm=marker et fdl=2 ft=vim sts=2 sw=2 ts=2
-"
+
 "Color Config
-set termguicolors
+set termguicolors"{{{
 "Set background - in file so its writable
 "source $HOME/.config/nvim/background.vim
 "let g:nord_italic=1
@@ -12,10 +12,10 @@ set background=dark
 let g:lightline = { 'colorscheme': 'solarized', }
 set noshowmode "lightline shows insert/normal mode
 let g:rout_follow_colorscheme = 1 "nvim-r uses colorscheme
-let g:Rout_more_colors = 1
-"
+let g:Rout_more_colors = 1"}}}
+
 "Vimtex Config
-let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_compiler_progname = 'nvr'"{{{
 let g:vimtex_view_method = 'general'
 let g:vimtex_view_general_viewer = 'qpdfview'
 let g:vimtex_view_general_options
@@ -40,9 +40,10 @@ let g:vimtex_compiler_latexmk = {
 "add after hook - latexmk -c will clean files?
 "let g:vimtex_view_method = 'zathura' #window id/back search broken
 "let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-"let g:vimtex_view_general_options_latexmk = '--unique'
-"
+"let g:vimtex_view_general_options_latexmk = '--unique'}}}
+
 """"""ALE config""""""
+let g:ale_enabled = 0"{{{
 "All linters on by default, otherwise enable specific ones
 "pyls: lint: mccabe, pycodestyle, pydocstyle, pyflakes, rope | autopep8, yapf
 let g:ale_linters = { 'python': ['pycodestyle',
@@ -70,8 +71,9 @@ let g:ale_list_window_size = 5 " Show 5 lines of errors (default: 10)
 "let g:ale_lint_on_enter = 0
 " use ale_set_loclist or ale_set_quickfix - loclist is default
 " let g:ale_open_list = 1 "show quickfix window when file contains warnings
-"""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""}}}
 
+"""""""LCN Config""""""""""""{{{
 " autostart lang serv
 let g:LanguageClient_autoStart = 1
 " Use location list instead of quickfix
@@ -121,28 +123,28 @@ augroup END
 
 "nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-"nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+"nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>}}}
 
-" nvim-completion-manager {{{
+" nvim-completion-manager{{{
 " Use fuzzy matching
-let g:cm_matcher = {'case': 'smartcase', 'module': 'cm_matchers.fuzzy_matcher'}
-" disable keyword matching
-let g:cm_sources_override = { 'cm-bufkeyword': { 'enable' : 0 } }
+"let g:cm_matcher = {'case': 'smartcase', 'module': 'cm_matchers.fuzzy_matcher'}
+"" disable keyword matching
+"let g:cm_sources_override = { 'cm-bufkeyword': { 'enable' : 0 } }
 " this way happens before ncm is loaded and doesn't work
 "autocmd BufRead * call cm#disable_source('cm-bufkeyword')
 
-augroup my_cm_setup
-  autocmd!
-  autocmd User CmSetup call cm#register_source({
-        \ 'name' : 'vimtex',
-        \ 'priority': 8,
-        \ 'scoping': 1,
-        \ 'scopes': ['tex'],
-        \ 'abbreviation': 'tex',
-        \ 'cm_refresh_patterns': g:vimtex#re#ncm,
-        \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
-        \ })
-augroup END
+"augroup my_cm_setup
+"  autocmd!
+"  autocmd User CmSetup call cm#register_source({
+"        \ 'name' : 'vimtex',
+"        \ 'priority': 8,
+"        \ 'scoping': 1,
+"        \ 'scopes': ['tex'],
+"        \ 'abbreviation': 'tex',
+"        \ 'cm_refresh_patterns': g:vimtex#re#ncm,
+"        \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
+"        \ })
+"augroup END}}}
 
 " enter (CR) hides menu and goes to new line
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
@@ -150,20 +152,39 @@ inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 
-"Deoplete config
-" automatically start
-"let g:deoplete#enable_at_startup = 1
+""" Deoplete config
+" automatically start{{{
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
 " could we gain startup time by lazy loading?
 " let g:deoplete#enable_at_startup = 0
 " call deoplete#enable()
 "set completeopt=longest,menuone,preview
-"let g:deoplete#sources = {}
-"let g:deoplete#sources._ = ['file', 'ultisnips']
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['file', 'buffer', 'ultisnips']
+let g:deoplete#sources.python = ['LanguageClient', 'jedi', 'ultisnips']
+let g:deoplete#sources.python3 = ['LanguageClient', 'jedi', 'ultisnips']
+let g:deoplete#sources.rust = ['LanguageClient', 'ultisnips']
+let g:deoplete#sources.tex = ['ultisnips']
+let g:deoplete#sources.vim = ['vim', 'ultisnips']
 
-"Deoplete and vimtex config
-"if !exists('g:deoplete#omni#input_patterns')
-"    let g:deoplete#omni#input_patterns = {}
-"endif
+""" Disable the candidates in Comment/String syntaxes.
+call deoplete#custom#source('_',
+            \ 'disabled_syntaxes', ['Comment', 'String'])
+
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+""" deoplete-racer config
+let g:deoplete#sources#rust#racer_binary='/Users/aenayet/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path= '/Users/aenayet/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
+
+call deoplete#custom#source('ultisnips', 'rank', 1000)
+
+""" Deoplete and vimtex config
+if !exists('g:deoplete#omni#input_patterns')
+    let g:deoplete#omni#input_patterns = {}
+endif
+let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 "let g:deoplete#omni#input_patterns.tex = '\\(?:'
 "      \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
 "      \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
@@ -175,7 +196,7 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 "      \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
 "      \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
 "      \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
-"      \ .')'
+"      \ .')'}}}
 
 " We use deoplete-jedi for async completion
 let g:jedi#completions_enabled = 0

@@ -8,9 +8,10 @@ endif
 
 call plug#begin('$HOME/.dotfiles/nvim/plugged')
 "Colors
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
 "Plug 'iCyMind/NeoSolarized'
 "Plug 'arcticicestudio/nord-vim'
+Plug 'joshdick/onedark.vim'
 "Statusline
 Plug 'itchyny/lightline.vim'
 

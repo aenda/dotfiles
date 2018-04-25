@@ -181,14 +181,22 @@ bindsym $mod+Control+l exec swaylock -i /home/gmend/.dotfiles/sway/lockscreen.pn
 bindsym $mod+minus scratchpad show
 bindsym $mod+Shift+minus move scratchpad
 
-bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
-bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 '+5%'
+
+bindsym XF86AudioRaiseVolume exec "$HOME"/scripts/pactl_volume_control.zsh up
+bindsym XF86AudioLowerVolume exec "$HOME"/scripts/pactl_volume_control.zsh down
+bindsym XF86AudioMute exec "$HOME"/scripts/pactl_volume_control.zsh mute
+
+#bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
+#bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume "${$(pactl info | grep Sink)#*:\ }" "+5%"
+#bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 toggle
 #bindsym XF86AudioMute exec /usr/bin/amixer -D pulse set Master Playback Switch toggle
-bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 toggle
+
 # unnecessary - we are now using acpid to manage brightness
 #bindsym XF86MonBrightnessUp exec /home/gmend/.dotfiles/scripts/brightup.sh
 #bindsym XF86MonBrightnessDown exec /home/gmend/.dotfiles/scripts/brightdown.sh
-#hack to get profiles in .config - see http://kb.mozillazine.org/Thunderbird_:_FAQs_:_Changing_Profile_Folder_Location
+
+# hack to get profiles in .config
+# see http://kb.mozillazine.org/Thunderbird_:_FAQs_:_Changing_Profile_Folder_Location
 bindsym $mod+Shift+f exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla
 bindsym $mod+Shift+t exec thunderbird-beta -profile /home/gmend/.config/mozilla/thunderbird && sleep 1 && rm -r /home/gmend/.thunderbird
 
@@ -208,3 +216,4 @@ input 2:7:SynPS/2_Synaptics_TouchPad {
     natural_scroll enabled
 }
 
+exec swaymsg 'workspace term; exec /bin/kitty; workspace 1; exec /bin/kitty; workspace browse; exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla; workspace 1'

@@ -9,15 +9,14 @@
 # italic_font Operator Mono Book Italic
 # bold_italic_font Operator Mono Medium Italic
 #
-# Get a list of full family names available by running `kitty list-fonts`
-# font_family      InconsolataForPowerline Nerd Font
-font_family      FiraCode Nerd Font Mono
-#font_family      monospace
+# You can get a list of full family names available on your computer by running
+# kitty list-fonts
+font_family      monospace
 italic_font      auto
 bold_font        auto
 bold_italic_font auto
 # Font size (in pts)
-font_size        11.0
+font_size        10.0
 # The amount the font size is changed by (in pts) when increasing/decreasing
 # the font size in a running terminal.
 font_size_delta 2
@@ -36,52 +35,47 @@ adjust_column_width 0
 # and very thick lines;
 box_drawing_scale 0.001, 1, 1.5, 2
 
-#One Dark
+# Nord theme - ported from https://github.com/arcticicestudio/nord-hyper
+foreground            #D8DEE9
+background            #2E3440
+# The 16 terminal colors. There are 8 basic colors, each color has a dull and
+# bright version.
+# black
+color0   #3B4252
+color8   #4C566A
 
-# Black:          #1E2127
-# Bright Black:   #5C6370
-# Red:            #E06C75
-# Bright Red:     #E06C75
-# Green:          #98C379
-# Bright Green:   #98C379
-# Yellow:         #D19A66
-# Bright Yellow:  #D19A66
-# Blue:           #61AFEF
-# Light Blue:     #61AFEF
-# Magenta:        #C678DD
-# Light Magenta:  #C678DD
-# Cyan:           #56B6C2
-# Light Cyan:     #56B6C2
-# White:          #ABB2BF
-# Bright White:   #FFFFFF
-# Text:           #ABB2BF
-# Bold Text:      #ABB2BF
-# Selection:      #3A3F4B
-# Cursor:         #5C6370
-# Background:     #1E2127
-color0          #1e2127
-color8          #5c6370
-color1          #e06c75
-color9          #e06c75
-color2          #98c379
-color10         #98c379
-color3          #d19a66
-color11         #d19a66
-color4          #61afef
-color12         #61afef
-color5          #c678dd
-color13         #c678dd
-color6          #56b6c2
-color14         #56b6c2
-color7          #abb2bf
-color15         #ffffff
-foreground      #abb2bf
-background      #1e2127
+# red
+color1   #BF616A
+color9   #BF616A
+
+# green
+color2   #A3BE8C
+color10  #A3BE8C
+
+# yellow
+color3   #EBCB8B
+color11  #EBCB8B
+
+# blue
+color4  #81A1C1
+color12 #81A1C1
+
+# magenta
+color5   #B48EAD
+color13  #B48EAD
+
+# cyan
+color6   #88C0D0
+color14  #8FBCBB
+
+# white
+color7   #E5E9F0
+color15  #B48EAD
 
 # The foreground for selections
-selection_foreground #3a3f4b
+selection_foreground  #000000
 # The background for selections
-selection_background  #1e2127
+selection_background  #FFFACD
 
 # The color and style for highlighting URLs on mouse-over. url_style can be one of:
 # none, single, double, curly
@@ -89,7 +83,7 @@ url_color             #0087BD
 url_style curly
 
 # The cursor color
-cursor                #5c6370
+cursor                #81A1C1
 # The cursor shape can be one of (block, beam, underline)
 cursor_shape     block
 
@@ -166,7 +160,7 @@ cursor_blink_interval     0.5
 cursor_stop_blinking_after 15.0
 
 # Number of lines of history to keep in memory for scrolling back
-scrollback_lines 5000
+scrollback_lines 3000
 
 # Program with which to view scrollback in a new window. The scrollback buffer is passed as
 # STDIN to this program. If you change it, make sure the program you use can
@@ -281,14 +275,16 @@ inactive_text_alpha 1.0
 # Which edge to show the tab bar on, top or bottom
 tab_bar_edge bottom
 
+# The separator between tabs in the tab bar
+tab_separator " ┇"
+
 # Tab bar colors and styles
-active_tab_foreground #d3d4c4
-active_tab_background #404552
+active_tab_foreground #000
+active_tab_background #eee
 active_tab_font_style bold-italic
-inactive_tab_foreground #7c838f
-inactive_tab_background #383c4a
+inactive_tab_foreground #444
+inactive_tab_background #999
 inactive_tab_font_style normal
-tab_separator " ┇ "
 
 
 # Key mapping
@@ -436,7 +432,7 @@ copy_on_select no
 # means to use the default system color, a value of "background" means to use
 # the default background color and finally you can use an arbitrary color, such
 # as #12af59 or "red".
-# macos_titlebar_color system
+macos_titlebar_color system
 
 # Hide the kitty window's title bar on macOS.
 macos_hide_titlebar no

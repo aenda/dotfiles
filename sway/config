@@ -64,7 +64,8 @@ bindsym $mod+d exec $menu
 floating_modifier $mod normal
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# DISABLED BC IT CRASHES SWAY???
+# bindsym $mod+Shift+c reload
 # exit sway (logs you out of your wayland session)
 bindsym $mod+Shift+e exit
 
@@ -134,12 +135,12 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+1 move container to workspace number 1:vim
+bindsym $mod+Shift+2 move container to workspace number 2:term
 ## <span foreground="red">term</span>
-bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+3 move container to workspace number 3:browse
 ## <span foreground="blue">browse</span>
-bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+4 move container to workspace number 4:misc
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -148,11 +149,15 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # open + setup workspaces when sway starts
-exec swaymsg 'workspace number 2:term; exec /bin/kitty'
-exec swaymsg 'workspace number 1:vim; exec /bin/kitty'
-exec swaymsg 'workspace number 3:browse; exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla'
-exec swaymsg 'workspace number 4:misc; exec /bin/kitty'
-exec swaymsg 'workspace number 1:vim'
+# exec swaymsg 'workspace number 2:term; exec swaymag exec /bin/kitty
+# workspace number 1:vim; exec /bin/kitty; workspace number 3:browse;
+# exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;
+# workspace number 4:misc; exec/bin/kitty; workspace number 1:vim'
+exec /home/gmend/swaymsg.sh
+#exec swaymsg 'workspace number 4:misc; exec /bin/kitty;'
+#exec swaymsg 'workspace number 3:browse; exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;'
+#exec swaymsg 'workspace number 2:term; exec /bin/kitty;'
+#exec swaymsg 'workspace number 1:vim; exec /bin/kitty'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -199,7 +204,7 @@ bar {
             inactive_workspace #000000 #D7BDD9 #000000
             urgent_workspace   #2f343a #900000 #ffffff
     }
-    status_command i3status
+    status_command i3status | $HOME/scripts/i3spotifystatus/pystatus.py
 }
 
 
@@ -210,6 +215,13 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym XF86AudioRaiseVolume exec "$HOME"/scripts/pactl_volume_control.zsh up
 bindsym XF86AudioLowerVolume exec "$HOME"/scripts/pactl_volume_control.zsh down
 bindsym XF86AudioMute exec "$HOME"/scripts/pactl_volume_control.zsh mute
+
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioPause exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioMedia exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
 #bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
 #bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume "${$(pactl info | grep Sink)#*:\ }" "+5%"

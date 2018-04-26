@@ -234,7 +234,8 @@ bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 
 # hack to get profiles in .config
 # see http://kb.mozillazine.org/Thunderbird_:_FAQs_:_Changing_Profile_Folder_Location
-bindsym $mod+Shift+f exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla
+bindsym $mod+Shift+f exec env MOZ_USE_XINPUT2=1 firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla
+# Support touch gestures!! along with setting dom.w3c_touch_events.enabled=1 in about:config
 bindsym $mod+Shift+t exec thunderbird-beta -profile /home/gmend/.config/mozilla/thunderbird && sleep 1 && rm -r /home/gmend/.thunderbird
 
 

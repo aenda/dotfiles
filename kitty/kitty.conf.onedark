@@ -36,81 +36,67 @@ adjust_column_width 0
 # and very thick lines;
 box_drawing_scale 0.001, 1, 1.5, 2
 
-# Solarized Light Theme
+#One Dark
 
-foreground #657b83
-background #fdf6e3
-color0     #eee8d5
-color8     #fdf6e3
-color1   #dc322f
-color9   #cb4b16
-color2   #859900
-color10    #93a1a1
-color3   #b58900
-color11    #839496
-color4   #268bd2
-color12  #839496
-color5   #d33682
-color13  #6c71c4
-color6   #2aa198
-color14    #586e75
-color7     #073642
-color15    #002b36
-# The foreground for selections - color8
-selection_foreground #fdf6e3
-# The background for selections - color10
-selection_background  #93a1a1
+# Black:          #1E2127
+# Bright Black:   #5C6370
+# Red:            #E06C75
+# Bright Red:     #E06C75
+# Green:          #98C379
+# Bright Green:   #98C379
+# Yellow:         #D19A66
+# Bright Yellow:  #D19A66
+# Blue:           #61AFEF
+# Light Blue:     #61AFEF
+# Magenta:        #C678DD
+# Light Magenta:  #C678DD
+# Cyan:           #56B6C2
+# Light Cyan:     #56B6C2
+# White:          #ABB2BF
+# Bright White:   #FFFFFF
+# Text:           #ABB2BF
+# Bold Text:      #ABB2BF
+# Selection:      #3A3F4B
+# Cursor:         #5C6370
+# Background:     #1E2127
+color0          #1e2127
+color8          #5c6370
+color1          #e06c75
+color9          #e06c75
+color2          #98c379
+color10         #98c379
+color3          #d19a66
+color11         #d19a66
+color4          #61afef
+color12         #61afef
+color5          #c678dd
+color13         #c678dd
+color6          #56b6c2
+color14         #56b6c2
+color7          #abb2bf
+color15         #ffffff
+foreground      #abb2bf
+background      #1e2127
+
+# The foreground for selections
+selection_foreground #abb2bf
+# The background for selections
+selection_background #3a3f4b
+
+# selection_foreground #3a3f4b
+# selection_foreground #1e2127
+# selection_background #1e2127
+
 # The color and style for highlighting URLs on mouse-over. url_style can be one of:
 # none, single, double, curly
-url_color             #0087BD
-url_style curly
-# The cursor color
-cursor                #586e75
-# The cursor shape can be one of (block, beam, underline)
-cursor_shape     block
-
-## Solarized Dark Theme
-#foreground #839496
-#background #002b36
-#
-#color0   #073642
-#color8   #002b36
-#
-#color1   #dc322f
-#color9   #cb4b16
-#
-#color2   #859900
-#color10  #586e75
-#
-#color3   #b58900
-#color11  #657b83
-#
-#color4   #268bd2
-#color12  #839496
-#
-#color5   #d33682
-#color13  #6c71c4
-#
-#color6   #2aa198
-#color14  #93a1a1
-#
-#color7   #eee8d5
-#color15  #fdf6e3
-#
-## The foreground for selections
-#selection_foreground #002b36
-## The background for selections
-#selection_background  #586e75
-#
-## The color and style for highlighting URLs on mouse-over. url_style can be one of:
-## none, single, double, curly
 #url_color             #0087BD
-#url_style curly
-#
-## The cursor color
-#cursor                #93a1a1
-## The cursor shape can be one of (block, beam, underline)
-#cursor_shape     block
+url_color             #6DCCF2
+url_style curly
+
+# The cursor color
+cursor                #5c6370
+# The cursor shape can be one of (block, beam, underline)
+cursor_shape     beam
 
 ###############
 #DEFAULT VALUES

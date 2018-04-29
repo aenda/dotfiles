@@ -204,7 +204,7 @@ bar {
             inactive_workspace #000000 #D7BDD9 #000000
             urgent_workspace   #2f343a #900000 #ffffff
     }
-    status_command i3status | $HOME/scripts/i3spotifystatus/pystatus.py
+    status_command i3status 2>/dev/null | $HOME/scripts/i3spotifystatus/pystatus.py 2>/dev/null
 }
 
 

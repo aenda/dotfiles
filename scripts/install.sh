@@ -1,9 +1,14 @@
 #!/bin/bash
 
-# Get current dir (so run this script from anywhere)
+# Get current dir (this should be run from the .dotfiles
+# DOTFILES_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
+# We want XDG_CONFIG_HOME and ZDOTDIR set for this
+# fallbacks if not
+
+# set root of git repository
 export DOTFILES_DIR
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_DIR="$(git rev-parse --show-toplevel)"
 
 # Update dotfiles itself first
 
@@ -11,7 +16,8 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 #Home dir symlinks
 ln -sfv "$DOTFILES_DIR/git/gitconfig" $XDG_CONFIG_HOME/git/config
-ln -sfv "$DOTFILES_DIR/dircolors-uni" $HOME/.dircolors
+[ -d "$HOME/.ssh/config" ] && ln -sfv "$DOTFILES_DIR/ssh/config" $HOME/.ssh/config || (mkdir $HOME/.ssh && ln -sfv "$DOTFILES_DIR/ssh/config" $HOME/.ssh/config)
+#ln -sfv "$DOTFILES_DIR/dircolors-uni" $HOME/.dircolors
 #ln -sfv "$DOTFILES_DIR/tmux/tmux.conf" ~/.tmux.conf
 
 #X config

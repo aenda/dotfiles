@@ -12,6 +12,43 @@ alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sop
 alias reboot="systemctl reboot"
 alias shutdown="systemctl poweroff"
 
+# When selecting files with fzf, we show file content with syntax highlighting,
+# or without highlighting if it's not a source file. If the file is a directory,
+# we use tree to show the directory's contents.
+# We only load the first 200 lines of the file which enables fast previews
+# of large text files.
+# Requires highlight and tree: pacman -S highlight tree
+export FZF_DEFAULT_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || \
+cat {} || tree -C {}) 2> /dev/null | head -200'"
+# -l '.? ' will omit binary files
+export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --follow --glob \!.git/\* 2> /dev/null"
+
+### Search a file with fzf and then open it in an editor ###
+__fsel() {
+  local cmd="${FZF_DEFAULT_COMMAND}"
+  setopt localoptions pipefail 2> /dev/null
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height 70% --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(echo "fzf") -m "$@" | while read item; do
+    echo -n "${(q)item} "
+  done
+  local ret=$?
+  echo
+  return $ret
+}
+fzf_then_open_in_editor() {
+    #file=`rg --files --hidden --smart-case --follow --glob "\!.git/*" /home/gmend/ 2> /dev/null | fzf --preview '(highlight -O ansi -l {} 2> /dev/null || cat {} \\ tree -C {}) 2> /dev/null | head -200'`
+    file="$(__fsel)"
+    file_no_whitespace="$(echo -e "${file}" | sed -e 's/[[:space:]]*$//')"
+    # Open the file if it exists
+    if [ -n "$file_no_whitespace" ]; then
+    ## Use the default editor if it's defined, otherwise Vim
+        ${EDITOR:-nvim} "./${file_no_whitespace}"
+    fi;
+    zle && { zle reset-prompt; zle -R }
+    #zle accept-line
+}
+zle -N fzf_then_open_in_editor
+bindkey "^O" fzf_then_open_in_editor
+
 ### Misc options ###
 export KEYTIMEOUT=5
 DEFAULT_USER=gmend

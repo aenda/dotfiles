@@ -12,6 +12,12 @@ alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sop
 alias reboot="systemctl reboot"
 alias shutdown="systemctl poweroff"
 
+# Rustup environment
+# export PATH=$PATH:~/.local/share/cargo/bin
+# we symlinked to /usr/local/bin
+export CARGO_HOME=~/.local/share/cargo
+export RUSTUP_HOME=~/.local/share/rustup
+
 # When selecting files with fzf, we show file content with syntax highlighting,
 # or without highlighting if it's not a source file. If the file is a directory,
 # we use tree to show the directory's contents.

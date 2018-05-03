@@ -65,7 +65,7 @@ floating_modifier $mod normal
 
 # reload the configuration file
 # DISABLED BC IT CRASHES SWAY???
-# bindsym $mod+Shift+c reload
+ bindsym $mod+Shift+c reload
 # exit sway (logs you out of your wayland session)
 bindsym $mod+Shift+e exit
 
@@ -204,7 +204,7 @@ bar {
             inactive_workspace #000000 #D7BDD9 #000000
             urgent_workspace   #2f343a #900000 #ffffff
     }
-    status_command i3status 2>/dev/null | $HOME/scripts/i3spotifystatus/pystatus.py 2>/dev/null
+    status_command i3status 2>/dev/null | $HOME/.dotfiles/scripts/i3spotifystatus/pystatus.py 2>/dev/null
 }
 
 
@@ -212,9 +212,9 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+Shift+minus move scratchpad
 
 ### Volume Control ###################
-bindsym XF86AudioRaiseVolume exec "$HOME"/scripts/pactl_volume_control.zsh up
-bindsym XF86AudioLowerVolume exec "$HOME"/scripts/pactl_volume_control.zsh down
-bindsym XF86AudioMute exec "$HOME"/scripts/pactl_volume_control.zsh mute
+bindsym XF86AudioRaiseVolume exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh up
+bindsym XF86AudioLowerVolume exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh down
+bindsym XF86AudioMute exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh mute
 
 bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym XF86AudioPause exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause

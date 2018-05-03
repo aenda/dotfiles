@@ -16,7 +16,7 @@ Plug 'icymind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
 
 "Microsoft Language Server Protocol
-Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': './install.sh'}
+Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh',}
 
 "Autocompletion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

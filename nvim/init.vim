@@ -1,14 +1,14 @@
 source $HOME/.config/nvim/general.vim
 
-set rtp^=$HOME/.dotfiles/nvim
+set rtp^=$HOME/.local/share/nvim/site
 "Install vim-plug if not present, and setup plugins
-if empty(glob("$HOME/.dotfiles/nvim/autoload/plug.vim"))
-    silent !curl -fLo $HOME/.dotfiles/nvim/autoload/plug.vim --create-dirs
+if empty(glob("$HOME/.local/share/nvim/site/autoload/plug.vim"))
+    silent !curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('$HOME/.dotfiles/nvim/plugged')
+call plug#begin('$HOME/.local/share/nvim/plugged')
 "Colors
 Plug 'joshdick/onedark.vim'
 Plug 'icymind/NeoSolarized'

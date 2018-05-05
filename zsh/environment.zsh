@@ -1,9 +1,11 @@
 # Aliases
-alias l='ls -q | column -c 80'
+# alias l='ls -q | column -c 80'
+#alias la='ls -oAh'
+#alias la='ls -lah'
+alias la='exa -lag --time-style=long-iso'
+alias lt='exa -lagrs=time --time-style=long-iso'
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
-#alias la='ls -oAh'
-alias la='ls -lah'
 alias nv="nvim"
 alias vim="nvim"
 alias nvimtex="NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim"

@@ -1,9 +1,8 @@
 source $HOME/.config/nvim/general.vim
 
-set rtp^=$HOME/.local/share/nvim/site
 "Install vim-plug if not present, and setup plugins
-if empty(glob("$HOME/.local/share/nvim/site/autoload/plug.vim"))
-    silent !curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs
+if empty(glob("$HOME/.config/nvim/autoload/plug.vim"))
+    silent !curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif

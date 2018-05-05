@@ -9,6 +9,8 @@ alias grep='grep --color=auto'
 alias nv="nvim"
 alias vim="nvim"
 alias nvimtex="NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim"
+alias nt="NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim"
+alias newt="cp ~/template.tex ./main.tex && NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim main.tex"
 alias color="~/.dotfiles/changecolorargs.sh"
 alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sophomore/"
 alias reboot="systemctl reboot"

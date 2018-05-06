@@ -19,9 +19,12 @@ alias shutdown="systemctl poweroff"
 # Rustup environment
 # export PATH=$PATH:~/.local/share/cargo/bin
 # we symlinked to /usr/local/bin
-export CARGO_HOME=~/.local/share/cargo
-export RUSTUP_HOME=~/.local/share/rustup
-
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+# disable less hist, put keybinding file in xdg conf home
+export LESSHISTFILE="/dev/null"
+export LESSKEY="$XDG_CONFIG_HOME"/lesskey
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint.d
 # When selecting files with fzf, we show file content with syntax highlighting,
 # or without highlighting if it's not a source file. If the file is a directory,
 # we use tree to show the directory's contents.

@@ -17,7 +17,7 @@ set $term kitty
 set $menu dmenu_run
 
 #Don't show window title bar, just a 1 pixel separator
-new_window pixel 1
+default_border pixel 1
 
 ### Output configuration ###
 #

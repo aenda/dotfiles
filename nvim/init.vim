@@ -37,6 +37,7 @@ Plug 'junegunn/fzf.vim'
 " Pretty start screen
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 source $HOME/.config/nvim/plugins.vim

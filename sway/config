@@ -25,7 +25,7 @@ default_border pixel 1
 # swaymsg -t get_outputs
 #
 output "*" background /home/gmend/.dotfiles/sway/lockscreen.png fill
-output eDP-1 resolution 1920x1080 position 1920,0
+#output eDP-1 resolution 1920x1080 position 1920,0
 #exec feh --bg-scale ~/.config/sway/lockscreen.png
 ###########################
 #
@@ -61,11 +61,10 @@ bindsym $mod+d exec $menu
 # Resize them with right mouse button + $mod.
 # Despite the name, also works for non-floating windows.
 # Change normal to inverse to use left for resizing and right for dragging.
-floating_modifier $mod normal
+# floating_modifier $mod normal
 
 # reload the configuration file
-# DISABLED BC IT CRASHES SWAY???
- bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c reload
 # exit sway (logs you out of your wayland session)
 bindsym $mod+Shift+e exit
 
@@ -149,11 +148,14 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # open + setup workspaces when sway starts
-# exec swaymsg 'workspace number 2:term; exec swaymag exec /bin/kitty
+# should file an issue - broken in alpha
+# exec $HOME/.dotfiles/scripts/swaymsg.sh
+
+# exec swaymsg "workspace number 2:term; exec /bin/kitty"
+# exec swaymsg "workspace number 1:vim; exec /bin/kitty"
 # workspace number 1:vim; exec /bin/kitty; workspace number 3:browse;
 # exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;
 # workspace number 4:misc; exec/bin/kitty; workspace number 1:vim'
-exec $HOME/.dotfiles/scripts/swaymsg.sh
 #exec swaymsg 'workspace number 4:misc; exec /bin/kitty;'
 #exec swaymsg 'workspace number 3:browse; exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;'
 #exec swaymsg 'workspace number 2:term; exec /bin/kitty;'
@@ -167,16 +169,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px # or 10 ppt
-        bindsym j resize grow height 10 px # or 10 ppt
-        bindsym k resize shrink height 10 px # or 10 ppt
-        bindsym l resize grow width 10 px # or 10 ppt
+        bindsym h resize shrink width 25px
+        bindsym j resize grow height 25px
+        bindsym k resize shrink height 25px
+        bindsym l resize grow width 25px
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px # or 10 ppt
-        bindsym Down resize grow height 10 px # or 10 ppt
-        bindsym Up resize shrink height 10 px # or 10 ppt
-        bindsym Right resize grow width 10 px # or 10 ppt
+        bindsym Left resize shrink width 25px # or 10 ppt
+        bindsym Down resize grow height 25px # or 10 ppt
+        bindsym Up resize shrink height 25px # or 10 ppt
+        bindsym Right resize grow width 25px # or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -204,6 +206,7 @@ bar {
             inactive_workspace #000000 #D7BDD9 #000000
             urgent_workspace   #2f343a #900000 #ffffff
     }
+    # status_command polybar -s
     status_command i3status 2>/dev/null | $HOME/.dotfiles/scripts/i3spotifystatus/pystatus.py 2>/dev/null
 }
 
@@ -256,3 +259,10 @@ bindsym $mod+Shift+t exec thunderbird-beta -profile /home/gmend/.config/mozilla/
 # clear in small sizes. However, its unicode glyph coverage is limited, the old
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
+
+exec swayidle \
+    timeout 180 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+    timeout 600 'exec systemctl suspend' \
+        resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png'

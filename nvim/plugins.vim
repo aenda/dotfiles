@@ -81,7 +81,8 @@ else
     let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'nightly']
     let g:ale_linters.rust = ['cargo']
 endif
-"let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run()']
+let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run()']
+" or run(debug = TRUE)
 
 """""""""""""""""""""""""""""""""""""
 
@@ -136,10 +137,12 @@ call deoplete#custom#option('sources', {
 "\ 'r': ['LanguageClient', 'omni', 'ultisnips']
 
 " this would disable deoplete in R files
-" autocmd FileType r call deoplete#custom#buffer_option('auto_complete', v:false)
+autocmd FileType r call deoplete#custom#buffer_option('auto_complete', v:false)
 " this augroup maps tab to nvim-r supplied omnicomplete
 augroup r
   autocmd!
+  set completefunc=LanguageClient#complete
+  set formatexpr=LanguageClient#textDocument_rangeFormatting()
   autocmd FileType r
         \ inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
@@ -166,10 +169,10 @@ call deoplete#custom#source('_',
 call deoplete#custom#var('omni', 'input_patterns', {
     \ 'tex' : g:vimtex#re#deoplete,
 \})
-" deoplete calls omnicomplete directly after ., ::, $, and (
-call deoplete#custom#option('omni_patterns', {
-    \ 'r'   : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*\w*', '\h\w*(w*']
-\})
+" deoplete calls omnicomplete directly after ., ::, $, and ( for r
+" call deoplete#custom#option('omni_patterns', {
+"     \ 'r'   : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*{2,}\w*', '\h\w*(w*']
+" \})
 
 " We use deoplete-jedi for async completion
 " let g:jedi#completions_enabled = 0

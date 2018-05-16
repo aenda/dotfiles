@@ -10,7 +10,7 @@ endif
 call plug#begin('$HOME/.local/share/nvim/plugged')
 "Colors
 Plug 'joshdick/onedark.vim'
-Plug 'icymind/NeoSolarized'
+"Plug 'icymind/NeoSolarized'
 "Statusline
 Plug 'itchyny/lightline.vim'
 

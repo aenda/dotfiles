@@ -264,5 +264,6 @@ exec swayidle \
     timeout 180 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
     timeout 600 'exec systemctl suspend' \
-        resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png'
+    before-sleep 'swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png & swaymsg "output * dpms on"'
+#        resume 'swaymsg "output * dpms on"' \ this resume after the suspend
+#        timeout doesn't do anything

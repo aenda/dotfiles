@@ -12,7 +12,10 @@ alias nvimtex="NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim"
 alias nt="NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim"
 alias newt="cp ~/template.tex ./main.tex && NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim main.tex"
 alias color="~/.dotfiles/changecolorargs.sh"
-alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sophomore/"
+alias wu="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Junior/"
+# connect to last used bluetooth speaker - we are grepping for a MAC address
+alias blue="bluetoothctl connect \"$(bluetoothctl paired-devices | head -n 1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}')\""
+#alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sophomore/"
 alias reboot="systemctl reboot"
 alias shutdown="systemctl poweroff"
 

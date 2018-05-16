@@ -90,28 +90,28 @@ augroup LanguageClientConfig
     autocmd!
     " <leader>ld to go to definition
     autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>ld
-      \ :call LanguageClient_textDocument_definition()<cr>
+      \ :call LanguageClient#textDocument_definition()<cr>
     " <leader>lf to autoformat document
     autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lf
-      \ :call LanguageClient_textDocument_formatting()<cr>
+      \ :call LanguageClient#textDocument_formatting()<cr>
     " <leader>lh for type info under cursor
     autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lh
-      \ :call LanguageClient_textDocument_hover()<cr>
+      \ :call LanguageClient#textDocument_hover()<cr>
     " <leader>lr to rename variable under cursor
     autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lr
-      \ :call LanguageClient_textDocument_rename()<cr>
+      \ :call LanguageClient#textDocument_rename()<cr>
     " <leader>lc to switch omnifunc to LanguageClient
     autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lc
       \ :setlocal omnifunc=LanguageClient#complete<cr>
     " <leader>ls to fuzzy find the symbols in the current document
     autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>ls
-      \ :call LanguageClient_textDocument_documentSymbol()<cr>
+      \ :call LanguageClient#textDocument_documentSymbol()<cr>
     " Use LanguageServer for omnifunc completion
     " autocmd FileType python,json,css,less,html,R setlocal omnifunc=LanguageClient#complete
 augroup END
 
 "nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 "nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>}}}
 """""""""""""""""""""""""""""""""""""""""""
 

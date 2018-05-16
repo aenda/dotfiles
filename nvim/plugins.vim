@@ -3,11 +3,12 @@
 "Vimtex Config"{{{
 let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_view_method = 'general'
-"let g:vimtex_view_general_viewer = 'qpdfview'
-"let g:vimtex_view_general_options
-"  \ = '--unique @pdf\#src:@tex:@line:@col'
-"let g:vimtex_view_general_options_latexmk = '--unique'
-"and under okular set editor command: "nvr --remote-silent %f -c %l"
+let g:vimtex_view_general_viewer = 'qpdfview'
+let g:vimtex_view_general_options
+  \ = '--unique @pdf\#src:@tex:@line:@col'
+let g:vimtex_view_general_options_latexmk = '--unique'
+" for qpdfview: sourceEditor = "nvr --remote +\":%2\" \"%1\" --servername=/tmp/texsocket"
+" for okular: set editor command: "nvr --remote-silent %f -c %l"
 let g:vimtex_compiler_latexmk = {
     \ 'backend' : 'nvim',
     \ 'background' : 1,
@@ -24,7 +25,7 @@ let g:vimtex_compiler_latexmk = {
     \ ],
     \}
 "add after hook - latexmk -c will clean files?
-let g:vimtex_view_method = 'zathura' "window id/back search broken
+"let g:vimtex_view_method = 'zathura' "window id/back search broken
 "let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 "let g:vimtex_view_general_options_latexmk = '--unique'}}}
 

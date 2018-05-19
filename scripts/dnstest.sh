@@ -39,9 +39,10 @@ for p in $PROVIDERS; do
         printf "%-8s" "$ttime ms"
         ftime=`expr $ftime + $ttime`
     done
-    avg=`bc <<< "scale=2; $ftime/$totaldomains"`
-
-    echo "  $avg"
+    echo $(($ftime/$totaldomains))
+#    avg=`bc <<< "scale=2; $ftime/$totaldomains"`
+#
+#    echo "  $avg"
 done
 
 exit 0;

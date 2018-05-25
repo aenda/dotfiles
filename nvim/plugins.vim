@@ -29,38 +29,6 @@ let g:vimtex_compiler_latexmk = {
 "let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 "let g:vimtex_view_general_options_latexmk = '--unique'}}}
 
-""""""ALE config"""""""{{{
-let g:ale_enabled = 0
-"autocmd FileType r let g:ale_enabled = 1
-"All linters on by default, otherwise enable specific ones
-"pyls: lint: mccabe, pycodestyle, pydocstyle, pyflakes, rope | autopep8, yapf
-let g:ale_linters = { 'python': ['pycodestyle',
-                               \ 'pyflakes', 'pylint', 'pyls'] }
-function! ALEEnableMypy() abort 
-    "let b:previous_ale_fixers = {}
-    "let b:previous_ale_fixers.python = g:ale_linters['python']
-    try
-        let b:ale_linters = g:ale_linters
-        let b:ale_linters['python'] += ['mypy']
-        "let b:ale_fixers.python: b:previous_ale['python'] + ['isort']
-    "    ALEFix
-    "finally
-    "    unlet b:ale_linters
-    endtry
-endfunction
-let g:ale_fixers = {
-\   'python': ['autopep8', 'yapf', 'isort'],
-\   'rust': ['rustfmt']
-\}
-"let g:ale_lint_on_text_changed = 'never' "lint as you type options
-let g:ale_lint_delay = 500 "delay of no typing to lint
-let g:ale_list_window_size = 5 " Show 5 lines of errors (default: 10)
-" if you don't want linters to run on opening a file
-"let g:ale_lint_on_enter = 0
-" use ale_set_loclist or ale_set_quickfix - loclist is default
-" let g:ale_open_list = 1 "show quickfix window when file contains warnings
-""""""""""""""""""""""""""""""""""""""}}}
-
 """""""LCN Config""""""""""""{{{
 " autostart lang serv
 let g:LanguageClient_autoStart = 1
@@ -70,41 +38,39 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {}
 " let g:LanguageClient_settingsPath = '$HOME/.dotfiles/nvim/'
 " let g:LanguageClient_loadSettings = 1
-"v for some debug logging
 if executable('pyls')
-    let g:LanguageClient_serverCommands.python = ['pyls', '-v']
+    let g:LanguageClient_serverCommands.python = ['pyls', '-v'] " v for debug
 endif
 if executable('rls')
     let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'nightly', 'rls']
     let g:ale_linters.rust = ['rls']
-else
+elseif executable('rustup')
     let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'nightly']
     let g:ale_linters.rust = ['cargo']
 endif
-let g:LanguageClient_serverCommands.r = ['R', '--quiet', '--slave', '-e', 'languageserver::run()']
-" or run(debug = TRUE)
-
+let g:LanguageClient_serverCommands.r =
+    \ ['R', '--quiet', '--slave', '-e', 'languageserver::run(debug = TRUE)']
 """""""""""""""""""""""""""""""""""""
 
 augroup LanguageClientConfig
     autocmd!
     " <leader>ld to go to definition
-    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>ld
+    autocmd FileType python,R nnoremap <buffer> <leader>ld
       \ :call LanguageClient#textDocument_definition()<cr>
     " <leader>lf to autoformat document
-    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lf
+    autocmd FileType python,R nnoremap <buffer> <leader>lf
       \ :call LanguageClient#textDocument_formatting()<cr>
     " <leader>lh for type info under cursor
-    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lh
+    autocmd FileType python,R nnoremap <buffer> <leader>lh
       \ :call LanguageClient#textDocument_hover()<cr>
     " <leader>lr to rename variable under cursor
-    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lr
+    autocmd FileType python,R nnoremap <buffer> <leader>lr
       \ :call LanguageClient#textDocument_rename()<cr>
     " <leader>lc to switch omnifunc to LanguageClient
-    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>lc
+    autocmd FileType python,R nnoremap <buffer> <leader>lc
       \ :setlocal omnifunc=LanguageClient#complete<cr>
     " <leader>ls to fuzzy find the symbols in the current document
-    autocmd FileType python,json,css,less,html nnoremap <buffer> <leader>ls
+    autocmd FileType python,R nnoremap <buffer> <leader>ls
       \ :call LanguageClient#textDocument_documentSymbol()<cr>
     " Use LanguageServer for omnifunc completion
     " autocmd FileType python,json,css,less,html,R setlocal omnifunc=LanguageClient#complete

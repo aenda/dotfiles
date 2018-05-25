@@ -16,39 +16,60 @@ order += "tztime local"
 order += "volume master"
 order += "disk /"
 #order += "load"
+#order += "cpu_temperature 0"
 #order += "cpu_usage"
 order += "battery all"
 order += "wireless _first_"
 
 wireless _first_ {
-        format_up = "(%quality at %essid ) %ip"
-        format_down = "W: down"
+        format_up = " (%quality at %essid ) %ip"
+        format_down = ": down"
 }
 
 battery all {
-        format = "%status %percentage"
-#%remaining"
+        format = "%status %percentage %remaining"
+        format_down = ""
+        status_chr = ""
+        status_bat = ""
+        status_unk = "?"
+        status_full = ""
+        low_threshold = 10
 }
+#path = "/sys/class/power_supply/BAT%d/uevent"
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = " %Y-%m-%d %H:%M:%S"
 }
 
 load {
-        format = "%1min"
+        format = " %5min"
 }
 
 cpu_usage {
-	format = "%usage"
+    format = "%usage"
 }
 
-volume master {
-	format = "♪: %volume"
-	format_muted = "♪: muted (%volume)"
-	device = "pulse:alsa_output.pci-0000_00_1f.3.analog-stereo"
+cpu_temperature 0 {
+    format = " %degrees°C"
+    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
 }
+
+volume master { #
+    format = "♪: %volume"
+    format_muted = ": (%volume)"
+    device = "pulse:alsa_output.pci-0000_00_1f.3.analog-stereo"
+}
+
+# volume master {
+#     format = " %volume"
+#     format_muted = " %volume"
+#     device = "default"
+#     mixer = "Master"
+#     mixer_idx = 0
+# }
+
 
 disk "/" {
-        format = "%avail/%total"
+        format = " %free/%total"
 #%free (%avail)/ %total
 }

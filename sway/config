@@ -194,6 +194,7 @@ bar {
     position bottom
     separator_symbol ":|:"
     strip_workspace_numbers yes
+    height 5px
     #status_command python /home/gmend/.vim/plugged/powerline/powerline/bindings/i3/powerline-i3.py
     #font pango:PowerlineSymbols 12
     colors {
@@ -237,9 +238,11 @@ bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 
 # hack to get profiles in .config
 # see http://kb.mozillazine.org/Thunderbird_:_FAQs_:_Changing_Profile_Folder_Location
-bindsym $mod+Shift+f exec env MOZ_USE_XINPUT2=1 firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla
 # Support touch gestures!! along with setting dom.w3c_touch_events.enabled=1 in about:config
+bindsym $mod+Shift+f exec env MOZ_USE_XINPUT2=1 firefox-nightly -profile /home/gmend/.config/mozilla/firefox/
+#&& sleep 1 && rm -r /home/gmend/.mozilla
 bindsym $mod+Shift+t exec thunderbird-beta -profile /home/gmend/.config/mozilla/thunderbird && sleep 1 && rm -r /home/gmend/.thunderbird
+bindsym $mod+Shift+s exec spotify
 
 
 #exec --no-startup-id redshift
@@ -260,10 +263,10 @@ bindsym $mod+Shift+t exec thunderbird-beta -profile /home/gmend/.config/mozilla/
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-exec swayidle \
-    timeout 180 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
-    timeout 600 'exec systemctl suspend' \
-    before-sleep 'swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png & swaymsg "output * dpms on"'
+#exec swayidle \
+#    timeout 180 'swaymsg "output * dpms off"' \
+#        resume 'swaymsg "output * dpms on"' \
+#    timeout 600 'exec systemctl suspend' \
+#    before-sleep 'swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png & swaymsg "output * dpms on"'
 #        resume 'swaymsg "output * dpms on"' \ this resume after the suspend
 #        timeout doesn't do anything

@@ -2,7 +2,8 @@
 #####CONFIG ONEDARK#####
 ########################
 [options]
-font = Fira\ Code\ Regular\ Nerd\ Font\ Complete\ Mono 11
+#font = Fira\ Code\ Regular\ Nerd\ Font\ Complete\ Mono 11
+font = Inconsolata\ Nerd\ Font\ Complete\ Mono 11
 #font = Inconsolata 14
 mouse_autohide = true
 audible_bell = false

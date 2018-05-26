@@ -10,5 +10,5 @@ then
     #eval $(ssh-agent)
     #startx
     keychain --quiet --dir "$XDG_CONFIG_HOME/keychain" --timeout 60
-    sway
+    sway # -d 2>> ~/sway.log
 fi

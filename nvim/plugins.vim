@@ -30,23 +30,15 @@ let g:vimtex_compiler_latexmk = {
 "let g:vimtex_view_general_options_latexmk = '--unique'}}}
 
 """""""LCN Config""""""""""""{{{
-" autostart lang serv
-let g:LanguageClient_autoStart = 1
-" Use location list instead of quickfix
-"let g:LanguageClient_diagnosticsList = 'Location'
-"let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_serverCommands = {}
 " let g:LanguageClient_settingsPath = '$HOME/.dotfiles/nvim/'
-" let g:LanguageClient_loadSettings = 1
+let g:LanguageClient_serverCommands = {}
 if executable('pyls')
     let g:LanguageClient_serverCommands.python = ['pyls', '-v'] " v for debug
 endif
 if executable('rls')
     let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'nightly', 'rls']
-    let g:ale_linters.rust = ['rls']
 elseif executable('rustup')
     let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'nightly']
-    let g:ale_linters.rust = ['cargo']
 endif
 let g:LanguageClient_serverCommands.r =
     \ ['R', '--quiet', '--slave', '-e', 'languageserver::run(debug = TRUE)']
@@ -56,30 +48,28 @@ augroup LanguageClientConfig
     autocmd!
     " <leader>ld to go to definition
     autocmd FileType python,R nnoremap <buffer> <leader>ld
-      \ :call LanguageClient#textDocument_definition()<cr>
+      \ :call LanguageClient#textDocument_definition()<CR>
     " <leader>lf to autoformat document
     autocmd FileType python,R nnoremap <buffer> <leader>lf
-      \ :call LanguageClient#textDocument_formatting()<cr>
+      \ :call LanguageClient#textDocument_formatting()<CR>
     " <leader>lh for type info under cursor
-    autocmd FileType python,R nnoremap <buffer> <leader>lh
-      \ :call LanguageClient#textDocument_hover()<cr>
+    autocmd FileType python,R nnoremap <buffer> K
+      \ :call LanguageClient#textDocument_hover()<CR>
     " <leader>lr to rename variable under cursor
     autocmd FileType python,R nnoremap <buffer> <leader>lr
-      \ :call LanguageClient#textDocument_rename()<cr>
+      \ :call LanguageClient#textDocument_rename()<CR>
     " <leader>lc to switch omnifunc to LanguageClient
     autocmd FileType python,R nnoremap <buffer> <leader>lc
-      \ :setlocal omnifunc=LanguageClient#complete<cr>
+      \ :setlocal omnifunc=LanguageClient#complete<CR>
     " <leader>ls to fuzzy find the symbols in the current document
     autocmd FileType python,R nnoremap <buffer> <leader>ls
-      \ :call LanguageClient#textDocument_documentSymbol()<cr>
-    " Use LanguageServer for omnifunc completion
-    " autocmd FileType python,json,css,less,html,R setlocal omnifunc=LanguageClient#complete
+      \ :call LanguageClient#textDocument_documentSymbol()<CR>
+    " Use the language server with Vim's formatting operator |gq|
+    set formatexpr=LanguageClient#textDocument_rangeFormatting()
+    " Use LanguageServer for completion - no need with deoplete integration
+    " autocmd FileType python,R setlocal completefunc=LanguageClient#complete
 augroup END
-
-"nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-"nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>}}}
-"""""""""""""""""""""""""""""""""""""""""""
+"}}}
 
 let g:UltiSnipsExpandTrigger="<C-j>"
 
@@ -109,7 +99,6 @@ autocmd FileType r call deoplete#custom#buffer_option('auto_complete', v:false)
 augroup r
   autocmd!
   set completefunc=LanguageClient#complete
-  set formatexpr=LanguageClient#textDocument_rangeFormatting()
   autocmd FileType r
         \ inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :

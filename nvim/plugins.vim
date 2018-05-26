@@ -1,4 +1,4 @@
-" vim:fdm=marker et fdl=2 ft=vim sts=2 sw=2 ts=2
+" vim:fdm=marker et si fdl=2 ft=vim sts=0 sw=4 ts=4
 
 "Vimtex Config"{{{
 let g:vimtex_compiler_progname = 'nvr'
@@ -7,8 +7,8 @@ let g:vimtex_view_general_viewer = 'qpdfview'
 let g:vimtex_view_general_options
   \ = '--unique @pdf\#src:@tex:@line:@col'
 let g:vimtex_view_general_options_latexmk = '--unique'
-" for qpdfview: sourceEditor = "nvr --remote +\":%2\" \"%1\" --servername=/tmp/texsocket"
-" for okular: set editor command: "nvr --remote-silent %f -c %l"
+" for qpdfview: sourceEditor = 'nvr --remote +\":%2\" \"%1\" --servername=/tmp/texsocket'
+" for okular: set editor command: 'nvr --remote-silent %f -c %l'
 let g:vimtex_compiler_latexmk = {
     \ 'backend' : 'nvim',
     \ 'background' : 1,
@@ -81,17 +81,18 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 "nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>}}}
 """""""""""""""""""""""""""""""""""""""""""
 
-"let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 
-""" Deoplete config
-" automatically start{{{
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
+""" Deoplete config {{{
+" automatically start
 " could we gain startup time by lazy loading?
-" let g:deoplete#enable_at_startup = 0
-" call deoplete#enable()
-"set completeopt=longest,menuone,preview
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+\ 'auto_complete_delay': 200,
+\ 'smart_case': v:true,
+\ })
+set completeopt=longest,menuone,preview
+
 " we stopped using jedi as a python source.
 call deoplete#custom#option('sources', {
     \ '_': ['file', 'buffer'],
@@ -102,9 +103,9 @@ call deoplete#custom#option('sources', {
 \})
 "\ 'r': ['LanguageClient', 'omni', 'ultisnips']
 
-" this would disable deoplete in R files
+" disable deoplete in R files
 autocmd FileType r call deoplete#custom#buffer_option('auto_complete', v:false)
-" this augroup maps tab to nvim-r supplied omnicomplete
+" this augroup maps tab to r lang server supplied omnicomplete
 augroup r
   autocmd!
   set completefunc=LanguageClient#complete
@@ -124,24 +125,20 @@ augroup END
 call deoplete#custom#source('_',
             \ 'disabled_syntaxes', ['Comment', 'String'])
 
-""" deoplete-racer config
-"let g:deoplete#sources#rust#racer_binary='/usr/local/bin/racer'
-"let g:deoplete#sources#rust#rust_source_path='$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-
-" put snippets at the top of completion menu
-"call deoplete#custom#source('ultisnips', 'rank', 1000)
-
 """ Deoplete and vimtex config
 call deoplete#custom#var('omni', 'input_patterns', {
     \ 'tex' : g:vimtex#re#deoplete,
 \})
+
+" put snippets at the top of completion menu
+"call deoplete#custom#source('ultisnips', 'rank', 1000)
+
 " deoplete calls omnicomplete directly after ., ::, $, and ( for r
 " call deoplete#custom#option('omni_patterns', {
 "     \ 'r'   : ['[^. *\t]\.\w*', '\h\w*::\w*', '\h\w*\$\w*', '\h\w*{2,}\w*', '\h\w*(w*']
 " \})
-
-" We use deoplete-jedi for async completion
-" let g:jedi#completions_enabled = 0
+"
+" }}}
 
 " nvim-r can fold loops and other syntax
 " let r_syntax_folding = 1
@@ -151,7 +148,7 @@ function! StartifyEntryFormat()
     return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
 endfunction
 
-""" FZF Config"""
+""" FZF Config"""{{{
 
 " --column: Show column number
 " --line-number: Show line number
@@ -167,3 +164,4 @@ endfunction
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 " use ripgrep for greprg
 set grepprg=rg\ --vimgrep
+"}}}

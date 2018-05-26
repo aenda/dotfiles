@@ -30,3 +30,11 @@
 " let g:ale_open_list = 1 "show quickfix window when file contains warnings
 """"""""""""""""""""""""""""""""""""""}}}
 
+""" deoplete-racer config
+"let g:deoplete#sources#rust#racer_binary='/usr/local/bin/racer'
+"let g:deoplete#sources#rust#rust_source_path='$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+
+" We use deoplete-jedi for async completion - also jedi superseded by LCN
+" let g:jedi#completions_enabled = 0
+
+"let g:SuperTabDefaultCompletionType = "<C-x><C-o>"

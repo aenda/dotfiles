@@ -1,7 +1,20 @@
 {
+    "pyls": {
+        "plugins": {
+            "pyflakes": {
+                "enabled": true
+            },
+            "pydocstyle": {
+                "enabled": true
+            }
+        }
+    },
     "rust": {
         "clippy_preference": "on",
-        "rust-client.logToFile": true
+        "rust-client.logToFile": true,
+        "cfg_test": true,
+        "all_features": true,
+        "features": ["updater"]
     }
 }
 

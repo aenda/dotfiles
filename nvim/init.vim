@@ -25,12 +25,13 @@ Plug 'honza/vim-snippets'
 
 "Specific functionality
 Plug 'jalvesaq/nvim-r'
-Plug 'lervag/vimtex'
+"Plug 'lervag/vimtex'
 "Plug 'rust-lang/rust.vim'
 Plug 'Shougo/neco-syntax'
 "
 "Miscellaneous
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf' " Multi-entry selection UI for LCN
 Plug 'junegunn/fzf.vim'
 

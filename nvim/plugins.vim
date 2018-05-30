@@ -25,15 +25,16 @@ let g:vimtex_compiler_latexmk = {
     \ ],
     \}
 "add after hook - latexmk -c will clean files?
-"let g:vimtex_view_method = 'zathura' "window id/back search broken
-"let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-"let g:vimtex_view_general_options_latexmk = '--unique'}}}
+let g:vimtex_view_method = 'zathura' "window id/back search broken
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
+"}}}
 
 """""""LCN Config""""""""""""{{{
 " let g:LanguageClient_settingsPath = '$HOME/.dotfiles/nvim/'
 let g:LanguageClient_serverCommands = {}
 if executable('pyls')
-    let g:LanguageClient_serverCommands.python = ['pyls', '-v'] " v for debug
+    let g:LanguageClient_serverCommands.python = ['pyls', '-vv'] " vv for debug
 endif
 if executable('rls')
     let g:LanguageClient_serverCommands.rust = ['rustup', 'run', 'nightly', 'rls']
@@ -46,6 +47,8 @@ let g:LanguageClient_serverCommands.r =
 
 augroup LanguageClientConfig
     autocmd!
+    autocmd FileType python,R nnoremap <silent> <F5>
+      \ :call LanguageClient_contextMenu()<CR>
     " <leader>ld to go to definition
     autocmd FileType python,R nnoremap <buffer> <leader>ld
       \ :call LanguageClient#textDocument_definition()<CR>
@@ -58,14 +61,14 @@ augroup LanguageClientConfig
     " <leader>lr to rename variable under cursor
     autocmd FileType python,R nnoremap <buffer> <leader>lr
       \ :call LanguageClient#textDocument_rename()<CR>
-    " <leader>lc to switch omnifunc to LanguageClient
-    autocmd FileType python,R nnoremap <buffer> <leader>lc
-      \ :setlocal omnifunc=LanguageClient#complete<CR>
     " <leader>ls to fuzzy find the symbols in the current document
     autocmd FileType python,R nnoremap <buffer> <leader>ls
       \ :call LanguageClient#textDocument_documentSymbol()<CR>
     " Use the language server with Vim's formatting operator |gq|
     set formatexpr=LanguageClient#textDocument_rangeFormatting()
+    " <leader>lc to switch omnifunc to LanguageClient
+    " autocmd FileType python,R nnoremap <buffer> <leader>lc
+    "   \ :setlocal omnifunc=LanguageClient#complete<CR>
     " Use LanguageServer for completion - no need with deoplete integration
     " autocmd FileType python,R setlocal completefunc=LanguageClient#complete
 augroup END

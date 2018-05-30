@@ -5,6 +5,8 @@
 #    . ~/.zshrc
 #fi
 
+#export KITTY_ENABLE_WAYLAND=1
+
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; 
 then
     #eval $(ssh-agent)
@@ -12,3 +14,5 @@ then
     keychain --quiet --dir "$XDG_CONFIG_HOME/keychain" --timeout 60
     sway # -d 2>> ~/sway.log
 fi
+
+export PATH="/home/gmend/.local/share/cargo/bin:$PATH"

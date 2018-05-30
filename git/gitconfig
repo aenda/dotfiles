@@ -4,3 +4,13 @@
 [credential]
 #git will query ssh-agent for key when pushing to github
     helper = /usr/share/git/credential/libsecret/git-credential-libsecret
+[merge]
+    tool = vimdiff
+[mergetool]
+    prompt = true
+[mergetool "vimdiff"]
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[difftool]
+    prompt = false
+[diff]
+    tool = vimdiff

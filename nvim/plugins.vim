@@ -166,3 +166,17 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 " use ripgrep for greprg
 set grepprg=rg\ --vimgrep
 "}}}
+
+let g:slime_target = "neovim"
+let g:slime_paste_file = expand("$TMP/.slime_paste")
+function! Slime_Term() abort "abort on errors
+    " Split window and open terminal
+    vsp
+    enew | terminal
+    " get job id so slime can send lines correctly
+    let l:repl_job_id = b:terminal_job_id
+    " switch back
+    execute 'normal!' . "\<c-w>p"
+    " set job id
+    let b:slime_config = {'jobid': l:repl_job_id}
+endfunction

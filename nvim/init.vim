@@ -35,6 +35,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf' " Multi-entry selection UI for LCN
 Plug 'junegunn/fzf.vim'
+Plug 'jpalardy/vim-slime'
 
 " Pretty start screen
 Plug 'mhinz/vim-startify'

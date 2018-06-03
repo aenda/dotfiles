@@ -14,7 +14,7 @@ alias newt="cp ~/template.tex ./main.tex && NVIM_LISTEN_ADDRESS=/tmp/texsocket n
 alias color="~/.dotfiles/changecolorargs.sh"
 alias wu="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Junior/"
 # connect to last used bluetooth speaker - we are grepping for a MAC address
-alias blue="bluetoothctl connect \"$(bluetoothctl paired-devices | head -n 1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}')\""
+alias blue="sh ~/.dotfiles/scripts/blue.sh"
 #alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sophomore/"
 alias reboot="systemctl reboot"
 alias shutdown="systemctl poweroff"
@@ -28,6 +28,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export LESSHISTFILE="/dev/null"
 export LESSKEY="$XDG_CONFIG_HOME"/lesskey
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint.d
+export JULIA_HISTORY="$XDG_CONFIG_HOME"/julia_hist
 # When selecting files with fzf, we show file content with syntax highlighting,
 # or without highlighting if it's not a source file. If the file is a directory,
 # we use tree to show the directory's contents.

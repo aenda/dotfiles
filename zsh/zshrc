@@ -53,7 +53,7 @@ then
     export fpath
 fi
 autoload -U promptinit; promptinit
-prompt spaceship
+prompt pure
 
 #Plugin Options
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'

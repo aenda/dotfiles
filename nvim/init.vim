@@ -25,7 +25,8 @@ Plug 'honza/vim-snippets'
 
 "Specific functionality
 Plug 'jalvesaq/nvim-r'
-"Plug 'lervag/vimtex'
+Plug 'lervag/vimtex'
+Plug 'JuliaEditorSupport/julia-vim'
 "Plug 'rust-lang/rust.vim'
 Plug 'Shougo/neco-syntax'
 "

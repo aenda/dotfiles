@@ -66,7 +66,7 @@ bindsym $mod+d exec $menu
 # Resize them with right mouse button + $mod.
 # Despite the name, also works for non-floating windows.
 # Change normal to inverse to use left for resizing and right for dragging.
-# floating_modifier $mod normal
+floating_modifier $mod normal
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -221,9 +221,9 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+Shift+minus move scratchpad
 
 ### Volume Control ###################
-bindsym XF86AudioRaiseVolume exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh up
-bindsym XF86AudioLowerVolume exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh down
-bindsym XF86AudioMute exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh mute
+# bindsym XF86AudioRaiseVolume exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh up
+# bindsym XF86AudioLowerVolume exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh down
+# bindsym XF86AudioMute exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh mute
 
 bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym XF86AudioPause exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause

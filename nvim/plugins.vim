@@ -24,6 +24,7 @@ let g:vimtex_compiler_latexmk = {
     \   '-interaction=nonstopmode',
     \ ],
     \}
+let g:vimtex_compiler_engine='lualatex'
 "add after hook - latexmk -c will clean files?
 let g:vimtex_view_method = 'zathura' "window id/back search broken
 let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'

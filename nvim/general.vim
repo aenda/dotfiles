@@ -8,7 +8,7 @@ set directory=$HOME/.local/share/nvim/swap
 
 " PYTHON PROVIDER CONFIGURATION ~
 " Set provider to evaluate python code: makes startup faster, useful for venvs
-let g:python_host_prog  = '/usr/bin/python3.6'
+" let g:python_host_prog  = '/usr/bin/python3.6' " this is for python2
 let g:python3_host_prog = '/usr/bin/python3.6'
 let g:loaded_python_provider = 1 "To disable Python 2 support
 let g:loaded_ruby_provider = 1   "To disable Ruby support

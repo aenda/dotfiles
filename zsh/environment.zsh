@@ -38,13 +38,15 @@ export JULIA_HISTORY="$XDG_CONFIG_HOME"/julia_hist
 export FZF_DEFAULT_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || \
 cat {} || tree -C {}) 2> /dev/null | head -200'"
 # -l '.? ' will omit binary files
-export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --follow --glob \!.git/\* 2> /dev/null"
+export FZF_DEFAULT_COMMAND="rg --files --hidden --smart-case --follow --glob \
+\!.git/\* 2> /dev/null"
 
 ### Search a file with fzf and then open it in an editor ###
 __fsel() {
   local cmd="${FZF_DEFAULT_COMMAND}"
   setopt localoptions pipefail 2> /dev/null
-  eval "$cmd" | FZF_DEFAULT_OPTS="--height 70% --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(echo "fzf") -m "$@" | while read item; do
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height 70% --reverse $FZF_DEFAULT_OPTS" \
+  $(echo "fzf") -m "$@" | while read item; do
     echo -n "${(q)item} "
   done
   local ret=$?
@@ -52,19 +54,38 @@ __fsel() {
   return $ret
 }
 fzf_then_open_in_editor() {
-    #file=`rg --files --hidden --smart-case --follow --glob "\!.git/*" /home/gmend/ 2> /dev/null | fzf --preview '(highlight -O ansi -l {} 2> /dev/null || cat {} \\ tree -C {}) 2> /dev/null | head -200'`
     file="$(__fsel)"
-    file_no_whitespace="$(echo -e "${file}" | sed -e 's/[[:space:]]*$//')"
-    # Open the file if it exists
+    file_no_whitespace="$(echo -e "${file}" | tr -d '[:space:]')"
     if [ -n "$file_no_whitespace" ]; then
-    ## Use the default editor if it's defined, otherwise Vim
-        ${EDITOR:-nvim} "./${file_no_whitespace}"
+    # Use the default editor if it's defined, otherwise Vim
+        #${EDITOR:-nvim} "./${file_no_whitespace}"
+        ${EDITOR:-nvim} "$file_no_whitespace"
     fi;
-    zle && { zle reset-prompt; zle -R }
-    #zle accept-line
+    zle accept-line
 }
 zle -N fzf_then_open_in_editor
 bindkey "^O" fzf_then_open_in_editor
+
+### fzf_then_open_in_editor() {
+###     #file=`rg --files --hidden -S --follow --glob "\!.git/*" /home/gmend/ 2> /dev/null | fzf --preview '(highlight -O ansi -l {} 2> /dev/null || cat {} \\ tree -C {}) 2> /dev/null | head -200'`
+###     file="$(__fsel)"
+###     #file_no_whitespace="$(echo -e "${file}" | sed -e 's/[[:space:]]*$//')"
+###     #file_no_whitespace="$(echo -e "${file}" | sed -e 's/[[:space:]]//g')"
+###     file_no_whitespace="$(echo -e "${file}" | tr -d '[:space:]')"
+###     /bin/nvim -u NONE $file_no_whitespace # TODO: this works with vim but not neovim
+###     # Open the file if it exists
+###     if [ -n "$file_no_whitespace" ]; then
+###     ## Use the default editor if it's defined, otherwise Vim
+###         #${EDITOR:-nvim} "./${file_no_whitespace}"
+###         #nvim "${file_no_whitespace}"
+###         #echo -e "./${file_no_whitespace}"
+###         nv "${file_no_whitespace}"
+###     fi;
+###     #zle && { zle reset-prompt; zle -R }
+###     zle accept-line
+### }
+### zle -N fzf_then_open_in_editor
+### bindkey "^O" fzf_then_open_in_editor
 
 ### Misc options ###
 export KEYTIMEOUT=5

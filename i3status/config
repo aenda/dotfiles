@@ -8,7 +8,10 @@
 
 general {
     colors = true
-    interval = 3
+    # color_good = '#62B9D1'
+    # color_degraded =
+    # color_bad =
+    interval = 1
     output_format = "i3bar"
 }
 
@@ -54,12 +57,25 @@ cpu_temperature 0 {
     path = "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
 }
 
-volume master { #
-    format = "♪: %volume"
+volume master { # ♪
+    format = ": %volume"
     format_muted = ": (%volume)"
     device = "pulse:alsa_output.pci-0000_00_1f.3.analog-stereo"
 }
 
+### TODO: get bluetooth volume ###
+### or just switch to i3 blocks or another alternative?
+# volume blue { # ♪
+#     format = ": %volume"
+#     format_muted = ": (%volume)"
+#     device = "pulse:1"
+# }
+# 
+# volume blue2 { # ♪
+#     format = ": %volume"
+#     format_muted = ": (%volume)"
+#     device = "pulse:2"
+# }
 # volume master {
 #     format = " %volume"
 #     format_muted = " %volume"

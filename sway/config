@@ -66,7 +66,7 @@ bindsym $mod+d exec $menu
 # Resize them with right mouse button + $mod.
 # Despite the name, also works for non-floating windows.
 # Change normal to inverse to use left for resizing and right for dragging.
-floating_modifier $mod normal
+# floating_modifier $mod normal
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -203,8 +203,10 @@ bar {
     #status_command python /home/gmend/.vim/plugged/powerline/powerline/bindings/i3/powerline-i3.py
     #font pango:PowerlineSymbols 12
     colors {
-            background #2F393C
-            statusline #00A5FF
+            #background #2F393C
+            background #526F77
+            #statusline #00A5FF
+            statusline #49BFFF
             separator #666666
 
             focused_workspace #4c7899 #E37490 #ffffff
@@ -213,6 +215,7 @@ bar {
             urgent_workspace   #2f343a #900000 #ffffff
     }
     # status_command polybar -s
+    # status_command i3status
     status_command i3status 2>/dev/null | $HOME/.dotfiles/scripts/i3spotifystatus/pystatus.py 2>/dev/null
 }
 
@@ -268,10 +271,10 @@ bindsym $mod+Shift+s exec spotify
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-#exec swayidle \
-#    timeout 180 'swaymsg "output * dpms off"' \
-#        resume 'swaymsg "output * dpms on"' \
-#    timeout 600 'exec systemctl suspend' \
-#    before-sleep 'swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png & swaymsg "output * dpms on"'
+exec swayidle \
+    timeout 180 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+    timeout 600 'exec systemctl suspend' \
+    before-sleep 'swaymsg "output * dpms on" && swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png'
 #        resume 'swaymsg "output * dpms on"' \ this resume after the suspend
 #        timeout doesn't do anything

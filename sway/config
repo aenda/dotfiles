@@ -24,7 +24,7 @@ default_border pixel 1
 # get the names of your outputs with
 # swaymsg -t get_outputs
 #
-output "*" background /home/gmend/.dotfiles/sway/lockscreen.png fill
+output "eDP-1" background /home/gmend/.dotfiles/sway/lockscreen.png fill
 #output eDP-1 resolution 1920x1080 position 1920,0
 #exec feh --bg-scale ~/.config/sway/lockscreen.png
 ###########################
@@ -272,9 +272,9 @@ bindsym $mod+Shift+s exec spotify
 # font, it doesn’t scale on retina/hidpi displays.
 
 exec swayidle \
-    timeout 180 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
+    timeout 180 'swaymsg "output eDP-1 dpms off"' \
+        resume 'swaymsg "output eDP-1 dpms on"' \
     timeout 600 'exec systemctl suspend' \
-    before-sleep 'swaymsg "output * dpms on" && swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png'
+    before-sleep 'swaymsg "output eDP-1 dpms on" && swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png'
 #        resume 'swaymsg "output * dpms on"' \ this resume after the suspend
 #        timeout doesn't do anything

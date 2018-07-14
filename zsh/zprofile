@@ -5,7 +5,8 @@
 #    . ~/.zshrc
 #fi
 
-export KITTY_ENABLE_WAYLAND=1
+# wayland support is still pretty bad
+# export KITTY_ENABLE_WAYLAND=1
 
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; 
 then

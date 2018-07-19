@@ -38,9 +38,12 @@ color6          =    #56B6C2
 color14         =    #56B6C2
 color7          =    #ABB2BF
 color15         =    #FFFFFF
-foreground      =    #5C6370 # text
-foreground_bold =    #ABB2BF # bold text
-foreground_dim  =    #3A3F4B # selection
+# foreground = text ie completed from zsh autosuggestions
+#foreground      =    #5C6370
+# bold text
+foreground_bold =    #ABB2BF
+# selection
+foreground_dim  =    #3A3F4B
 cursor          =    #5C6370
 background      =    #1E2127
 #######################

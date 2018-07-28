@@ -12,7 +12,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term kitty
+set $term termite
 # Your preferred application launcher
 set $menu dmenu_run
 
@@ -161,10 +161,10 @@ bindsym $mod+Shift+0 move container to workspace 10
 # workspace number 1:vim; exec /bin/kitty; workspace number 3:browse;
 # exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;
 # workspace number 4:misc; exec/bin/kitty; workspace number 1:vim'
-#exec swaymsg 'workspace number 4:misc; exec /bin/kitty;'
-#exec swaymsg 'workspace number 3:browse; exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;'
-#exec swaymsg 'workspace number 2:term; exec /bin/kitty;'
-#exec swaymsg 'workspace number 1:vim; exec /bin/kitty'
+exec swaymsg 'workspace number 4:misc; exec $term;'
+exec swaymsg 'workspace number 3:browse; exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;'
+exec swaymsg 'workspace number 2:term; exec $term;'
+exec swaymsg 'workspace number 1:vim; exec $term;'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

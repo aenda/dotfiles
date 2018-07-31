@@ -19,6 +19,13 @@ alias blue="sh ~/.dotfiles/scripts/blue.sh"
 alias reboot="systemctl reboot"
 alias shutdown="systemctl poweroff"
 
+# X11 clutter
+alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- vt1'
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+
+# https://userbase.kde.org/KDE_System_Administration/KDE_Filesystem_Hierarchy#KDEHOME
+export KDEHOME="$XDG_CONFIG_HOME"/kde
+
 # Rustup environment
 # export PATH=$PATH:~/.local/share/cargo/bin
 # we symlinked to /usr/local/bin

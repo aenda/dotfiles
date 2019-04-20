@@ -26,9 +26,16 @@ Plug 'honza/vim-snippets'
 "Specific functionality
 Plug 'jalvesaq/nvim-r'
 Plug 'lervag/vimtex'
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
+" Plug 'emakman/nvim-latex-previewer'
+Plug 'donRaphaco/neotex', { 'for': 'tex' }
 Plug 'JuliaEditorSupport/julia-vim'
 "Plug 'rust-lang/rust.vim'
 Plug 'Shougo/neco-syntax'
+
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-rmarkdown'
 "
 "Miscellaneous
 Plug 'tpope/vim-surround'

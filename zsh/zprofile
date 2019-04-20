@@ -13,7 +13,10 @@ then
     #eval $(ssh-agent)
     #startx
     keychain --quiet --dir "$XDG_CONFIG_HOME/keychain" --timeout 60
+    export XKB_DEFAULT_OPTIONS=ctrl:nocaps,
     sway # -d 2>> ~/sway.log
 fi
 
-export PATH="/home/gmend/.local/share/cargo/bin:$PATH"
+# export PATH="/home/gmend/.local/bin:$PATH"
+PATH=~/.local/bin:$PATH
+export PATH

@@ -9,7 +9,7 @@ set directory=$HOME/.local/share/nvim/swap
 " PYTHON PROVIDER CONFIGURATION ~
 " Set provider to evaluate python code: makes startup faster, useful for venvs
 " let g:python_host_prog  = '/usr/bin/python3.6' " this is for python2
-let g:python3_host_prog = '/usr/bin/python3.6'
+let g:python3_host_prog = '/usr/bin/python3.7'
 let g:loaded_python_provider = 1 "To disable Python 2 support
 let g:loaded_ruby_provider = 1   "To disable Ruby support
 let g:loaded_node_provider = 1   "To disable Node support
@@ -32,6 +32,7 @@ set shortmess+=c " hide match k of n messages
 set list listchars=tab:»\ ,eol:¬,trail:·
 
 set splitright " open new splits to the right
+set splitbelow
 
 set relativenumber numberwidth=2 " Relative line numbers with thin gutter
 " Highlight all columns past 80
@@ -65,4 +66,7 @@ inoremap <silent><expr><S-TAB> (pumvisible() ? "\<C-p>" : "\<s-tab>")
 inoremap <expr> <CR>  (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 " Close the documentation window when completion is done
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+set conceallevel=2
+let g:tex_conceal="abdgms"

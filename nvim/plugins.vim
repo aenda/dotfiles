@@ -31,6 +31,8 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 let g:vimtex_view_general_options_latexmk = '--unique'
 "}}}
 
+let g:pandoc#spell#enabled = 0
+
 """""""LCN Config""""""""""""{{{
 " let g:LanguageClient_settingsPath = '$HOME/.dotfiles/nvim/'
 let g:LanguageClient_serverCommands = {}
@@ -149,6 +151,8 @@ call deoplete#custom#var('omni', 'input_patterns', {
 function! StartifyEntryFormat()
     return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
 endfunction
+" Set session dir
+let g:startify_session_dir = expand("$HOME/.config/nvim/session")
 
 """ FZF Config"""{{{
 

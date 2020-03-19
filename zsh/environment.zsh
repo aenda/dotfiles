@@ -26,6 +26,9 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 # https://userbase.kde.org/KDE_System_Administration/KDE_Filesystem_Hierarchy#KDEHOME
 export KDEHOME="$XDG_CONFIG_HOME"/kde
 
+# mozilla firefox: make opening links from other applications work
+export MOZ_ENABLE_WAYLAND=1
+
 # Rustup environment
 # export PATH=$PATH:~/.local/share/cargo/bin
 # we symlinked to /usr/local/bin

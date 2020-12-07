@@ -166,7 +166,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 # exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;
 # workspace number 4:misc; exec/bin/kitty; workspace number 1:vim'
 exec swaymsg 'workspace number 4:misc; exec $term;'
-exec swaymsg 'workspace number 3:browse; exec firefox-nightly -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;'
+#exec swaymsg 'workspace number 3:browse; exec firefox-nightly -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;'
+exec swaymsg 'workspace number 3:browse; exec firefox-nightly -P genevieve;' #& sleep 1 && rm -r /home/gmend/.mozilla;'
 exec swaymsg 'workspace number 2:term; exec $term;'
 exec swaymsg 'workspace number 1:vim; exec $term;'
 
@@ -251,9 +252,10 @@ bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 # hack to get profiles in .config
 # see http://kb.mozillazine.org/Thunderbird_:_FAQs_:_Changing_Profile_Folder_Location
 # Support touch gestures!! along with setting dom.w3c_touch_events.enabled=1 in about:config
-bindsym $mod+Shift+f exec env MOZ_USE_XINPUT2=1 firefox-nightly -profile /home/gmend/.config/mozilla/firefox/
+#bindsym $mod+Shift+f exec env MOZ_USE_XINPUT2=1 firefox-nightly -profile /home/gmend/.config/mozilla/firefox/
+bindsym $mod+Shift+f exec env MOZ_USE_XINPUT2=1 firefox-nightly -P genevieve
 #&& sleep 1 && rm -r /home/gmend/.mozilla
-bindsym $mod+Shift+t exec thunderbird-beta -profile /home/gmend/.config/mozilla/thunderbird && sleep 1 && rm -r /home/gmend/.thunderbird
+#bindsym $mod+Shift+t exec thunderbird-beta -profile /home/gmend/.config/mozilla/thunderbird && sleep 1 && rm -r /home/gmend/.thunderbird
 bindsym $mod+Shift+s exec spotify
 
 
@@ -284,3 +286,5 @@ exec swayidle -w \
 #    before-sleep 'swaymsg "output eDP-1 dpms on" && swaylock -i /home/gmend/.dotfiles/sway/lockscreen.png'
 #        resume 'swaymsg "output * dpms on"' \ this resume after the suspend
 #        timeout doesn't do anything
+
+exec 'wlsunset -l 40.99 -L -74.10'

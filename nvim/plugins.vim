@@ -31,6 +31,25 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 let g:vimtex_view_general_options_latexmk = '--unique'
 "}}}
 
+"Nvim-R
+"get rid of annoying binding
+let R_user_maps_only = 1
+"alternately : let R_disable_cmds = ['Rsetwd', 'RDputObj']
+"add new bindings
+function! s:customNvimRMappings()
+    nmap <buffer> <LocalLeader>rf <Plug>RStart
+    nmap <buffer> <LocalLeader>rq <Plug>RClose
+    nmap <buffer> <LocalLeader>rl <Plug>RSendLine
+    nmap <buffer> <LocalLeader>rp <Plug>RSendParagraph
+    nmap <buffer> <LocalLeader>ra <Plug>RSendFile
+    nmap <buffer> <LocalLeader>rc <Plug>RSendChunk
+    nmap <buffer> <LocalLeader>rk <Plug>RKnit
+    nmap <buffer> <LocalLeader>rm <Plug>RMakeRmd
+endfunction
+augroup myNvimR
+    au!
+    autocmd FileType r call s:customNvimRMappings()
+augroup end
 let g:pandoc#spell#enabled = 0
 
 """""""LCN Config""""""""""""{{{
@@ -59,22 +78,22 @@ let g:LanguageClient_serverCommands.r =
 
 augroup LanguageClientConfig
     autocmd!
-    autocmd FileType python,R nnoremap <silent> <F5>
+    autocmd FileType python,r nnoremap <silent> <F5>
       \ :call LanguageClient_contextMenu()<CR>
     " <leader>ld to go to definition
-    autocmd FileType python,R nnoremap <buffer> <leader>ld
+    autocmd FileType python,r nnoremap <buffer> <leader>ld
       \ :call LanguageClient#textDocument_definition()<CR>
     " <leader>lf to autoformat document
-    autocmd FileType python,R nnoremap <buffer> <leader>lf
+    autocmd FileType python,r nnoremap <buffer> <leader>lf
       \ :call LanguageClient#textDocument_formatting()<CR>
     " <leader>lh for type info under cursor
-    autocmd FileType python,R nnoremap <buffer> K
+    autocmd FileType python,r nnoremap <buffer> K
       \ :call LanguageClient#textDocument_hover()<CR>
     " <leader>lr to rename variable under cursor
-    autocmd FileType python,R nnoremap <buffer> <leader>lr
+    autocmd FileType python,r nnoremap <buffer> <leader>lr
       \ :call LanguageClient#textDocument_rename()<CR>
     " <leader>ls to fuzzy find the symbols in the current document
-    autocmd FileType python,R nnoremap <buffer> <leader>ls
+    autocmd FileType python,r nnoremap <buffer> <leader>ls
       \ :call LanguageClient#textDocument_documentSymbol()<CR>
     " Use the language server with Vim's formatting operator |gq|
     set formatexpr=LanguageClient#textDocument_rangeFormatting()

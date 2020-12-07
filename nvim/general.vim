@@ -9,7 +9,7 @@ set directory=$HOME/.local/share/nvim/swap
 " PYTHON PROVIDER CONFIGURATION ~
 " Set provider to evaluate python code: makes startup faster, useful for venvs
 " let g:python_host_prog  = '/usr/bin/python3.6' " this is for python2
-let g:python3_host_prog = '/usr/bin/python3.8'
+let g:python3_host_prog = '/usr/bin/python3.9'
 let g:loaded_python_provider = 1 "To disable Python 2 support
 let g:loaded_ruby_provider = 1   "To disable Ruby support
 let g:loaded_node_provider = 1   "To disable Node support
@@ -37,6 +37,8 @@ set splitbelow
 set relativenumber numberwidth=2 " Relative line numbers with thin gutter
 " Highlight all columns past 80
 let &colorcolumn=join(range(81,999),",")
+
+let g:tex_flavor = "latex"
 
 " LaTeX - alternative to vimtex
 " augroup latex

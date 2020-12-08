@@ -39,6 +39,8 @@ set relativenumber numberwidth=2 " Relative line numbers with thin gutter
 let &colorcolumn=join(range(81,999),",")
 
 let g:tex_flavor = "latex"
+set conceallevel=2
+let g:tex_conceal="abdmgs"
 
 " LaTeX - alternative to vimtex
 " augroup latex
@@ -60,7 +62,7 @@ endfunction"}}}
 
 " tab thru everything
 " use tab to forward cycle
- inoremap <silent><expr> <TAB> (pumvisible() ? "\<C-n>" : "\<TAB>")
+inoremap <silent><expr> <TAB> (pumvisible() ? "\<C-n>" : "\<TAB>")
 " use tab to backward cycle
 inoremap <silent><expr><S-TAB> (pumvisible() ? "\<C-p>" : "\<s-tab>")
 
@@ -69,6 +71,3 @@ inoremap <expr> <CR>  (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 " Close the documentation window when completion is done
 " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-set conceallevel=2
-let g:tex_conceal="abdgms"

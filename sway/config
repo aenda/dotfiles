@@ -48,6 +48,22 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 #     repeat_delay 50
 #     repeat_rate 5
 # }
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+# font pango:DejaVu Sans Mono 10
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
 ############################
 #
 ### Key bindings ###########
@@ -156,21 +172,6 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# open + setup workspaces when sway starts
-# should file an issue - broken in alpha
-# exec $HOME/.dotfiles/scripts/swaymsg.sh
-
-# exec swaymsg "workspace number 2:term; exec /bin/kitty"
-# exec swaymsg "workspace number 1:vim; exec /bin/kitty"
-# workspace number 1:vim; exec /bin/kitty; workspace number 3:browse;
-# exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;
-# workspace number 4:misc; exec/bin/kitty; workspace number 1:vim'
-exec swaymsg 'workspace number 4:misc; exec $term;'
-#exec swaymsg 'workspace number 3:browse; exec firefox-nightly -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;'
-exec swaymsg 'workspace number 3:browse; exec firefox-nightly -P genevieve;' #& sleep 1 && rm -r /home/gmend/.mozilla;'
-exec swaymsg 'workspace number 2:term; exec $term;'
-exec swaymsg 'workspace number 1:vim; exec $term;'
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -197,6 +198,61 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+minus move scratchpad
+
+# unnecessary - we are now using acpid to manage brightness / volume
+### Brightness / Volume Control ###################
+#bindsym XF86MonBrightnessUp exec /home/gmend/.dotfiles/scripts/brightup.sh
+#bindsym XF86MonBrightnessDown exec /home/gmend/.dotfiles/scripts/brightdown.sh
+
+# bindsym XF86AudioRaiseVolume exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh up
+# bindsym XF86AudioLowerVolume exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh down
+# bindsym XF86AudioMute exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh mute
+
+#bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
+#bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume "${$(pactl info | grep Sink)#*:\ }" "+5%"
+#bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 toggle
+#bindsym XF86AudioMute exec /usr/bin/amixer -D pulse set Master Playback Switch toggle
+
+# Spotify Controls
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioPause exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioMedia exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
+# hack to get profiles in .config
+# see http://kb.mozillazine.org/Thunderbird_:_FAQs_:_Changing_Profile_Folder_Location
+# Support touch gestures!! along with setting dom.w3c_touch_events.enabled=1 in about:config
+#bindsym $mod+Shift+f exec env MOZ_USE_XINPUT2=1 firefox-nightly -profile /home/gmend/.config/mozilla/firefox/
+bindsym $mod+Shift+f exec env MOZ_USE_XINPUT2=1 firefox-nightly -P genevieve
+bindsym $mod+Shift+s exec spotify
+
+# Screenshots:
+# Cmd+P: Current window
+# Cmd+Shift+p: Select area
+# Cmd+Alt+p Current output
+# Cmd+Ctrl+p Select a window
+
+bindsym Mod4+p       exec grimshot save active
+bindsym Mod4+Shift+p exec grimshot save area
+bindsym Mod4+Mod1+p  exec grimshot save output
+bindsym Mod4+Ctrl+p  exec grimshot save window
+
+###### open + setup workspaces when sway starts ######
+# exec swaymsg "workspace number 2:term; exec /bin/kitty"
+# exec swaymsg "workspace number 1:vim; exec /bin/kitty"
+# workspace number 1:vim; exec /bin/kitty; workspace number 3:browse;
+# exec firefox -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;
+# workspace number 4:misc; exec/bin/kitty; workspace number 1:vim'
+exec swaymsg 'workspace number 4:misc; exec $term;'
+#exec swaymsg 'workspace number 3:browse; exec firefox-nightly -profile /home/gmend/.config/mozilla/firefox/ && sleep 1 && rm -r /home/gmend/.mozilla;'
+exec swaymsg 'workspace number 3:browse; exec firefox-nightly -P genevieve;'
+#& sleep 1 && rm -r /home/gmend/.mozilla;'
+exec swaymsg 'workspace number 2:term; exec $term;'
+exec swaymsg 'workspace number 1:vim; exec $term;'
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -224,59 +280,6 @@ bar {
     status_command i3status 2>/dev/null | $HOME/.dotfiles/scripts/i3spotifystatus/pystatus.py 2>/dev/null
 }
 
-
-bindsym $mod+minus scratchpad show
-bindsym $mod+Shift+minus move scratchpad
-
-### Volume Control ###################
-# bindsym XF86AudioRaiseVolume exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh up
-# bindsym XF86AudioLowerVolume exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh down
-# bindsym XF86AudioMute exec "$HOME"/.dotfiles/scripts/pactl_volume_control.zsh mute
-
-bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-bindsym XF86AudioPause exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym XF86AudioMedia exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-
-#bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
-#bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume "${$(pactl info | grep Sink)#*:\ }" "+5%"
-#bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 toggle
-#bindsym XF86AudioMute exec /usr/bin/amixer -D pulse set Master Playback Switch toggle
-
-# unnecessary - we are now using acpid to manage brightness
-#bindsym XF86MonBrightnessUp exec /home/gmend/.dotfiles/scripts/brightup.sh
-#bindsym XF86MonBrightnessDown exec /home/gmend/.dotfiles/scripts/brightdown.sh
-
-# hack to get profiles in .config
-# see http://kb.mozillazine.org/Thunderbird_:_FAQs_:_Changing_Profile_Folder_Location
-# Support touch gestures!! along with setting dom.w3c_touch_events.enabled=1 in about:config
-#bindsym $mod+Shift+f exec env MOZ_USE_XINPUT2=1 firefox-nightly -profile /home/gmend/.config/mozilla/firefox/
-bindsym $mod+Shift+f exec env MOZ_USE_XINPUT2=1 firefox-nightly -P genevieve
-#&& sleep 1 && rm -r /home/gmend/.mozilla
-#bindsym $mod+Shift+t exec thunderbird-beta -profile /home/gmend/.config/mozilla/thunderbird && sleep 1 && rm -r /home/gmend/.thunderbird
-bindsym $mod+Shift+s exec spotify
-
-
-#exec --no-startup-id redshift
-#exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-#font pango:monospace 8
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-# font pango:DejaVu Sans Mono 10
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-
 exec swayidle -w \
     timeout 180 'swaymsg "output eDP-1 dpms off"' \
         resume 'swaymsg "output eDP-1 dpms on"' \
@@ -287,4 +290,7 @@ exec swayidle -w \
 #        resume 'swaymsg "output * dpms on"' \ this resume after the suspend
 #        timeout doesn't do anything
 
+# color balance
 exec 'wlsunset -l 40.99 -L -74.10'
+#exec --no-startup-id redshift
+#exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1

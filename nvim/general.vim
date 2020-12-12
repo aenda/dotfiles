@@ -1,4 +1,6 @@
 let mapleader="\\"
+let maplocalleader="-"
+" alternate keys: <space> comma <cr>
 " set dirs for vim data files
 set viminfo+=n$HOME/.config/nvim/.viminfo
 set backup undofile
@@ -16,7 +18,7 @@ let g:loaded_node_provider = 1   "To disable Node support
 
 "set whichwrap+=<,>,[,] " Navigate line breaks with arrow keys
 
-set clipboard+=unnamed "Use middle-click clipboard, use `"+` for system
+set clipboard+=unnamedplus "Use middle-click clipboard, use `"+` for system
 " Handle tabs - one tab equates to 4 spaces, except in makefiles
 set tabstop=4 softtabstop=0 shiftwidth=4 expandtab smartindent
 augroup makefile

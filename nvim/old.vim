@@ -1,13 +1,23 @@
 "old plugins
 "Colors
 "Plug 'morhetz/gruvbox'
+"Plug 'icymind/NeoSolarized'
 "Plug 'arcticicestudio/nord-vim'
-"Plug 'roxma/nvim-completion-manager'
+"
+"Plug 'ervandew/supertab' " (mappings good enough)
+"Plug 'ncm2/ncm2'
+"Plug 'ncm2/float-preview.nvim'
+"(this is supported already by LC-nvim)
 "Plug 'w0rp/ale'
 "Plug 'sheerun/vim-polyglot'
-"Plug 'ervandew/supertab'
+"Plug 'Shougo/neco-syntax'
 
 "Specific functionality
+"Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}"vimtex added this feature
+"Plug 'donRaphaco/neotex', { 'for': 'tex' } "live preview
+"Plug 'emakman/nvim-latex-previewer'
+"Plug 'xuhdev/vim-latex-live-preview'
+
 "Plug 'sebastianmarkow/deoplete-rust'
 "Plug 'zchee/deoplete-jedi'
 "Plug 'poppyschmo/deoplete-latex'
@@ -17,7 +27,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'Shougo/neco-syntax'
 "
 "Miscellaneous
-Plug 'tpope/vim-surround'
+"Plug 'jpalardy/vim-slime'
 
 """"""ALE config"""""""{{{
 "let g:ale_enabled = 0

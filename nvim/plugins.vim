@@ -1,13 +1,13 @@
 " vim:fdm=marker et si fdl=2 ft=vim sts=0 sw=4 ts=4
 
 """Vimtex Config"{{{
-let g:vimtex_view_general_viewer = 'qpdfview'
-let g:vimtex_view_general_options
-  \ = '--unique @pdf\#src:@tex:@line:@col'
-let g:vimtex_view_general_options_latexmk = '--unique'
-" for qpdfview: sourceEditor = 'nvr --remote +\":%2\" \"%1\" --servername=/tmp/texsocket'
-" for okular: set editor command: 'nvr --remote-silent %f -c %l'
-" defaults fine, see :h g:vimtex_compiler_latexmk
+" let g:vimtex_view_general_viewer = 'qpdfview'
+" let g:vimtex_view_general_options
+"   \ = '--unique @pdf\#src:@tex:@line:@col'
+" let g:vimtex_view_general_options_latexmk = '--unique'
+"qpdfview: sourceEditor = 'nvr +\":%2\" \"%1\" --servername=/tmp/texsocket'
+"for okular: set editor command: 'nvr --remote-silent %f -c %l'
+"defaults fine, see :h g:vimtex_compiler_latexmk
 "add after hook - latexmk -c will clean files?
 let g:vimtex_view_method = 'zathura' "window id/back search broken
 let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
@@ -44,7 +44,8 @@ let g:pandoc#spell#enabled = 0
 "}}}
 
 """""""LCN Config""""""""""""{{{
-" let g:LanguageClient_settingsPath = '$HOME/.dotfiles/nvim/'
+let g:LanguageClient_settingsPath = ['$HOME/.config/nvim/settings.json',
+                                   \ '.languageclient/settings.json']
 let g:LanguageClient_serverCommands = {}
 if executable('pyls')
     let g:LanguageClient_serverCommands.python = ['pyls'] " vv for debug
@@ -181,8 +182,6 @@ call deoplete#custom#var('omni', 'input_patterns', {
 function! StartifyEntryFormat()
     return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
 endfunction
-" Set session dir
-let g:startify_session_dir = expand("$HOME/.config/nvim/session")
 
 """ FZF Config"""{{{
 

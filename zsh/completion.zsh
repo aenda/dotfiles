@@ -4,10 +4,11 @@ autoload -Uz compinit
 if [[ -n "${ZDOTDIR}/.zcompdump"(#qN.mh+24) ]]; then # we haven't updated in >1day
     compinit -d "${ZDOTDIR}/.zcompdump" # explicitly update date on zcompdump
     #compdump; # but we want to update the date on zcompdump
-else # we updated today, so we don't need to dump
-    compinit -C -D; #is C or D the skip dump flag?
+else # we updated today, so we don't need to check
+    compinit -C;
 fi;
-#compinit -C -D
+#compinit -C = omit check for new completion functions
+#compinit -D = do not create zcompdump
 zstyle ':completion:*:*:nvim:*' file-patterns '^*.(aux|log|pdf|png|fls|gz|fdb_latexmk|xdv):source-files' '*:all-files'
 # pip zsh completion start
 #function _pip_completion {
@@ -72,4 +73,4 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 zstyle '*' single-ignored show
 
 # add custom completions in this directory
-fpath+=('$ZPLUG_HOME/misc/completions')
+# fpath+=('$ZPLUG_HOME/misc/completions')

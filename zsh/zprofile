@@ -1,6 +1,11 @@
 PATH=~/.local/bin:$PATH
 export PATH
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export TEXMFHOME=$XDG_DATA_HOME/texmf
 export TEXMFVAR=$XDG_CACHE_HOME/texmf-var
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texmf-config

@@ -56,18 +56,19 @@ key_info=(
 #bindkey '\ew' kill-region     # [Esc-w] - Kill from the cursor to the mark
 #bindkey '^@' set-mark-command #ctrl-space
 
+# this should be done by zsh-history-substring-search
 # start typing + [Up-Arrow] - fuzzy find history forward
-if [[ "${terminfo[kcuu1]}" != "" ]]; then
-  autoload -U up-line-or-beginning-search
-  zle -N up-line-or-beginning-search
-  bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
-fi
+#if [[ "${terminfo[kcuu1]}" != "" ]]; then
+#  autoload -U up-line-or-beginning-search
+#  zle -N up-line-or-beginning-search
+#  bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+#fi
 # start typing + [Down-Arrow] - fuzzy find history backward
-if [[ "${terminfo[kcud1]}" != "" ]]; then
-  autoload -U down-line-or-beginning-search
-  zle -N down-line-or-beginning-search
-  bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
-fi
+#if [[ "${terminfo[kcud1]}" != "" ]]; then
+#  autoload -U down-line-or-beginning-search
+#  zle -N down-line-or-beginning-search
+#  bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+#fi
 
 # [Home] - to beginning of line
 if [[ -n "${key_info[Home]}" ]]; then
@@ -106,9 +107,6 @@ else
   bindkey "^[3;5~" delete-char
   bindkey "\e[3~" delete-char
 fi
-# file rename magick
-bindkey "^[m" copy-prev-shell-word
-
 
 if [[ -n "${key_info[PageUp]}" ]]; then
   bindkey "${key_info[PageUp]}" up-line-or-history
@@ -118,6 +116,6 @@ if [[ -n "${key_info[PageDown]}" ]]; then
   bindkey "${key_info[PageDown]}" down-line-or-history
 fi
 
-if [[ -n "${key_info[Insert]}" ]]; then
-  bindkey "${key_info[Insert]}" overwrite-mode
-fi
+#if [[ -n "${key_info[Insert]}" ]]; then
+#  bindkey "${key_info[Insert]}" overwrite-mode
+#fi

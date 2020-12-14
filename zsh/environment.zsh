@@ -11,20 +11,12 @@ alias vim="nvim"
 alias nvimtex="NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim"
 alias nt="NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim"
 alias newt="cp ~/template.tex ./main.tex && NVIM_LISTEN_ADDRESS=/tmp/texsocket nvim main.tex"
-alias color="~/.dotfiles/changecolorargs.sh"
-alias wu="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Junior/"
+#alias color="~/.dotfiles/changecolorargs.sh"
+alias wu="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/"
 # connect to last used bluetooth speaker - we are grepping for a MAC address
-alias blue="sh ~/.dotfiles/scripts/blue.sh"
-#alias soph="cd /mnt/data/OneDrive\ -\ Washington\ University\ in\ St.\ Louis/Sophomore/"
+#alias blue="sh ~/.dotfiles/scripts/blue.sh"
 alias reboot="systemctl reboot"
 alias shutdown="systemctl poweroff"
-
-# X11 clutter
-alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- vt1'
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-
-# https://userbase.kde.org/KDE_System_Administration/KDE_Filesystem_Hierarchy#KDEHOME
-export KDEHOME="$XDG_CONFIG_HOME"/kde
 
 # mozilla firefox: make opening links from other applications work
 export MOZ_ENABLE_WAYLAND=1
@@ -32,13 +24,24 @@ export MOZ_ENABLE_WAYLAND=1
 # Rustup environment
 # export PATH=$PATH:~/.local/share/cargo/bin
 # we symlinked to /usr/local/bin
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+# export CARGO_HOME="$XDG_DATA_HOME"/cargo
+# export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+#
 # disable less hist, put keybinding file in xdg conf home
 export LESSHISTFILE="/dev/null"
 export LESSKEY="$XDG_CONFIG_HOME"/lesskey
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint.d
 export JULIA_HISTORY="$XDG_CONFIG_HOME"/julia_hist
+
+### Misc options ###
+export KEYTIMEOUT=5
+DEFAULT_USER=gmend
+#make ls use YYYY-MM-DD
+export TIME_STYLE=long-iso
+# Uncomment the following line to enable command auto-correction.
+#ENABLE_CORRECTION="true"
+####################
+
 # When selecting files with fzf, we show file content with syntax highlighting,
 # or without highlighting if it's not a source file. If the file is a directory,
 # we use tree to show the directory's contents.
@@ -96,15 +99,6 @@ bindkey "^O" fzf_then_open_in_editor
 ### }
 ### zle -N fzf_then_open_in_editor
 ### bindkey "^O" fzf_then_open_in_editor
-
-### Misc options ###
-export KEYTIMEOUT=5
-DEFAULT_USER=gmend
-#make ls use YYYY-MM-DD
-export TIME_STYLE=long-iso
-# Uncomment the following line to enable command auto-correction.
-#ENABLE_CORRECTION="true"
-####################
 
 ### Hist options ###
 if [ -z "$HISTFILE" ]; then

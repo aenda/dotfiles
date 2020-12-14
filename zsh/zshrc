@@ -2,7 +2,7 @@
 source $XDG_CONFIG_HOME/keychain/spectre-sh
 
 #source zsh files
-source $HOME/.dotfiles/zsh/termsupport.zsh
+# source $HOME/.dotfiles/zsh/termsupport.zsh
 source $HOME/.dotfiles/zsh/environment.zsh
 source $HOME/.dotfiles/zsh/completion.zsh
 source $HOME/.dotfiles/zsh/keybindings.zsh
@@ -29,8 +29,6 @@ function search() {
 # Evaluate dircolors
 if [[ -f ~/.dotfiles/dircolors_uni ]] ;
     then eval "$(dircolors -b ~/.dotfiles/dircolors_uni)"
-#elif [[ -f /etc/DIR_COLORS ]] ;
-#    then eval $(dircolors -b /etc/DIR_COLORS)
 fi
 
 # Set up colored ls
@@ -39,29 +37,31 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 #ls after cd
 auto-ls () { ls; }
-#chpwd_functions=( auto-ls $chpwd_functions )
 chpwd_functions=( auto-ls )
 
 # load some plugins
 if [[ -d $XDG_CONFIG_HOME/zsh/repos/ ]]
 then
     fpath+=($XDG_CONFIG_HOME/zsh/fpath) #source spaceship prompt init
-    fpath+=($XDG_CONFIG_HOME/zsh/repos/zsh-completions/src)
     source $XDG_CONFIG_HOME/zsh/repos/zsh-autosuggestions/zsh-autosuggestions.zsh
     source $XDG_CONFIG_HOME/zsh/repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $XDG_CONFIG_HOME/zsh/repos/zsh-history-substring-search/zsh-history-substring-search.zsh
     export fpath
 fi
+#fpath+=($XDG_CONFIG_HOME/zsh/repos/zsh-completions/src)
 autoload -U promptinit; promptinit
 prompt pure
 
 #Plugin Options
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=green,fg=white,bold"
+
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 #Theme options
 #PURE_PROMPT_SYMBOL=❯
-#SPACESHIP_TIME_SHOW=true
-SPACESHIP_EXEC_TIME_ELAPSED=3
-SPACESHIP_BATTERY_THRESHOLD=15
-SPACESHIP_VI_MODE_SHOW=false
-
